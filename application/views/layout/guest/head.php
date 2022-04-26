@@ -16,6 +16,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/main.css">
+
+  <!--  splidejs  -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/splide/dist/css/themes/splide-skyblue.min.css">
+
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

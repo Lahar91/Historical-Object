@@ -17,5 +17,11 @@
     <!-- DataTables -->
     <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 
+    <!-- jQuery -->
+    <script src="<?= base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
+    <!-- sweetalert -->
+    <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+    <!-- ckeditor -->
+    <script src="<?= base_url() ?>assets/plugins/ckeditor/ckeditor.js"></script>
 
 </head>

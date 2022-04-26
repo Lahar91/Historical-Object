@@ -15,10 +15,10 @@ class Dashboard extends CI_Controller
     public function index()
     {
         $data = array(
-            'title' => 'Dashboard',
+            'tittle' => 'Dashboard',
             'isi' => 'admin/dashboard'
         );
-        $this->load->view('layout/wrapper', $data, FALSE);
+        $this->load->view('layout/admin/wrapper', $data, FALSE);
     }
 }
 

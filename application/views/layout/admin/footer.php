@@ -23,10 +23,43 @@
         Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+
+    <?php
+    $ctahun = explode("-", date("d-m-Y"));
+
+    ?>
+    <strong>Copyright &copy; 2021 - <?= $ctahun[2]; ?> <a href=#">Historical Object</a>.</strong> All rights reserved.
 </footer>
 </div>
 <!-- ./wrapper -->
+
+<script>
+    $(document).ready(function() {
+        $('#log_out').on('click', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Yakin ingin Logout?',
+                imageWidth: 150,
+                imageAlt: 'Custom image',
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonColor: 'rgb(28, 173, 28)',
+                confirmButtonText: 'Keluar',
+                cancelButtonText: 'Batal',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger mr-3',
+                reverseButtons: true,
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.value) {
+                    document.location.href = href;
+                }
+            })
+        })
+    })
+</script>
 
 <!-- REQUIRED SCRIPTS -->
 
