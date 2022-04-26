@@ -20,6 +20,15 @@ class Konten extends CI_Controller
         );
         $this->load->view('layout/admin/wrapper', $data, FALSE);
     }
+
+    public function add()
+    {
+        $data = array(
+            'tittle' => 'Editing',
+            'isi' => 'admin/add_konten'
+        );
+        $this->load->view('layout/admin/wrapper', $data, FALSE);
+    }
 }
 
 /* End of file Kategori.php */

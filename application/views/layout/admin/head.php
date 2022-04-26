@@ -23,5 +23,7 @@
     <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- ckeditor -->
     <script src="<?= base_url() ?>assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/ckfinder/ckfinder.js"></script>
+
 
 </head>
