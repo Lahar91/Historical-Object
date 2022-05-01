@@ -60,16 +60,10 @@ class Profile extends CI_Controller
                 }
             } else {
                 $data = array(
-                    'id_user' => $this->session->userdata('id_user'),
-                    'username' => $this->session->userdata('nama_users'),
-                    'email' => $this->input->post('email'),
+                    'tittle' => 'Profile',
+                    'isi' => 'admin/profile2'
                 );
-                $this->profile->edit($data);
-                $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
-                redirect('admin/dashboard');
-
-
-                $this->load->view('layout/wrapper', $data, FALSE);
+                $this->load->view('layout/admin/wrapper', $data, FALSE);
             }
         } else {
 
@@ -133,6 +127,7 @@ class Profile extends CI_Controller
         $this->session->unset_userdata('level_user');
         $this->session->unset_userdata('nama_users');
         $this->session->unset_userdata('error');
+        $this->session->sess_destroy();
         $this->session->set_flashdata('pesan', 'Anda Berhasil Logout !!!!');
         redirect('Auth');
     }

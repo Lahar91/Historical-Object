@@ -14,6 +14,17 @@ class M_konten extends CI_Model
         return $this->db->get()->result();
     }
 
+
+    public function get_data($id_artikel)
+    {
+        $this->db->from('artikel');
+
+        $this->db->where('artikel.id_artikel', $id_artikel);
+
+        return $this->db->get()->row();
+    }
+
+
     public function w_artikel($data)
     {
         $this->db->insert('artikel', $data);
@@ -27,7 +38,7 @@ class M_konten extends CI_Model
 
     public function d_artikel($data)
     {
-        $this->db->delete('aritkel', $data);
+        $this->db->delete('artikel', $data);
     }
 }
 

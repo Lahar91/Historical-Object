@@ -168,16 +168,6 @@ echo form_open_multipart('admin/Profile/edit') ?>
     </script>
 <?php endif; ?>
 
-<?php if ($this->session->flashdata('pesan')) : ?>
-    <script>
-        swal.fire({
-            title: "Berhasil",
-            text: "Data Berhasil di Ubah",
-            button: false,
-            timer: 5000,
-        });
-    </script>
-<?php endif; ?>
 
 <?php if ($this->session->flashdata('Spassword')) : ?>
     <script>

@@ -13,6 +13,12 @@ class M_kategori extends CI_Model
         $this->db->from('kategori');
         return $this->db->get()->result();
     }
+    public function row_kategori()
+    {
+        $this->db->select('*');
+        $this->db->from('kategori');
+        return $this->db->get()->row();
+    }
 
     public function w_kategori($data)
     {
