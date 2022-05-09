@@ -14,12 +14,19 @@ class M_konten extends CI_Model
         return $this->db->get()->result();
     }
 
+    public  function v_artikel($slug)
+    {
+        $this->db->from('artikel');
+        $this->db->where('artikel.artikel_slug', $slug);
+        return $this->db->get()->row();
+    }
 
-    public function get_data($id_artikel)
+
+    public function get_data($slug)
     {
         $this->db->from('artikel');
 
-        $this->db->where('artikel.id_artikel', $id_artikel);
+        $this->db->where('artikel.artikel_slug', $slug);
 
         return $this->db->get()->row();
     }
@@ -32,8 +39,8 @@ class M_konten extends CI_Model
 
     public function u_artikel($data)
     {
-        $this->db->where('artikel', $data['id_artikel']);
-        $this->db->update('artikel', $data);
+        $this->db->where('id_artikel', $data['id_artikel']);
+        return $this->db->update('artikel', $data);
     }
 
     public function d_artikel($data)

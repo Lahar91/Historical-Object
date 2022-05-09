@@ -83,7 +83,7 @@
     // instance, using default configuration.
     CKEDITOR.replace('editor1', {
         height: 300,
-        filebrowserUploadUrl: '<?= base_url('admin/konten/upload_image') ?>',
+        filebrowserUploadUrl: '<?= base_url('admin/kuis/upload_image') ?>',
         filebrowserUploadMethod: "form",
 
         toolbar: [{

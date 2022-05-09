@@ -40,7 +40,7 @@
 
 
                             <td>
-                                <a href="<?= base_url('admin/konten/edit/' . $key->id_artikel) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                <a href="<?= base_url('admin/konten/edit/' . $key->artikel_slug) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                 <a href="#" onclick="konfirmasi('<?= $key->id_artikel ?>')" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>

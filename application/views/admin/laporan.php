@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th class="w-25">Jenis Laporan</th>
+                        <th class="w-25">Judul artikel</th>
                         <th>Keterangan</th>
                         <th>Status</th>
                         <th class="w-25">Action</th>
@@ -28,11 +28,10 @@
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $value->jenis_report ?></td>
+                            <td><?= idconverttittle($value->id_artikel) ?></td>
                             <td><?= $value->keterangan ?></td>
                             <td><?= $value->status ?></td>
                             <td>
-
                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view<?= $value->id_report ?>"><i class="fa fa-edit"></i></button>
 
                             </td>
@@ -60,16 +59,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Jenis Laporan</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $value->jenis_report ?>" disabled>
-                            <input type="text" class="form-control" id="jenis" value="<?= $value->jenis_report ?>" name="jenis" hidden>
+                            <label for="exampleFormControlInput1">nama artikel</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= idconverttittle($value->id_artikel) ?>" disabled>
+                            <input type="text" class="form-control" id="id_artikel" value="<?= $value->id_artikel ?>" name="jenis" hidden>
 
                         </div>
-
-
-                        <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $value->id_artikel ?>" name="id_artikel" hidden>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $value->id_user ?>" name="id_user" hidden>
-
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>

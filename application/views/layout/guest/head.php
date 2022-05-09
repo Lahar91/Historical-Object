@@ -20,8 +20,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!--  splidejs  -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/splide/dist/css/themes/splide-skyblue.min.css">
-
+  <!-- slidejs -->
+  <script src="<?= base_url() ?>assets/plugins/splide/dist/js/splide.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/splide-extension-grid/package/dist/js/splide-extension-grid.min.js"></script>
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- leaderboard -->
+
+
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/plugins/leaderboard/css/style.css">
+  <!-- ckeditor -->
+  <script src="<?= base_url() ?>assets/plugins/ckeditor5/ckeditor.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/ckfinder/ckfinder.js"></script>
+
 </head>

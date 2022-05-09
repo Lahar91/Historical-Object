@@ -27,3 +27,21 @@ function convidtostring($ids)
         }
     }
 }
+
+function idconverttittle($idt)
+{
+    $ci = &get_instance();
+    $query = $ci->db->query("select * from artikel");
+    $row = $query->result();
+
+
+    foreach ($row as $key) {
+
+
+        switch ($idt) {
+            case $key->id_artikel:
+                echo $idt = $key->nama_artikel;
+                break;
+        }
+    }
+}

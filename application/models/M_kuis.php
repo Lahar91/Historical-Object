@@ -30,8 +30,8 @@ class M_kuis extends CI_Model
 
     public function u_kuis($data)
     {
-        $this->db->where('kuis', $data['id_kuis']);
-        $this->$this->db->update('kuis', $data);;
+        $this->db->where('id_kuis', $data['id_kuis']);
+        return $this->db->update('kuis', $data);;
     }
 
     public function d_kuis($data)

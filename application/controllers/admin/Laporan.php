@@ -28,7 +28,6 @@ class Laporan extends CI_Controller
             'id_report' => $id_report,
             'id_artikel' => $this->input->post('id_artikel'),
             'id_user' => $this->input->post('id_user'),
-            'jenis_report' => $this->input->post('jenis'),
             'keterangan' => $this->input->post('ketarangan'),
             'status' => $this->input->post('cek'),
 

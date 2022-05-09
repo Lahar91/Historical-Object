@@ -86,30 +86,87 @@ class Kuis extends CI_Controller
     {
         $data = array(
             'tittle' => 'Kuis',
+            'db_kuis' => $this->kuis->get_data($id_kuis),
             'isi' => 'admin/kuis_edit',
-            'db_kuis' => $this->kuis->get_kuis($id_kuis),
         );
 
+
         $this->load->view('layout/admin/wrapper', $data, FALSE);
+    }
+
+    public function upload_image()
+    {
+        if (isset($_FILES['upload']['tmp_name'])) {
+            $file = $_FILES['upload']['tmp_name'];
+            $file_name = $_FILES['upload']['name'];
+            $file_name_array = explode(".", $file_name);
+            $extension = end($file_name_array);
+            $new_image_name = rand() . "." . $extension;
+            $allowed_extension = array("jpg", "gif", "png", "JPG", "PNG", "GIF");
+            if (in_array($extension, $allowed_extension)) {
+                move_uploaded_file($file, "./assets/image/konten_img/" . $new_image_name);
+                $function_number = $_GET['CKEditorFuncNum'];
+                $url = base_url() . "assets/image/konten_img/" . $new_image_name;
+                $message = '';
+                echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction
+                ($function_number, '$url', '$message');</script>";
+            }
+        }
     }
 
 
     public function saveedit($id_kuis)
     {
 
-        $data = array(
-            'id_kuis' => $id_kuis,
-            'nama_kategori' => $this->input->post('nama_kategori'),
-            'soal_kuis' => $this->input->post('soal_kuis'),
-            'jawaban_benar' => $this->input->post('jawaban_benar'),
-            'Pilihan_A' => $this->input->post('Pilihan_A'),
-            'Pilihan_B' => $this->input->post('Pilihan_B'),
-            'Pilihan_C' => $this->input->post('Pilihan_C'),
-            'aktif' => $this->input->post('aktif'),
-        );
-        $this->kategori->u_kuis($data);
-        $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
-        redirect('admin/kuis');
+        $kjawab =  $this->input->post('radio1');
+        $jawab_a = $this->input->post('jawab_a');
+        $jawab_b = $this->input->post('jawab_b');
+        $jawab_c = $this->input->post('jawab_c');
+        if ($kjawab == "a") {
+            $data = array(
+                'id_kuis' => $id_kuis,
+                'soal_kuis' => $this->input->post('soal'),
+                'jawaban_benar' => $jawab_a,
+                'Pilihan_A' => $this->input->post('Pilihan_A'),
+                'Pilihan_B' => $this->input->post('Pilihan_B'),
+                'Pilihan_C' => $this->input->post('Pilihan_C'),
+                'aktif' => "Y",
+
+            );
+            $this->kuis->u_kuis($data);
+            $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
+            redirect('admin/kategori');
+        }
+        if ($kjawab == "b") {
+            $data = array(
+                'id_kuis' => $id_kuis,
+                'soal_kuis' => $this->input->post('soal'),
+                'jawaban_benar' => $jawab_b,
+                'Pilihan_A' => $this->input->post('jawab_a'),
+                'Pilihan_B' => $this->input->post('jawab_b'),
+                'Pilihan_C' => $this->input->post('jawab_c'),
+                'aktif' => "Y",
+
+            );
+            $this->kuis->u_kuis($data);
+            $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
+            redirect('admin/kategori');
+        }
+        if ($kjawab == "c") {
+            $data = array(
+                'id_kuis' => $id_kuis,
+                'soal_kuis' => $this->input->post('soal'),
+                'jawaban_benar' => $jawab_c,
+                'Pilihan_A' => $this->input->post('jawab_a'),
+                'Pilihan_B' => $this->input->post('jawab_b'),
+                'Pilihan_C' => $this->input->post('jawab_c'),
+                'aktif' => "Y",
+
+            );
+            $this->kuis->u_kuis($data);
+            $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
+            redirect('admin/kategori');
+        }
     }
 
     public function delete()

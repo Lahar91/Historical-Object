@@ -76,13 +76,21 @@
 
 
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
-        CKEDITOR.replace('editor1', {
-            height: 300,
-            filebrowserUploadUrl: '<?= base_url('admin/konten/upload_image') ?>',
-            filebrowserUploadMethod: "form",
-        });
+        ClassicEditor
+            .create(document.querySelector('#editor1'), {
+
+                toolbar: ['ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo'],
+
+
+                ckfinder: {
+                    // Upload the images to the server using the CKFinder QuickUpload command.
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
+                    // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
 

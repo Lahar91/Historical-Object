@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- sweetalert -->
+    <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 </head>
 
 <body class="hold-transition login-page">
@@ -67,6 +70,7 @@
             <!-- /.login-card-body -->
         </div>
     </div>
+
     <!-- /.login-box -->
 
     <!-- jQuery -->
@@ -77,5 +81,15 @@
     <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
 
 </body>
+<?php if ($this->session->flashdata('errorlogin')) : ?>
+    <script>
+        Swal.fire(
+            'Pemberitahuan!',
+            'Username atau password salah!',
+            'info'
+        )
+    </script>
+<?php endif; ?>
+<?php $this->session->unset_userdata('errorlogin');; ?>
 
 </html>

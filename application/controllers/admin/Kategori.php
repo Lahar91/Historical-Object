@@ -24,8 +24,11 @@ class Kategori extends CI_Controller
 
     public function add()
     {
+        $k_slug = str_replace(' ', '-', $this->input->post('nama_kategori'));
+
         $data = array(
             'nama_kategori' => $this->input->post('nama_kategori'),
+            'k_slug' =>  $k_slug,
         );
 
         $this->kategori->w_kategori($data);

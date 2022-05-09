@@ -20,7 +20,9 @@
 
             <div class="user-panel mt-3 mb-3 ml-auto d-flex ">
                 <div class="image">
-                    <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation" style="opacity: 0.5">
+                    <?php $img_user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+                    ?>
+                    <img src="<?= base_url() ?>assets/image/user/<?= $img_user['img'] ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation" style="opacity: 0.5">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block"><?= $this->session->userdata('nama_users'); ?></a>

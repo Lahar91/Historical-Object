@@ -36,28 +36,9 @@
 <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-<!-- slidejs -->
-<script src="<?= base_url() ?>assets/plugins/splide/dist/js/splide.min.js"></script>
-<script src="<?= base_url() ?>assets/plugins/splide-extension-grid/package/dist/js/splide-extension-grid.min.js"></script>
+
 
 </body>
 
-<script>
-    var splide = new Splide('.splide', {
-        rewind: true,
-        cover: true,
-        fixedWidth: 350,
-        fixedHeight: 100,
-        pagination: false,
-        gap: 10,
-        focus: 'center',
-        trimSpace: false,
-        autoplay: true,
-
-
-    });
-
-    splide.mount();
-</script>
 
 </html>

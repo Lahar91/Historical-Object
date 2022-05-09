@@ -22,8 +22,7 @@
     <!-- sweetalert -->
     <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- ckeditor -->
-    <script src="<?= base_url() ?>assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/ckeditor5/ckeditor.js"></script>
     <script src="<?= base_url() ?>assets/plugins/ckfinder/ckfinder.js"></script>
-    <script src="//cdn.ckeditor.com/4.18.0/basic/ckeditor.js"></script>
 
 </head>

@@ -40,7 +40,7 @@
 
                             <td>
 
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_kuis ?>"><i class="fa fa-edit"></i></button>
+                                <a href="<?= base_url('admin/kuis/edit/' . $value->id_kuis) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                 <a href="#" onclick="konfirmasi('<?= $value->id_kuis ?>')" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></a>
 
 

@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+img.circle-img {
+    height: 70px;
+    width: 70px;
+    border-radius: 70px;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+img.circle-img.circle-img--small {
+    height: 55px;
+    width: 55px;
+    border-radius: 55px;
+}
+
+.leaderboard .table {
+    border-spacing: 0 15px;
+    border-collapse: separate;
+}
+
+.leaderboard thead tr th,
+.leaderboard thead tr td,
+.leaderboard tbody tr th,
+.leaderboard tbody tr td {
+    vertical-align: middle;
+    border: none;
+}
+
+.leaderboard thead tr th:nth-last-child(1),
+.leaderboard thead tr td:nth-last-child(1),
+.leaderboard tbody tr th:nth-last-child(1),
+.leaderboard tbody tr td:nth-last-child(1) {
+    text-align: center;
+}
+
+.leaderboard tbody tr {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.leaderboard tbody tr td {
+    background: #fff;
+}
+
+.leaderboard tbody tr td:nth-child(1) {
+    border-radius: 5px 0 0 5px;
+}
+
+.leaderboard tbody tr td:nth-last-child(1) {
+    border-radius: 0 5px 5px 0;
+}

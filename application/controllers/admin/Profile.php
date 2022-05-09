@@ -111,7 +111,7 @@ class Profile extends CI_Controller
 
                 );
                 $this->profile->edit($data);
-                $this->session->set_flashdata('GagalPassword', 'data Gagal di rubah');
+                $this->session->set_flashdata('s_img', 'gambar berhasil di rubah');
                 redirect('admin/profile');
 
 

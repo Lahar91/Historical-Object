@@ -1,0 +1,27 @@
+<div class="col-lg-12 ">
+
+    <div class="card card-primary card-outline mt-3">
+        <div class="card-body mx-auto">
+            <div>
+                <h3 class="text-center mb-5"><?= $tittle ?></h3>
+            </div>
+
+            <div class="row ml-5">
+                <?php foreach ($cari as $key) {
+                ?>
+                    <div class="card-deck mr-3 mb-4">
+                        <a href="<?= base_url('guest/view/' . $key->artikel_slug) ?>" class="card " style="width: 18rem;">
+                            <img class="card-img-top text-center" src="<?= base_url('assets/image/konten_img/') . $key->img_artikel ?>" style="min-width: 200px; max-height: 150px; min-height: 150px;" alt="Card image cap">
+                            <div class="card-body ">
+                                <p class="card-text text-center ">
+                                    <?= $key->nama_artikel ?>
+                                </p>
+                            </div>
+                        </a>
+
+                    </div>
+                <?php  } ?>
+            </div>
+        </div>
+    </div>
+</div>

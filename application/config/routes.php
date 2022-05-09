@@ -54,3 +54,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'guest';
+
+$route['admin/konten/add'] = 'admin/Konten/add';
+
+$route['admin/konten/edit/(:any)'] = 'admin/Konten/edit';
+
+
+$route['user/view/(:any)'] = 'user/Konten/view';
+$route['user/kategori/(:any)'] = 'user/kategori/view';
+
+$route['guest/kategori/(:any)'] = 'Guest/kategori';
+$route['guest/view/(:any)'] = 'Guest/view';

@@ -47,6 +47,7 @@ class Auth extends CI_Controller
 
             $data['id_user']   = $cek['id_user'];
             $data['email']      = $cek['email'];
+            $data['img']      = $cek['img'];
             $data['level_user'] = $level;
             $data['nama_users'] = $nama_user;
 
@@ -55,21 +56,18 @@ class Auth extends CI_Controller
             if ($level == '1') {
                 redirect('admin/dashboard');
             } else {
-                redirect('user/dashboard');
+                redirect('user/home');
             }
         } else {
-            $this->session->set_flashdata('error', 'Email atau Password salah');
+            $this->session->set_flashdata('errorlogin', 'Email atau Password salah');
             redirect('auth/login');
         }
     }
 
     public function logout()
     {
-        $this->session->unset_userdata('id_user');
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('level_user');
-        $this->session->unset_userdata('nama_users');
-        $this->session->unset_userdata('error');
+
+        session_destroy();
         $this->session->set_flashdata('pesan', 'Anda Berhasil Logout !!!!');
         redirect('Auth');
     }
