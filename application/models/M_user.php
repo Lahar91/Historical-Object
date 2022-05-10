@@ -60,6 +60,34 @@ class M_user extends CI_Model
     {
         return $query = $this->db->query('SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ');
     }
+
+    public function insttmp_nilai($data)
+    {
+        $this->db->insert('tmp_nilai', $data);
+    }
+
+    public function uptmp_nilai($data)
+    {
+        $this->db->where('id_user', $data['id_user']);
+        $this->db->update('tmp_nilai', $data);
+    }
+
+
+    public function deltmp_nilai($data_delete)
+    {
+        $this->db->delete('tmp_nilai', $data_delete);
+    }
+
+    public function insertnilai($data)
+    {
+        $this->db->insert('hasil_kuis', $data);
+    }
+
+    public function upfinalnilai($data)
+    {
+        $this->db->where('id_user', $data['id_user']);
+        $this->db->update('hasil_kuis', $data);
+    }
 }
 
 /* End of file M.user.php */

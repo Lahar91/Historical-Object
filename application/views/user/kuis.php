@@ -144,4 +144,7 @@
 
         </div>
     </div>
+    <?= $this->session->unset_userdata('show');
+    $this->session->unset_userdata('snilai');
+    ?>
 </div>

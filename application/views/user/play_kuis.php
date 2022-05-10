@@ -39,6 +39,12 @@
 <div class="col-lg-12 mt-5">
     <div class="card card-primary mt-5">
         <div class="card-body">
+            <?php if ($this->session->userdata('show')) { ?>
+                <a href="<?= base_url('user/kuis') ?>" class="btn btn-outline-primary" id="kembali">Kembali</a>
+                <script>
+                </script>
+            <?php } ?>
+
             <?php
 
             $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ");
@@ -47,9 +53,11 @@
             while ($row = $query->unbuffered_row('array')) :
 
             ?>
-                <form id="form_jawab_<?= $no; ?>" method="POST" action="ajax/hasil.php">
+                <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
 
-                    <input type="hidden" id="id" name="id" value="<?= $row["id_kuis"] ?>">
+                    <input type="hidden" id="id" name="id_kuis" value="<?= $row["id_kuis"] ?>">
+                    <input hidden id="id" name="form_jawab" value="form_jawab_<?= $no; ?>">
+
 
                     <div class="con-soal">
                         <div class="card  w-100">
@@ -57,7 +65,7 @@
                                 <div class="card-body">
                                     <div class="col-lg-12 pb-5 pt-5">
 
-                                        <p> <?= $row["soal_kuis"] ?></p>
+                                        <p> <?= $no; ?> . <?= $row["soal_kuis"] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -68,40 +76,41 @@
                             <div class="col-lg-12">
 
                                 <div class="buttons mb-3">
-                                    <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="gender" value="<?= $row["Pilihan_A"] ?>">
+                                    <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
                                 </div>
                             </div>
 
                             <div class="col-lg-12  mb-3">
 
                                 <div class="buttons">
-                                    <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="gender" value="<?= $row["Pilihan_B"] ?>">
+                                    <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
                                 </div>
                             </div>
 
                             <div class="col-lg-12  mb-3">
 
                                 <div class="buttons">
-                                    <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="gender" value="<?= $row["Pilihan_C"] ?>">
+                                    <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
                                 </div>
                             </div>
 
                         </div>
                         <div class="col-lg-12  offset-6 mt-2 mb-2">
-                            <a id="btn_pilih_<?= $no; ?>" class="btn btn-outline-primary">Pilih</a>
+                            <button id="btn_pilih_<?= $no; ?>" type="submit" class="btn btn-outline-primary">Pilih</button>
                         </div>
                     </div>
                 </form>
 
+
                 <script>
                     $("#form_jawab_<?= $no; ?>").submit(function() {
 
-                        var next = '<?php echo $no + 1; ?>';
+                        var next = '<?= $no + 1; ?>';
                         if (!$("#jawaban_<?= $no; ?>:checked").val()) {
                             swal({
                                 title: "Hello.. !",
                                 text: "Pilih dulu jawabannya bro..!!",
-                                imageUrl: '../assets/img/warn.png'
+                                imageUrl: '<?= base_url() ?>assets/image/logo/warn.png'
                             });
                             return false;
                         } else {
@@ -111,28 +120,27 @@
                                 data: $(this).serialize(),
                                 success: function(data) {
                                     var myarr = data.split('/');
-                                    if (myarr[0] == 'jawaban anda benar, anda dapat 4 point') {
-                                        swal({
+                                    if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
+                                        Swal.fire({
                                             title: "Benar !",
-                                            text: myarr[0],
-                                            imageUrl: '../assets/img/up.png'
+                                            text: 'jawaban anda benar, anda dapat 20 point',
+                                            imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
                                         });
                                     } else {
-                                        swal({
+                                        Swal.fire({
                                             title: "Salah !",
-                                            text: myarr[0],
-                                            imageUrl: '../assets/img/down.png'
+                                            text: 'jawaban anda salah ',
+                                            imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
                                         });
                                     }
                                     $('#nilai').text(myarr[1]);
-                                    $('#form_jawab_<?php echo $no; ?>').hide();
+                                    $('#form_jawab_<?= $no; ?>').hide();
                                     $('#form_jawab_' + next).show();
-
-                                    return false;
                                 }
                             });
                             return false;
-                        }
+
+                        };
 
 
                     });
@@ -151,15 +159,10 @@
                 </script>
             <?php } ?>
 
-            <script>
-                $(document).ready(function() {
-                    $('.radio-group .radio').click(function() {
-                        $('.selected .fa').removeClass('fa-check');
-                        $('.radio').removeClass('selected');
-                        $(this).addClass('selected');
-                    });
-                });
-            </script>
+
+
+
+
 
 
         </div>

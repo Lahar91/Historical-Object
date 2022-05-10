@@ -44,5 +44,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-
+  <!-- sweetalert -->
+  <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 </head>
