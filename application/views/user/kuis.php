@@ -113,8 +113,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="d-flex align-items-baseline">
-                                        <h4 class="mr-1">$1,253</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+                                    <div class=" align-items-baseline">
+                                        <h4 class="fload-right">$1,253</h4><small class="text-success"></small>
                                     </div>
                                 </td>
 
@@ -144,7 +144,5 @@
 
         </div>
     </div>
-    <?= $this->session->unset_userdata('show');
-    $this->session->unset_userdata('snilai');
-    ?>
+
 </div>

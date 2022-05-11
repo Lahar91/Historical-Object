@@ -36,135 +36,144 @@
     }
 </style>
 
+
 <div class="col-lg-12 mt-5">
-    <div class="card card-primary mt-5">
-        <div class="card-body">
-            <?php if ($this->session->userdata('show')) { ?>
-                <a href="<?= base_url('user/kuis') ?>" class="btn btn-outline-primary" id="kembali">Kembali</a>
-                <script>
-                </script>
-            <?php } ?>
 
-            <?php
+    <?php
 
-            $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ");
-            $no = 1;
+    $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ");
+    $no = 1;
+    while ($row = $query->unbuffered_row('array')) :
 
-            while ($row = $query->unbuffered_row('array')) :
+    ?>
+        <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
 
-            ?>
-                <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
+            <div class="card card-primary mt-5">
+
+                <div class="card-body">
 
                     <input type="hidden" id="id" name="id_kuis" value="<?= $row["id_kuis"] ?>">
                     <input hidden id="id" name="form_jawab" value="form_jawab_<?= $no; ?>">
 
+                </div>
+                <div class="card pt-5 pb-5">
+                    <div class="card-body">
+                        <p class="mx-auto"> <?= $no; ?> . <?= $row["soal_kuis"] ?></p>
 
-                    <div class="con-soal">
-                        <div class="card  w-100">
-                            <div class="card-header">
-                                <div class="card-body">
-                                    <div class="col-lg-12 pb-5 pt-5">
-
-                                        <p> <?= $no; ?> . <?= $row["soal_kuis"] ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-12">
+                </div>
+                <div class="col-lg-12">
 
-                                <div class="buttons mb-3">
-                                    <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12  mb-3">
-
-                                <div class="buttons">
-                                    <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12  mb-3">
-
-                                <div class="buttons">
-                                    <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-12  offset-6 mt-2 mb-2">
-                            <button id="btn_pilih_<?= $no; ?>" type="submit" class="btn btn-outline-primary">Pilih</button>
-                        </div>
+                    <div class="buttons mb-3">
+                        <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
                     </div>
-                </form>
+                </div>
+
+                <div class="col-lg-12  mb-3">
+
+                    <div class="buttons">
+                        <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
+                    </div>
+                </div>
+
+                <div class="col-lg-12  mb-3">
+
+                    <div class="buttons">
+                        <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
+                    </div>
+                </div>
 
 
-                <script>
-                    $("#form_jawab_<?= $no; ?>").submit(function() {
-
-                        var next = '<?= $no + 1; ?>';
-                        if (!$("#jawaban_<?= $no; ?>:checked").val()) {
-                            swal({
-                                title: "Hello.. !",
-                                text: "Pilih dulu jawabannya bro..!!",
-                                imageUrl: '<?= base_url() ?>assets/image/logo/warn.png'
-                            });
-                            return false;
-                        } else {
-                            $.ajax({
-                                type: 'POST',
-                                url: $(this).attr('action'),
-                                data: $(this).serialize(),
-                                success: function(data) {
-                                    var myarr = data.split('/');
-                                    if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
-                                        Swal.fire({
-                                            title: "Benar !",
-                                            text: 'jawaban anda benar, anda dapat 20 point',
-                                            imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
-                                        });
-                                    } else {
-                                        Swal.fire({
-                                            title: "Salah !",
-                                            text: 'jawaban anda salah ',
-                                            imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
-                                        });
-                                    }
-                                    $('#nilai').text(myarr[1]);
-                                    $('#form_jawab_<?= $no; ?>').hide();
-                                    $('#form_jawab_' + next).show();
-                                }
-                            });
-                            return false;
-
-                        };
+                <div class="mx-auto">
+                    <button id="btn_pilih_<?= $no; ?>" type="submit" class="btn btn-outline-primary">Pilih</button>
+                </div>
 
 
+
+            </div>
+
+        </form>
+
+        <script>
+            $("#form_jawab_<?= $no; ?>").submit(function() {
+
+                var next = '<?= $no + 1; ?>';
+                if (!$("#jawaban_<?= $no; ?>:checked").val()) {
+                    swal({
+                        title: "Hello.. !",
+                        text: "Pilih dulu jawabannya bro..!!",
+                        imageUrl: '<?= base_url() ?>assets/image/logo/warn.png'
                     });
-                </script>
+                    return false;
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            var myarr = data.split('/');
+                            if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
+                                Swal.fire({
+                                    title: "Benar !",
+                                    text: 'jawaban anda benar, anda dapat 20 point',
+                                    imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Salah !",
+                                    text: 'jawaban anda salah ',
+                                    imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
+                                });
+                            }
+                            $('#nilai').text(myarr[1]);
+                            $('#form_jawab_<?= $no; ?>').hide();
+                            $('#form_jawab_' + next).show();
+                            $('#form_jawab_6').hide();
 
 
-                <?php $no++; ?>
+
+                        }
+                    });
+                    return false;
+
+                };
 
 
-            <?php endwhile;
+            });
+        </script>
 
-
-            for ($i = 2; $i <= 5; $i++) {  ?>
-                <script>
-                    $("#form_jawab_<?= $i; ?>").hide()
-                </script>
-            <?php } ?>
-
-
-
-
-
-
+        <div id="cardbox_<?= $no; ?>">
 
         </div>
-    </div>
+        <script>
+            $("#form_jawab_5").submit(function(e) {
+                $("#cardbox_5").show();
+                $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
+
+
+            });
+        </script>
+
+
+
+        <?php $no++; ?>
+
+
+    <?php endwhile; ?>
+    <?php for ($i = 2; $i <= 5; $i++) {  ?>
+        <script>
+            $("#form_jawab_<?= $i; ?>").hide()
+        </script>
+
+
+    <?php } ?>
+
+    <?php for ($h = 1; $h <= 5; $h++) { ?>
+        <script>
+            $("#cardbox_<?= $h; ?>").hide();
+            $("#bfinish_<?= $h; ?>").hide();
+        </script>
+    <?php } ?>
+
+
 </div>

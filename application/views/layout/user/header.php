@@ -6,7 +6,7 @@
             <div class="container">
                 <?php $img_user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); ?>
 
-                <a href="<?= base_url() ?>" class="navbar-brand">
+                <a href="<?= base_url('user/home') ?>" class="navbar-brand">
                     <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.9">
                     <span class="brand-text font-weight-light">Historical Object</span>
                 </a>

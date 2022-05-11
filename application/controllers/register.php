@@ -50,6 +50,7 @@ class register extends CI_Controller
                 'img' => 'Logo.png',
                 'id_role' => '1'
             );
+
             $this->user->add($data);
             $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
             redirect('Auth');

@@ -47,13 +47,30 @@
     <div class="card card-primary card-outline">
         <div class="card-body">
             <section class="splide" aria-label="Splide Basic HTML Example">
-                <div class="splide__track mr-5 ml-5">
-                    <ul class="splide__list mr-5 ml-5">
-                        <li class="splide__slide "><img src="<?= base_url() ?>assets/image/benner/1.jpg"> </li>
-                        <li class="splide__slide "><img src="<?= base_url() ?>assets/image/benner/2.jpg"> </li>
-                        <li class="splide__slide "><img src="<?= base_url() ?>assets/image/benner/3.jpg"> </li>
-                        <li class="splide__slide "><img src="<?= base_url() ?>assets/image/benner/3.jpg"> </li>
-                        <li class="splide__slide "><img src="<?= base_url() ?>assets/image/benner/3.jpg"> </li>
+                <div class="splide__track mr-5 ml-5 ">
+                    <ul class="splide__list mr-5 ml-5 mb-5">
+
+                        <li class="splide__slide mb-4">
+                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
+                            </div>
+                            <center>hai</center></a>
+                        </li>
+                        <li class="splide__slide mb-4">
+                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
+                            </div>
+                            <center>hai</center></a>
+                        </li>
+                        <li class="splide__slide mb-4">
+                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
+                            </div>
+                            <center>hai</center></a>
+                        </li>
+                        <li class="splide__slide mb-4">
+                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
+                            </div>
+                            <center>hai</center></a>
+                        </li>
+
                     </ul>
                 </div>
                 <div class="splide__progress">

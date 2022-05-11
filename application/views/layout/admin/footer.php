@@ -60,15 +60,25 @@
         })
     })
 </script>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#konten').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "pageLength": 5,
+        });
+    });
+</script>
 
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="<?= base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>

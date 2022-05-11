@@ -13,6 +13,7 @@ class Kuis extends CI_Controller
     }
     public function index()
     {
+
         $data = array(
             'tittle' => 'kuis',
             'db_kategori' => $this->M_user->kategori(),
@@ -23,6 +24,7 @@ class Kuis extends CI_Controller
 
     public function play()
     {
+
         $data = array(
             'tittle' => 'kuis',
             'db_kuis' => $this->M_user->rendkuis(),
@@ -82,6 +84,7 @@ class Kuis extends CI_Controller
                 );
                 $this->M_user->uptmp_nilai($data);
                 if ($this->input->post('form_jawab') == "form_jawab_5") {
+
                     $this->finsih();
                 }
             } else {
@@ -99,28 +102,28 @@ class Kuis extends CI_Controller
 
     public function finsih()
     {
-
         //buat session untuk tampil nilai
         $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
         $snilai['snilai']      = $shownilai['nilai'];
-        $snilai['show']        = true;
         $this->session->set_userdata($snilai);
 
+
+
         $finalnilai = $this->db->get_where('hasil_kuis', ['id_user' => $this->session->userdata('id_user')])->row_array();
-        if ($finalnilai['id_user'] == null) {
+        if ($finalnilai == null) {
 
             //update hasil_nilai
             $data = array(
                 'id_user' => $this->session->userdata('id_user'),
-                'nilai' => $shownilai['nilai']
+                'nilai' => $this->session->userdata('snilai')
             );
             $this->M_user->insertnilai($data);
 
             //delete data di tmp_nilai
-            $data_delete = array('id' => $shownilai['id']);
+            $data_delete = array('id' =>  $shownilai['id']);
             $this->M_user->deltmp_nilai($data_delete);
         } else {
-            $mxnilai = $finalnilai['nilai'] + $shownilai['nilai'];
+            $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
 
             //insert hasil_nilai
             $data = array(
@@ -130,10 +133,19 @@ class Kuis extends CI_Controller
             $this->M_user->upfinalnilai($data);
 
             //delete data di tmp_nilai
-            $data_delete = array('id' => $shownilai['id']);
+            $data_delete = array('id' =>  $shownilai['id']);
 
             $this->M_user->deltmp_nilai($data_delete);
         }
+    }
+
+    public function hasil_kuis()
+    {
+        $data = array(
+            'tittle' => 'kuis',
+            'db_kategori' => $this->M_user->kategori(),
+        );
+        $this->load->view('user/hasil_kuis', $data, FALSE);
     }
 }
 
