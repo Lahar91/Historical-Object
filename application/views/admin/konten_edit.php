@@ -35,21 +35,44 @@
             </div>
 
             <div class="ckconten">
+                <h4>Deskripsi</h4>
+
                 <textarea cols="100" rows="50" id="editor1" name="deskripsi"><?= $db_konten->deskripsi ?></textarea>
 
             </div>
+
+            <br>
+            <br>
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <h4>Waktu di temukan</h4>
+
+                    <textarea cols="500" rows="100" id="editor2" name="waktu"><?= $db_konten->waktu ?></textarea>
+
+
+                </div>
+                <div class="col-lg-6">
+                    <h4>Kondisi saat kini</h4>
+
+                    <textarea cols="500" rows="100" id="editor3" name="kondisi"><?= $db_konten->kondisi ?></textarea>
+
+
+                </div>
+            </div>
+
             <div class="form-group col-md-2 mt-3">
 
 
-                <label>Select</label>
+                <label>Kategori</label>
                 <select class="form-control" name="kategori">
-                    <option selected="0" value="<?= $db_konten->id_kategori ?>"> <?= convidtostring($db_konten->id_kategori) ?></option>
+                    <option selected="selected" value="<?= $db_konten->id_kategori ?>"> <?= convidtostring($db_konten->id_kategori) ?></option>
                     <option>---PILIH KATEGORI ---</option>
                     <?php
                     foreach ($db_kategori as $key) :
                     ?>
-                        <option value="<?php echo $key->id_kategori; ?>">
-                            <?php echo $key->nama_kategori; ?>
+                        <option value="<?= $key->id_kategori; ?>">
+                            <?= $key->nama_kategori; ?>
                         </option>
                     <?php endforeach; ?>
 
@@ -79,7 +102,87 @@
         ClassicEditor
             .create(document.querySelector('#editor1'), {
 
-                toolbar: ['ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo'],
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'fontfamily', 'fontsize', '|',
+                        'alignment', '|',
+                        'fontColor', 'fontBackgroundColor', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                        'link', '|',
+                        'outdent', 'indent', '|',
+                        'bulletedList', 'numberedList', 'todoList', '|',
+                        'code', 'codeBlock', '|',
+                        'insertTable', '|',
+                        'blockQuote', '|',
+                        'undo', 'redo'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+
+
+                ckfinder: {
+                    // Upload the images to the server using the CKFinder QuickUpload command.
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
+                    // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#editor2'), {
+
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'fontfamily', 'fontsize', '|',
+                        'alignment', '|',
+                        'fontColor', 'fontBackgroundColor', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                        'link', '|',
+                        'outdent', 'indent', '|',
+                        'bulletedList', 'numberedList', 'todoList', '|',
+                        'code', 'codeBlock', '|',
+                        'insertTable', '|',
+                        'blockQuote', '|',
+                        'undo', 'redo'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+
+
+                ckfinder: {
+                    // Upload the images to the server using the CKFinder QuickUpload command.
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
+                    // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#editor3'), {
+
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'fontfamily', 'fontsize', '|',
+                        'alignment', '|',
+                        'fontColor', 'fontBackgroundColor', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                        'link', '|',
+                        'outdent', 'indent', '|',
+                        'bulletedList', 'numberedList', 'todoList', '|',
+                        'code', 'codeBlock', '|',
+                        'insertTable', '|',
+                        'blockQuote', '|',
+                        'undo', 'redo'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
 
 
                 ckfinder: {

@@ -4,20 +4,20 @@
     }
 
     .ckonten {
-        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
         margin-top: -5px;
     }
 </style>
 <div class="row">
 
-    <div class="col-lg-5 mt-5">
+    <div class="col-lg-5 mt-2">
         <div class="card card-primary mt-5">
             <div class="card-header">
             </div>
-            <div class=" text-center">
-            </div>
+            <h4 class="tittle-c mt-2  text-center ckonten"><?= $db_konten->nama_artikel ?></h4>
 
             <div class="card-body">
+
                 <img src="<?= base_url('assets/image/konten_img/' . $db_konten->img_artikel) ?>" alt="" class="img-thumbnail d-block">
             </div>
         </div>
@@ -26,7 +26,7 @@
     </div>
 
 
-    <div class="col-lg-7 mt-5">
+    <div class="col-lg-7 mt-2">
         <div class="card mt-5">
             <div class="card card-primary">
                 <div class="card-header"></div>
@@ -70,8 +70,8 @@
             </div>
         </div>
 
-        <div class="col-12 offset-9 mr-3">
-            <button class="btn btn-danger btn-xl w-25" data-toggle="modal" data-target="#report<?= $db_konten->id_artikel ?>">Report</button>
+        <div class="float-right">
+            <button class="btn btn-danger btn-xl" data-toggle="modal" data-target="#report<?= $db_konten->id_artikel ?>">Report</button>
 
         </div>
     </div>

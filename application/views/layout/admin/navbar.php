@@ -1,14 +1,13 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?= base_url('admin/Dashboard') ?>" class="brand-link">
         <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation" style="opacity: 0.9">
         <span class="brand-text font-weight-light">Historical Object</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -32,7 +31,7 @@
                     <a href="<?= base_url('admin/Kategori') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'Kategori') {
                                                                                     echo "active";
                                                                                 } ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fa fa-clone"></i>
                         <p>
                             Kategori
                         </p>
@@ -43,7 +42,7 @@
                     <a href="<?= base_url('admin/konten') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'konten') {
                                                                                     echo "active";
                                                                                 } ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-newspaper" aria-hidden="true"></i>
                         <p>
                             Konten
                         </p>
@@ -65,7 +64,7 @@
                     <a href="<?= base_url('admin/profile') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'profile') {
                                                                                     echo "active";
                                                                                 } ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class=" nav-icon fa fa-user" aria-hidden="true"></i>
                         <p>
                             Profile
                         </p>
@@ -76,7 +75,7 @@
                     <a href="<?= base_url('admin/Laporan') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'Laporan') {
                                                                                     echo "active";
                                                                                 } ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fa fa-comments"></i>
                         <p>
                             Laporan
                         </p>
@@ -92,10 +91,6 @@
                         </p>
                     </a>
                 </li>
-
-
-
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

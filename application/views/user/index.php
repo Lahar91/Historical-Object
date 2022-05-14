@@ -40,36 +40,51 @@
             height: 7rem;
         }
     }
+
+    @media (max-width: 412px) {
+        ul li img {
+            width: 5.6rem;
+            height: 7rem;
+        }
+
+        .imglist {
+            min-width: 50px;
+            max-width: 100px;
+            height: 7rem;
+        }
+    }
+
+    .hborder {
+        margin-top: -5px;
+    }
+
+    .ckonten {
+        border-bottom: 1px solid grey;
+        margin-top: -5px;
+    }
 </style>
 
 <div class="col-lg-12 mt-5">
 
     <div class="card card-primary card-outline">
+        <H4 class="text-center mt-2 mb-1 hboder ckonten">Rekomendasi</H4>
+
         <div class="card-body">
             <section class="splide" aria-label="Splide Basic HTML Example">
                 <div class="splide__track mr-5 ml-5 ">
                     <ul class="splide__list mr-5 ml-5 mb-5">
 
-                        <li class="splide__slide mb-4">
-                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
-                            </div>
-                            <center>hai</center></a>
-                        </li>
-                        <li class="splide__slide mb-4">
-                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
-                            </div>
-                            <center>hai</center></a>
-                        </li>
-                        <li class="splide__slide mb-4">
-                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
-                            </div>
-                            <center>hai</center></a>
-                        </li>
-                        <li class="splide__slide mb-4">
-                            <div class="splide__slide_container"><a href=""><img src="<?= base_url() ?>assets/image/benner/1.jpg">
-                            </div>
-                            <center>hai</center></a>
-                        </li>
+                        <?php $query = $this->db->query("SELECT * FROM artikel  ORDER BY RAND() LIMIT 6 ")->result();
+                        foreach ($query as $key => $value) : {
+                            }
+                        ?>
+                            <li class="splide__slide mb-4">
+                                <div class="splide__slide_container"><a href="<?= base_url('user/view/' . $value->artikel_slug) ?>"><img src="<?= base_url() ?>assets/image/konten_img/<?= $value->img_artikel ?>">
+                                </div>
+                                <center><?= $value->nama_artikel ?></center></a>
+                            </li>
+
+                        <?php endforeach ?>
 
                     </ul>
                 </div>
@@ -82,28 +97,35 @@
     </div>
 
 
-    <div class="col-lg-12 ">
+    <div class="col-lg-12 mt-3">
 
-        <div class="card card-primary card-outline ">
-            <div class="card-body mx-auto">
-                <div class="row ml-5">
-                    <?php foreach ($artikel as $key) {
+        <div class="card card-primary card-outline">
+            <div class="card-body mx-5">
+                <div class="row">
+
+                    <?php foreach ($pagartikel as $key) {
                     ?>
-                        <div class="card-deck mr-3 mb-4">
-                            <a href="<?= base_url('user/view/' . $key->artikel_slug) ?>" class="card " style="width: 18rem;">
-                                <img class="card-img-top text-center" src="<?= base_url('assets/image/konten_img/') . $key->img_artikel ?>" style="min-width: 200px; max-height: 150px; min-height: 150px;" alt="Card image cap">
-                                <div class="card-body ">
-                                    <p class="card-text text-center ">
-                                        <?= $key->nama_artikel ?>
-                                    </p>
-                                </div>
-                            </a>
+                        <div class="col-lg-3">
+                            <div class="card-deck my-3">
+                                <a href="<?= base_url('user/view/' . $key['artikel_slug']) ?>" class="card " style="max-width: 13rem; min-width: 13rem;">
+                                    <img class="card-img-top text-center img-thumbnail d-block" src="<?= base_url('assets/image/konten_img/') . $key['img_artikel'] ?>" style="min-width: 200px; max-height: 150px; min-height: 150px;" alt="Card image cap">
+                                    <div class="card-body ">
+                                        <p class="card-text text-center ">
+                                            <?= $key['nama_artikel'] ?>
+                                        </p>
+                                    </div>
+                                </a>
 
+                            </div>
                         </div>
+
                     <?php  } ?>
                 </div>
+                <?= $this->pagination->create_links(); ?>
+
             </div>
         </div>
+
     </div>
 
 </div>

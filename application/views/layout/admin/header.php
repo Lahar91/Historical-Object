@@ -17,7 +17,6 @@
             <!-- Sidebar user panel (optional) -->
 
 
-
             <div class="user-panel mt-3 mb-3 ml-auto d-flex ">
                 <div class="image">
                     <?php $img_user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

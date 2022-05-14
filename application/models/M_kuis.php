@@ -14,6 +14,11 @@ class M_kuis extends CI_Model
         return $this->db->get()->result();
     }
 
+
+    public function countkuis()
+    {
+        return $this->db->get('kuis')->num_rows();
+    }
     public function get_data($id_kuis)
     {
         $this->db->from('kuis');

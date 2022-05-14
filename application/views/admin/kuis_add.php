@@ -79,42 +79,35 @@
 
 
 <script>
-    // Replace the <textarea id=" editor1"> with a CKEditor 4
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1', {
-        height: 300,
-        filebrowserUploadUrl: '<?= base_url('admin/kuis/upload_image') ?>',
-        filebrowserUploadMethod: "form",
+    ClassicEditor
+        .create(document.querySelector('#editor1'), {
 
-        toolbar: [{
-                name: 'basicstyles',
-                groups: ['basicstyles', 'cleanup'],
-                items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
-            },
-            {
-                name: 'paragraph',
-                groups: ['list', 'indent', 'blocks', 'align', 'bidi'],
-                items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']
-            },
-            {
-                name: 'links',
-                items: ['Link', 'Unlink']
-            },
-            {
-                name: 'insert',
-                items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar']
-            },
-            '/',
-            {
-                name: 'styles',
-                items: ['Styles', 'Format', 'Font', 'FontSize']
-            },
-            {
-                name: 'colors',
-                items: ['TextColor', 'BGColor']
+            toolbar: {
+                items: [
+                    'heading', '|',
+                    'fontfamily', 'fontsize', '|',
+                    'alignment', '|',
+                    'fontColor', 'fontBackgroundColor', '|',
+                    'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                    'link', '|',
+                    'outdent', 'indent', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',
+                    'code', 'codeBlock', '|',
+                    'insertTable', '|',
+                    'uploadImage', 'ckfinder', 'blockQuote', '|',
+                    'undo', 'redo'
+                ],
+                shouldNotGroupWhenFull: true
             },
 
 
-        ]
-    });
+            ckfinder: {
+                // Upload the images to the server using the CKFinder QuickUpload command.
+                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
+                // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
 </script>

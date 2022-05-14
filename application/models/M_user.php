@@ -12,6 +12,21 @@ class M_user extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function countuser()
+    {
+        return $this->db->get('user')->num_rows();
+    }
+
+    public  function artikeldesc()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel');
+        $this->db->order_by('id_artikel', 'desc');
+
+        return $this->db->get()->result();
+    }
+
+
     public function add($data)
     {
         $this->db->insert('user', $data);
@@ -87,6 +102,27 @@ class M_user extends CI_Model
     {
         $this->db->where('id_user', $data['id_user']);
         $this->db->update('hasil_kuis', $data);
+    }
+
+    public function shownilai($data)
+    {
+        $this->db->select('hasil_kuis.id_user, img, username, nilai');
+        $this->db->from('hasil_kuis');
+        $this->db->join('user', 'hasil_kuis.id_user = user.id_user', 'inner');
+        $this->db->where('user.id_user', $data);
+
+        return $this->db->get()->row();
+    }
+
+    public function shownilairank()
+    {
+        $this->db->select('user.id_user, img, username, nilai');
+        $this->db->from('user');
+        $this->db->join('hasil_kuis', 'user.id_user = hasil_kuis.id_user', 'inner');
+        $this->db->order_by('nilai', 'DESC');
+        $this->db->limit(3);
+
+        return $this->db->get()->result();
     }
 }
 

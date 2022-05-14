@@ -48,7 +48,7 @@ class register extends CI_Controller
                 'email' => $this->input->post('email'),
                 'Password' => $pass,
                 'img' => 'Logo.png',
-                'id_role' => '1'
+                'id_role' => '2'
             );
 
             $this->user->add($data);

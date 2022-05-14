@@ -29,7 +29,8 @@ class Konten extends CI_Controller
         $cari = $this->input->post('keyboard');
         if (!$this->input->post('keyboard') == '') {
             $data['tittle'] = 'Hasil Pencarian';
-            $data['cari'] = $this->M_user->cari($cari);
+            $data['cari'] = $this->user->cari($cari);
+            $data['db_kategori'] = $this->user->kategori();
             $data['isi'] = 'user/cari';
             $this->load->view('layout/user/wrapper', $data, FALSE);
         } else {

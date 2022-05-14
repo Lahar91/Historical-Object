@@ -80,6 +80,8 @@ class Konten extends CI_Controller
                 'nama_artikel' => $this->input->post('judul'),
                 'artikel_slug' => $slug,
                 'deskripsi' => $this->input->post('deskripsi'),
+                'waktu' => $this->input->post('waktu'),
+                'kondisi' => $this->input->post('kondisi'),
                 'id_kategori' => $this->input->post('kategori'),
                 'username' => $this->session->userdata('nama_users'),
 
@@ -146,6 +148,7 @@ class Konten extends CI_Controller
         $slug = $this->uri->segment(4);
         $data = array(
             'tittle' => 'Editing',
+            'db_kategori' => $this->kategori->r_kategori(),
             'db_konten' => $this->konten->get_data($slug),
             'isi' => 'admin/konten_edit'
         );
@@ -167,7 +170,9 @@ class Konten extends CI_Controller
                 'id_artikel' => $id_artikel,
                 'nama_artikel' => $this->input->post('judul'),
                 'deskripsi' => $this->input->post('deskripsi'),
-                'id_kategori' => $this->input->post('id_kategori')
+                'waktu' => $this->input->post('waktu'),
+                'kondisi' => $this->input->post('kondisi'),
+                'id_kategori' => $this->input->post('kategori')
             );
             $this->konten->u_artikel($data);
             $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
@@ -188,6 +193,8 @@ class Konten extends CI_Controller
                 'img_artikel' => $upload_data['uploads']['file_name'],
                 'nama_artikel' => $this->input->post('judul'),
                 'deskripsi' => $this->input->post('deskripsi'),
+                'waktu' => $this->input->post('waktu'),
+                'kondisi' => $this->input->post('kondisi'),
                 'id_kategori' => $this->input->post('id_kategori')
             );
             $this->konten->u_artikel($data);

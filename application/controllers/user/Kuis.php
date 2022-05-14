@@ -17,6 +17,8 @@ class Kuis extends CI_Controller
         $data = array(
             'tittle' => 'kuis',
             'db_kategori' => $this->M_user->kategori(),
+            'showrank' => $this->M_user->shownilairank(),
+            'shownilai' => $this->M_user->shownilai($this->session->userdata('id_user')),
             'isi' => 'user/kuis'
         );
         $this->load->view('layout/user/wrapper', $data, FALSE);
@@ -28,6 +30,7 @@ class Kuis extends CI_Controller
         $data = array(
             'tittle' => 'kuis',
             'db_kuis' => $this->M_user->rendkuis(),
+            'db_kategori' => $this->M_user->kategori(),
             'isi' => 'user/play_kuis'
         );
         $this->load->view('layout/user/wrapper', $data, FALSE);

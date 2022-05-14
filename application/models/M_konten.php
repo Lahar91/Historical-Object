@@ -14,12 +14,49 @@ class M_konten extends CI_Model
         return $this->db->get()->result();
     }
 
-    public  function v_artikel($slug)
+    public function get_artikel($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('artikel');
+        $this->db->order_by('id_artikel', 'desc');
+        $this->db->limit($limit, $start);
+
+        return $this->db->get()->result_array();
+    }
+
+    public function countartikel()
+    {
+        return $this->db->get('artikel')->num_rows();
+    }
+
+
+    public  function v_artikel($slug, $limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('artikel');
+        $this->db->where('artikel.id_kategori', $slug['id_kategori']);
+        $this->db->limit($limit, $start);
+
+        return $this->db->get()->result_array();
+    }
+
+    public function countkategori($slug)
     {
         $this->db->from('artikel');
-        $this->db->where('artikel.artikel_slug', $slug);
-        return $this->db->get()->row();
+        $this->db->where('artikel.id_kategori', $slug['id_kategori']);
+        return $this->db->get()->num_rows();
     }
+
+    public  function artikeldesc()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel');
+        $this->db->order_by('id_artikel', 'desc');
+
+        return $this->db->get()->result();
+    }
+
+
 
 
     public function get_data($slug)

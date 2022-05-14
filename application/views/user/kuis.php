@@ -17,67 +17,31 @@
 
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/user1.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                                        <div class="user-info__basic">
-                                            <h6 class="mb-0">Kiran Acharya</h6>
+                        <?php $no = 1;
+
+                        foreach ($showrank as $key => $value) : ?>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="<?= base_url('assets/image/user/' . $value->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
+                                            <div class="user-info__basic">
+                                                <h6 class="mb-0"><?= $value->username ?></h6>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-baseline">
-                                        <h4 class="mr-1">$1,253</h4>
-                                </td>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-baseline">
+                                            <h4 class="mr-1"><?= $value->nilai ?></h4>
+                                    </td>
 
-                                <td>
-                                    <button class="btn btn-success btn-sm">MVP</button>
-                                </td>
-                            </tr>
+                                    <td>
+                                        <button class="btn btn-success btn-sm"><?= $no++ ?></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/user1.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                                        <div class="user-info__basic">
-                                            <h6 class="mb-0">Kiran Acharya</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-baseline">
-                                        <h4 class="mr-1">$1,253</h4>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-success btn-sm">2nd</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/user1.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                                        <div class="user-info__basic">
-                                            <h6 class="mb-0">Kiran Acharya</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-baseline">
-                                        <h4 class="mr-1">$1,253</h4><small class="text-success">
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-success btn-sm">3rd</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -103,24 +67,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/user1.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                                        <div class="user-info__basic">
-                                            <h6 class="mb-0">Kiran Acharya</h6>
+                            <?php if ($shownilai != null) { ?>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="<?= base_url('assets/image/user/' . $shownilai->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
+                                            <div class="user-info__basic">
+                                                <h6 class="mb-0"><?= $shownilai->username; ?></h6>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class=" align-items-baseline">
-                                        <h4 class="fload-right">$1,253</h4><small class="text-success"></small>
-                                    </div>
-                                </td>
-
-
-                            </tr>
-
+                                    </td>
+                                    <td>
+                                        <div class=" align-items-baseline">
+                                            <h4 class="fload-right"><?= $shownilai->nilai; ?></h4><small class="text-success"></small>
+                                        </div>
+                                    </td>
+                                </tr> <?php } else { ?>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="<?= base_url('assets/image/user/' . $this->session->userdata('img')) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
+                                            <div class="user-info__basic">
+                                                <h6 class="mb-0"><?= $this->session->userdata('nama_users') ?></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class=" align-items-baseline">
+                                            <h4 class="fload-right">0</h4><small class="text-success"></small>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
