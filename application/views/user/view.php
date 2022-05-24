@@ -45,10 +45,10 @@
                     <div class="card card-primary">
                         <div class="card-header"></div>
                         <div class="text-center hborder">
-                            <h6 class="tittle-c mt-2 "><?= $db_konten->nama_artikel ?></h6>
+                            <h6 class="tittle-c mt-2 ">Waktu Di temukan</h6>
                         </div>
                         <div class="ckonten">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem magni, aspernatur porro quam voluptate quaerat adipisci assumenda odit! Asperiores tempore quaerat quidem porro, illum quis laudantium aspernatur iusto saepe eum?
+                            <?= $db_konten->waktu ?>
                         </div>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                     <div class="card card-primary">
                         <div class="card-header"></div>
                         <div class="text-center hborder">
-                            <h6 class="tittle-c mt-2 "><?= $db_konten->nama_artikel ?></h6>
+                            <h6 class="tittle-c mt-2 ">Keadaan sekarang</h6>
                         </div>
                         <div class="ckonten">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem magni, aspernatur porro quam voluptate quaerat adipisci assumenda odit! Asperiores tempore quaerat quidem porro, illum quis laudantium aspernatur iusto saepe eum?
+                            <?= $db_konten->kondisi ?>
                         </div>
                     </div>
                 </div>

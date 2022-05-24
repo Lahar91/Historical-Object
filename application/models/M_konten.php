@@ -14,6 +14,8 @@ class M_konten extends CI_Model
         return $this->db->get()->result();
     }
 
+
+
     public function get_artikel($limit, $start)
     {
         $this->db->select('*');
