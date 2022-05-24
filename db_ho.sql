@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2022 at 09:59 AM
+-- Generation Time: May 24, 2022 at 12:30 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -33,6 +33,8 @@ CREATE TABLE `artikel` (
   `nama_artikel` varchar(255) NOT NULL,
   `artikel_slug` text NOT NULL,
   `deskripsi` longtext NOT NULL,
+  `waktu` text NOT NULL,
+  `kondisi` text NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -41,17 +43,17 @@ CREATE TABLE `artikel` (
 -- Dumping data for table `artikel`
 --
 
-INSERT INTO `artikel` (`id_artikel`, `img_artikel`, `nama_artikel`, `artikel_slug`, `deskripsi`, `id_kategori`, `username`) VALUES
-(5, '60abba740e1da.png', 'Batu Rosetta', 'Batu-Rosetta', '<p>Batu Rosetta (bahasa Inggris: Rosetta Stone‎) adalah sebuah prasasti batu granodiorit yang ditemukan pada tahun 1799. Prasasti ini berukirkan tiga versi dari sebuah maklumat yang dikeluarkan di Memfis, Mesir pada tahun 196 SM selama dinasti Ptolemaik atas nama Raja Ptolemaios V. Teks maklumat di bagian atas dan tengah prasasti ditulis dalam bahasa Mesir Kuno dengan aksara hieroglif dan demotik, sementara bagian bawahnya ditulis dalam bahasa Yunani Kuno. Karena redaksi maklumat ini hampir sama dalam ketiga versi bahasa dan tulisan, Batu Rosetta pun dimanfaatkan sebagai kunci penerjemahan aksara hieroglif Mesir, yang pada akhirnya meluaskan wawasan mengenai sejarah kuno Mesir.</p><p>Diyakini bahwa prasasti yang dipahat pada zaman Helenistik ini awalnya dipajang di dalam sebuah kuil, mungkin di sekitar kawasan Sais. Prasasti ini kemudian dipindahkan pada Abad Kuno Akhir atau semasa pemerintahan Mamluk, hingga akhirnya digunakan sebagai bahan bangunan dalam pendirian sebuah benteng (yang nantinya direnovasi menjadi Fort Julien) di dekat kota Rashid (nama Prancis: Rosette atau Inggris: Rosetta) di wilayah Delta Nil. Prasasti ini ditemukan kembali pada bulan Juli 1799 oleh seorang tentara Prancis bernama Pierre-François Bouchard ketika ia sedang bertugas dalam kampanye militer Prancis di Mesir dan Suriah pada masa Napoleon. Batu Rosetta merupakan prasasti dwibahasa Mesir Kuno pertama yang ditemukan kembali pada zaman modern. Penemuan ini mencetuskan kembali ketertarikan masyarakat umum pada Egiptologi karena dianggap berpotensi membantu penguraian aksara hieroglif yang hingga saat itu belum berhasil diterjemahkan. Salinan litografis dan gips mulai beredar di museum-museum dan kalangan cendekiawan Eropa. Sementara itu, pasukan Inggris mengalahkan Prancis di Mesir pada tahun 1801, dan setelah Penyerahan Iskandariyah prasasti ini menjadi milik Inggris dan diboyong ke London. Batu Rosetta mulai dipamerkan di British Museum sejak tahun 1802, dan kini menjadi koleksi yang paling banyak dikunjungi di sana.</p>', 9, 'admin'),
-(6, '60ac86a84af13.jpg', 'Pualam Elgin', 'Pualam-Elgin', '<p>Pualam Elgin adalah koleksi pahatan batu pualam yang dipahat oleh Feidias sebagai bagian dari kuil Parthenon dan Akropolis Athena di Yunani. Namun, saat Yunani di bawah jajahan Kesultanan Utsmaniyah pada abad ke-19, wakil Britania Raya, Thomas Bruce, menyuruh bawahannya \"mengambil\" pualam Parthenon tersebut untuk diangkut ke Britania Raya. Proses pengambilannya memakan waktu 11 tahun, dari 1801 sampai 1812.</p><p>Tujuan Bruce yang juga adalah pangeran ke-7 Elgin adalah untuk mengamankan pualam Parthenon dari serangan Utsmaniyah. Namun, caranya tersebut ditentang baik oleh Yunani dan Britania Raya karena sama saja seperti \"penjarahan\"! Jadi, pada 1816, Bruce menjual pualam Parthenon ke Kerajaan Britania Raya dan dipajang di <i>British Museum</i>, London hingga saat ini.</p>', 1, 'admin'),
-(8, '60ac89aec459f.jpg', 'Harta Karun Priam', 'Harta-Karun-Priam', '<p>Pada 1870an, saat arkeolog Jerman, Heinrich Schliemann, tengah menggali di Hissarlik (sekarang Anatolia), ia menemukan harta karun peninggalan perang Troya! Seorang penggemar epos Yunani Kuno, Heinrich bukan hanya menemukan Troya (sekarang Turki), melainkan juga harta peninggalan raja Priam, dari perhiasan kepala, topeng, hingga perhiasan.</p><p>Akan tetapi, cara Heinrich ditentang oleh arkeolog lain karena dianggap mempermalukan nama arkeolog. Selain itu, Heinrich juga enggan tadinya enggan membagi hasilnya pada Kesultanan Utsmaniyah yang menguasai daerah tersebut. Akhirnya, Heinrich setuju untuk berbagi dengan kesultanan, asal ia diizinkan menggali lagi.</p><p>Harta karun tersebut itu dibawa ke <i>Royal Museum of Berlin</i>, Jerman, pada tahun 1881. Namun, setelah berakhirnya Perang Dunia II (PD2) dan pendudukan Berlin oleh Uni Soviet, artefak tersebut menghilang dan pemerintah Uni Soviet pun juga tak tahu menahu saat ditanya pada era Perang Dingin.</p>', 2, 'admin'),
-(9, '60ac8e743e035.jpg', 'Hoa Hakananai’a', 'Hoa-Hakananaia', '<p>Pulau Paskah (<i>Rapa Nui</i>) terkenal akan pahatan batu basal besar yang menyerupai orang bernama Moai yang dibuat dari abad ke-12 hingga abad ke-17. Selama 500 tahun tersebut, jumlah Moai di Pulau Paskah bertambah hingga 900</p><p>Salah satu Moai yang terbaik adalah Hoa Hakananai’a yang konon katanya dibuat pada abad ke-11. Namun, pada 1869, Hoa Hakananai’a dibawa ke Inggris untuk dipersembahkan pada Ratu Victoria dan dipajang di&nbsp;<i>British Museum</i>. Ironisnya, Hoa Hakananai’a memiliki arti \"teman curian\".</p>', 1, 'admin'),
-(33, '60ac8f38b2843.png', 'Padrao', 'Padrao', '<p>Padrao merupakan batu peringatan perjanjian antara Portugis dan Kerajaan Sunda. &nbsp;Pada tahun 1522, Gubernur Portugis di Malaka Jorge d’Albuquerque mengutus Henrique Leme untuk mengadakan hubungan dagang dengan Raja Sunda yang bergelar “Samiam”. Perjanjian antara Portugis dan Kerajaan Sunda dibuat pada tanggal 21 Agustus 1522. &nbsp;Isi dari perjanjian tersebut antara lain : Portugis diizinkan untuk mendirikan kantor dagang berupa sebuah benteng di wilayah Kalapa dan di tempat tersebut didirikan batu peringatan (<i>padrao</i>) dalam Bahasa Portugis. &nbsp;Kerajaan Sunda menyetujui perjanjian tersebut, selain karena hubungan perdagangan, juga untuk mendapatkan bantuan Portugis dalam menghadapi Kerajaan Islam Demak. &nbsp;Namun perjanjian tersebut tidak terlaksana, karena pada tahun 1527 Fatahillah berhasil menguasai Sunda Kelapa.</p>', 9, 'admin'),
-(64, '1652001130.jpg', 'awa', '', '<figure class=\"image\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/gambar6.jpg\"></figure>', 1, 'admin admin2'),
-(66, '1652001521.jpg', 'awa awa', '', '<figure class=\"image\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/empek-empek-c37ce3ca497f25a19c8ac31767ee888c_600x4004.jpg\"></figure>', 1, 'admin admin2'),
-(67, '1652001960.jpg', 'aaws ss', 'aaws-ss', '<figure class=\"image\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/gambar12.jpg\"></figure>', 1, 'admin admin2'),
-(68, '1652002363.jpg', 'sdasd', 'sdasd', '<figure class=\"image image-style-side\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/gambar14.jpg\"></figure><p>&nbsp;</p><p>ghkjkjhjhkljjjjjjjjjjjjjjjjjjjjjjjj</p>', 1, 'admin admin2'),
-(69, '1652004047.jpg', 'sadasd', 'sadasd', '<figure class=\"image\"><img src=\"/ckfinder/userfiles/images/empek-empek-c37ce3ca497f25a19c8ac31767ee888c_600x400.jpg\"></figure><p>asdsadwsadwad</p>', 0, 'admin admin2');
+INSERT INTO `artikel` (`id_artikel`, `img_artikel`, `nama_artikel`, `artikel_slug`, `deskripsi`, `waktu`, `kondisi`, `id_kategori`, `username`) VALUES
+(5, '60abba740e1da.png', 'Batu Rosetta', 'Batu-Rosetta', '<p>Batu Rosetta (bahasa Inggris: Rosetta Stone‎) adalah sebuah prasasti batu granodiorit. Prasasti ini berukirkan tiga versi dari sebuah maklumat yang dikeluarkan di Memfis, Mesir pada tahun 196 SM selama dinasti Ptolemaik atas nama Raja Ptolemaios V. Teks maklumat di bagian atas dan tengah prasasti ditulis dalam bahasa Mesir Kuno dengan aksara hieroglif dan demotik, sementara bagian bawahnya ditulis dalam bahasa Yunani Kuno. Karena redaksi maklumat ini hampir sama dalam ketiga versi bahasa dan tulisan, Batu Rosetta pun dimanfaatkan sebagai kunci penerjemahan aksara hieroglif Mesir, yang pada akhirnya meluaskan wawasan mengenai sejarah kuno Mesir.</p><p>Diyakini bahwa prasasti yang dipahat pada zaman Helenistik ini awalnya dipajang di dalam sebuah kuil, mungkin di sekitar kawasan Sais. Prasasti ini kemudian dipindahkan pada Abad Kuno Akhir atau semasa pemerintahan Mamluk, hingga akhirnya digunakan sebagai bahan bangunan dalam pendirian sebuah benteng (yang nantinya direnovasi menjadi Fort Julien) di dekat kota Rashid (nama Prancis: Rosette atau Inggris: Rosetta) di wilayah Delta Nil. Prasasti ini ditemukan kembali pada bulan Juli 1799 oleh seorang tentara Prancis bernama Pierre-François Bouchard ketika ia sedang bertugas dalam kampanye militer Prancis di Mesir dan Suriah pada masa Napoleon. Batu Rosetta merupakan prasasti dwibahasa Mesir Kuno pertama yang ditemukan kembali pada zaman modern. Penemuan ini mencetuskan kembali ketertarikan masyarakat umum pada Egiptologi karena dianggap berpotensi membantu penguraian aksara hieroglif yang hingga saat itu belum berhasil diterjemahkan. Salinan litografis dan gips mulai beredar di museum-museum dan kalangan cendekiawan Eropa. Sementara itu, pasukan Inggris mengalahkan Prancis di Mesir pada tahun 1801, dan setelah Penyerahan Iskandariyah prasasti ini menjadi milik Inggris dan diboyong ke London.&nbsp;</p>', '<p>ditemukan pada tahun 1799</p>', '<p>Batu Rosetta mulai dipamerkan di British Museum sejak tahun 1802, dan kini menjadi koleksi yang paling banyak dikunjungi di sana.</p>', 1, 'admin'),
+(6, '60ac86a84af13.jpg', 'Pualam Elgin', 'Pualam-Elgin', '<p>Pualam Elgin adalah koleksi pahatan batu pualam yang dipahat oleh Feidias sebagai bagian dari kuil Parthenon dan Akropolis Athena di Yunani. Namun, saat Yunani di bawah jajahan Kesultanan Utsmaniyah pada abad ke-19, wakil Britania Raya, Thomas Bruce, menyuruh bawahannya \"mengambil\" pualam Parthenon tersebut untuk diangkut ke Britania Raya. Proses pengambilannya memakan waktu 11 tahun, dari 1801 sampai 1812.</p><p>Tujuan Bruce yang juga adalah pangeran ke-7 Elgin adalah untuk mengamankan pualam Parthenon dari serangan Utsmaniyah. Namun, caranya tersebut ditentang baik oleh Yunani dan Britania Raya karena sama saja seperti \"penjarahan\"! Jadi, pada 1816, Bruce menjual pualam Parthenon ke Kerajaan Britania Raya dan dipajang di <i>British Museum</i>, London hingga saat ini.</p>', '', '', 1, 'admin'),
+(8, '60ac89aec459f.jpg', 'Harta Karun Priam', 'Harta-Karun-Priam', '<p>Pada 1870an, saat arkeolog Jerman, Heinrich Schliemann, tengah menggali di Hissarlik (sekarang Anatolia), ia menemukan harta karun peninggalan perang Troya! Seorang penggemar epos Yunani Kuno, Heinrich bukan hanya menemukan Troya (sekarang Turki), melainkan juga harta peninggalan raja Priam, dari perhiasan kepala, topeng, hingga perhiasan.</p><p>Akan tetapi, cara Heinrich ditentang oleh arkeolog lain karena dianggap mempermalukan nama arkeolog. Selain itu, Heinrich juga enggan tadinya enggan membagi hasilnya pada Kesultanan Utsmaniyah yang menguasai daerah tersebut. Akhirnya, Heinrich setuju untuk berbagi dengan kesultanan, asal ia diizinkan menggali lagi.</p><p>Harta karun tersebut itu dibawa ke <i>Royal Museum of Berlin</i>, Jerman, pada tahun 1881. Namun, setelah berakhirnya Perang Dunia II (PD2) dan pendudukan Berlin oleh Uni Soviet, artefak tersebut menghilang dan pemerintah Uni Soviet pun juga tak tahu menahu saat ditanya pada era Perang Dingin.</p>', '', '', 2, 'admin'),
+(9, '60ac8e743e035.jpg', 'Hoa Hakananai’a', 'Hoa-Hakananaia', '<p>Pulau Paskah (<i>Rapa Nui</i>) terkenal akan pahatan batu basal besar yang menyerupai orang bernama Moai yang dibuat dari abad ke-12 hingga abad ke-17. Selama 500 tahun tersebut, jumlah Moai di Pulau Paskah bertambah hingga 900</p><p>Salah satu Moai yang terbaik adalah Hoa Hakananai’a yang konon katanya dibuat pada abad ke-11. Namun, pada 1869, Hoa Hakananai’a dibawa ke Inggris untuk dipersembahkan pada Ratu Victoria dan dipajang di&nbsp;<i>British Museum</i>. Ironisnya, Hoa Hakananai’a memiliki arti \"teman curian\".</p>', '', '', 1, 'admin'),
+(33, '60ac8f38b2843.png', 'Padrao', 'Padrao', '<p>Padrao merupakan batu peringatan perjanjian antara Portugis dan Kerajaan Sunda. &nbsp;Pada tahun 1522, Gubernur Portugis di Malaka Jorge d’Albuquerque mengutus Henrique Leme untuk mengadakan hubungan dagang dengan Raja Sunda yang bergelar “Samiam”. Perjanjian antara Portugis dan Kerajaan Sunda dibuat pada tanggal 21 Agustus 1522. &nbsp;Isi dari perjanjian tersebut antara lain : Portugis diizinkan untuk mendirikan kantor dagang berupa sebuah benteng di wilayah Kalapa dan di tempat tersebut didirikan batu peringatan (<i>padrao</i>) dalam Bahasa Portugis. &nbsp;Kerajaan Sunda menyetujui perjanjian tersebut, selain karena hubungan perdagangan, juga untuk mendapatkan bantuan Portugis dalam menghadapi Kerajaan Islam Demak. &nbsp;Namun perjanjian tersebut tidak terlaksana, karena pada tahun 1527 Fatahillah berhasil menguasai Sunda Kelapa.</p>', '', '', 9, 'admin'),
+(64, '1652001130.jpg', 'awa', '', '<figure class=\"image\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/gambar6.jpg\"></figure>', '', '', 1, 'admin admin2'),
+(66, '1652001521.jpg', 'awa awa', '', '<figure class=\"image\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/empek-empek-c37ce3ca497f25a19c8ac31767ee888c_600x4004.jpg\"></figure>', '', '', 1, 'admin admin2'),
+(67, '1652001960.jpg', 'aaws ss', 'aaws-ss', '<figure class=\"image\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/gambar12.jpg\"></figure>', '', '', 1, 'admin admin2'),
+(68, '1652002363.jpg', 'sdasd', 'sdasd', '<figure class=\"image image-style-side\"><img src=\"http://localhost/Historical-Object/./assets/image/konten_img/gambar14.jpg\"></figure><p>&nbsp;</p><p>ghkjkjhjhkljjjjjjjjjjjjjjjjjjjjjjjj</p>', '', '', 1, 'admin admin2'),
+(69, '1652004047.jpg', 'sadasd', 'sadasd', '<figure class=\"image\"><img src=\"/ckfinder/userfiles/images/empek-empek-c37ce3ca497f25a19c8ac31767ee888c_600x400.jpg\"></figure><p>asdsadwsadwad</p>', '', '', 0, 'admin admin2');
 
 -- --------------------------------------------------------
 
@@ -62,8 +64,19 @@ INSERT INTO `artikel` (`id_artikel`, `img_artikel`, `nama_artikel`, `artikel_slu
 CREATE TABLE `hasil_kuis` (
   `id_hasil` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `nilai` text NOT NULL
+  `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hasil_kuis`
+--
+
+INSERT INTO `hasil_kuis` (`id_hasil`, `id_user`, `nilai`) VALUES
+(84, 14, 872),
+(85, 15, 80),
+(86, 16, 40),
+(87, 17, 140),
+(88, 18, 140);
 
 -- --------------------------------------------------------
 
@@ -175,8 +188,16 @@ INSERT INTO `user` (`id_user`, `username`, `email`, `Password`, `img`, `id_role`
 (2, 'admin', '', 'admin', '60ac724b7a29e.png', 1),
 (7, 'usertest', '', 'user', '60aa7a499cf9d.jpg', 2),
 (8, 'user10', '', 'user', '60aa7a499cf9d.jpg', 2),
-(13, 'admin admin2', 'admin@admin.com', '$2y$10$OuyIMf8XgC2xS/b81g0W1eM6CtnGOBWbTQ6KgLf2wDFc/311TG0x2', '1652085684.jpg', 1),
-(14, 'user user2', 'user@user.com', '$2y$10$VLx/srXGvCgUyw3oJjqdZuyqC6SH8Ec/Bm.bIyVwD0Sp04CxpJHUa', '1652088737.jpg', 2);
+(13, 'admin admin2', 'admin@admin.com', '$2y$10$FZ1gFWSP8Y.nophat4Fyb.3L00Eq5z3jgRySDdIVsMbZ5AZwR6haK', '1652085684.jpg', 1),
+(14, 'user user2', 'user@user.com', '$2y$10$FvmG4/tBMLBLggme1CwK.uk2FTvL3LApmjw5dgGXpBfa/sN16LYmO', '1652088737.jpg', 2),
+(15, 'user2 user3', 'user2@user.com', '$2y$10$O16hX0mFXAnVRBaC6rvoG.sxNOu6hWDzqS5ZSCaZf4r00a139it9m', 'Logo.png', 2),
+(16, 'user3 user3', 'user3@user.com', '$2y$10$zOt.cFagQo4M9aKYjLMQV.k1Q9YMiG..1EW2puqgoEmK7lV.dhlem', 'Logo.png', 2),
+(17, 'user4 user', 'user4@user.com', '$2y$10$BV2lGecSBG.3LOrf/7HyaOW4CgbW/F0Oktt45YEfETVrdX4p/tLmC', 'Logo.png', 2),
+(18, 'user user4', 'user5@user.com', '$2y$10$MLWgTpuTr5ks8QF/EwP8QuC9az3.rCF0nTrdoVKLfZkvxS1inyz2i', 'Logo.png', 2),
+(31, 'rifki rahardjo', 'androrif29@gmail.com', '$2y$10$HAuUkFIDv1KgqsLng48v0uYu.YkGa1AV0mUpQ07GFFWTVq0e7G6zK', 'Logo.png', 2),
+(32, 'rifki2 rahardjo', 'androri@andri.com', '$2y$10$X25Oo1MYQm6ayMMfKFLC6.Ny9Dy9jxkGdUSOYFY2koBGnLjOOeDGW', 'Logo.png', 2),
+(33, 'rifki3 rifki', 'androrif22@andro.com', '$2y$10$5QnhRZiWXQKM58Xj4yreteutzAk5wjnT8I4kUZAVC2eMli9x0MBJO', 'Logo.png', 2),
+(34, 'rifki3 rifki3', 'androrif22@andro.com', '$2y$10$N0Rdb.4LDl40Kr3qpejwme5UQy7ir6QGOxM1DD5znvMZUkHJEkGkq', 'Logo.png', 2);
 
 -- --------------------------------------------------------
 
@@ -268,7 +289,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `hasil_kuis`
 --
 ALTER TABLE `hasil_kuis`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -292,13 +313,13 @@ ALTER TABLE `report_artikel`
 -- AUTO_INCREMENT for table `tmp_nilai`
 --
 ALTER TABLE `tmp_nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user_role`
