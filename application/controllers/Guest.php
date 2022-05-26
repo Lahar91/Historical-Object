@@ -123,17 +123,17 @@ class Guest extends CI_Controller
 
         $this->load->view('layout/guest/wrapper', $data, FALSE);
     }
-
     public function Cari()
     {
         $cari = $this->input->post('keyboard');
         if (!$this->input->post('keyboard') == '') {
             $data['tittle'] = 'Hasil Pencarian';
             $data['cari'] = $this->user->cari($cari);
+            $data['db_kategori'] = $this->user->kategori();
             $data['isi'] = 'guest/cari';
-            $this->load->view('layout/guest/wrapper', $data, FALSE);
+            $this->load->view('layout/user/wrapper', $data, FALSE);
         } else {
-            redirect(base_url('guest/home'));
+            redirect(base_url('user/home'));
         }
     }
 }

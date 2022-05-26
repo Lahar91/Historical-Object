@@ -24,7 +24,7 @@
                 foreach ($db_konten as $key) {
                 ?>
                     <div class="card-deck mr-3 mb-4">
-                        <a href="<?= base_url('user/view/' . $key['artikel_slug']) ?>" class="card " style="width: 18rem;">
+                        <a href="<?= base_url('guest/view/' . $key['artikel_slug']) ?>" class="card " style="width: 18rem;">
                             <img class="card-img-top text-center" src="<?= base_url('assets/image/konten_img/') . $key['img_artikel'] ?>" style="min-width: 200px; max-height: 150px; min-height: 150px;" alt="Card image cap">
                             <div class="card-body ">
                                 <p class="card-text text-center ">
