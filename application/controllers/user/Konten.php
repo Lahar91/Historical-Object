@@ -15,26 +15,51 @@ class Konten extends CI_Controller
 
     public function view()
     {
-        $slug = $this->uri->segment(3);
-        $data = array(
-            'db_konten' => $this->konten->get_data($slug),
-            'db_kategori' => $this->user->kategori(),
-            'isi' => 'user/view',
-        );
-        $this->load->view('layout/user/wrapper', $data, FALSE);
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+
+            $slug = $this->uri->segment(3);
+            $data = array(
+                'db_konten' => $this->konten->get_data($slug),
+                'db_kategori' => $this->user->kategori(),
+                'isi' => 'android_user/view',
+            );
+            $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        } else {
+            $slug = $this->uri->segment(3);
+            $data = array(
+                'db_konten' => $this->konten->get_data($slug),
+                'db_kategori' => $this->user->kategori(),
+                'isi' => 'user/view',
+            );
+            $this->load->view('layout/user/wrapper', $data, FALSE);
+        }
     }
 
     public function Cari()
     {
-        $cari = $this->input->post('keyboard');
-        if (!$this->input->post('keyboard') == '') {
-            $data['tittle'] = 'Hasil Pencarian';
-            $data['cari'] = $this->user->cari($cari);
-            $data['db_kategori'] = $this->user->kategori();
-            $data['isi'] = 'user/cari';
-            $this->load->view('layout/user/wrapper', $data, FALSE);
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+
+            $cari = $this->input->post('keyboard');
+            if (!$this->input->post('keyboard') == '') {
+                $data['tittle'] = 'Hasil Pencarian';
+                $data['cari'] = $this->user->cari($cari);
+                $data['db_kategori'] = $this->user->kategori();
+                $data['isi'] = 'android_user/cari';
+                $this->load->view('layout/android_user/wrapper', $data, FALSE);
+            } else {
+                redirect(base_url('user/home'));
+            }
         } else {
-            redirect(base_url('user/home'));
+            $cari = $this->input->post('keyboard');
+            if (!$this->input->post('keyboard') == '') {
+                $data['tittle'] = 'Hasil Pencarian';
+                $data['cari'] = $this->user->cari($cari);
+                $data['db_kategori'] = $this->user->kategori();
+                $data['isi'] = 'user/cari';
+                $this->load->view('layout/user/wrapper', $data, FALSE);
+            } else {
+                redirect(base_url('user/home'));
+            }
         }
     }
 

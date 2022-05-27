@@ -13,27 +13,48 @@ class Kuis extends CI_Controller
     }
     public function index()
     {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
 
-        $data = array(
-            'tittle' => 'kuis',
-            'db_kategori' => $this->M_user->kategori(),
-            'showrank' => $this->M_user->shownilairank(),
-            'shownilai' => $this->M_user->shownilai($this->session->userdata('id_user')),
-            'isi' => 'user/kuis'
-        );
-        $this->load->view('layout/user/wrapper', $data, FALSE);
+            $data = array(
+                'tittle' => 'kuis',
+                'db_kategori' => $this->M_user->kategori(),
+                'showrank' => $this->M_user->shownilairank(),
+                'shownilai' => $this->M_user->shownilai($this->session->userdata('id_user')),
+                'isi' => 'android_user/kuis'
+            );
+            $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        } else {
+            $data = array(
+                'tittle' => 'kuis',
+                'db_kategori' => $this->M_user->kategori(),
+                'showrank' => $this->M_user->shownilairank(),
+                'shownilai' => $this->M_user->shownilai($this->session->userdata('id_user')),
+                'isi' => 'user/kuis'
+            );
+            $this->load->view('layout/user/wrapper', $data, FALSE);
+        }
     }
 
     public function play()
     {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
 
-        $data = array(
-            'tittle' => 'kuis',
-            'db_kuis' => $this->M_user->rendkuis(),
-            'db_kategori' => $this->M_user->kategori(),
-            'isi' => 'user/play_kuis'
-        );
-        $this->load->view('layout/user/wrapper', $data, FALSE);
+            $data = array(
+                'tittle' => 'kuis',
+                'db_kuis' => $this->M_user->rendkuis(),
+                'db_kategori' => $this->M_user->kategori(),
+                'isi' => 'android_user/play_kuis'
+            );
+            $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        } else {
+            $data = array(
+                'tittle' => 'kuis',
+                'db_kuis' => $this->M_user->rendkuis(),
+                'db_kategori' => $this->M_user->kategori(),
+                'isi' => 'user/play_kuis'
+            );
+            $this->load->view('layout/user/wrapper', $data, FALSE);
+        }
     }
 
     public function hasil()
@@ -144,11 +165,20 @@ class Kuis extends CI_Controller
 
     public function hasil_kuis()
     {
-        $data = array(
-            'tittle' => 'kuis',
-            'db_kategori' => $this->M_user->kategori(),
-        );
-        $this->load->view('user/hasil_kuis', $data, FALSE);
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+
+            $data = array(
+                'tittle' => 'kuis',
+                'db_kategori' => $this->M_user->kategori(),
+            );
+            $this->load->view('android_user/hasil_kuis', $data, FALSE);
+        } else {
+            $data = array(
+                'tittle' => 'kuis',
+                'db_kategori' => $this->M_user->kategori(),
+            );
+            $this->load->view('user/hasil_kuis', $data, FALSE);
+        }
     }
 }
 

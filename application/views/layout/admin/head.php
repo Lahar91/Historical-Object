@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Historical Object | Admin</title>
-    <link rel="shortcut icon" href="<?= base_url() ?>assets/image/logo/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/image/logo/Logo.png" type="image/x-icon">
 
 
     <!-- Font Awesome Icons -->

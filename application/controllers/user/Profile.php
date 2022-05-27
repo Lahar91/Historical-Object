@@ -17,12 +17,22 @@ class Profile extends CI_Controller
 
     public function index()
     {
-        $data = array(
-            'tittle' => 'Profile',
-            'db_kategori' => $this->M_user->kategori(),
-            'isi' => 'user/profile2'
-        );
-        $this->load->view('layout/user/wrapper', $data, FALSE);
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+
+            $data = array(
+                'tittle' => 'Profile',
+                'db_kategori' => $this->M_user->kategori(),
+                'isi' => 'android_user/profile2'
+            );
+            $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        } else {
+            $data = array(
+                'tittle' => 'Profile',
+                'db_kategori' => $this->M_user->kategori(),
+                'isi' => 'user/profile2'
+            );
+            $this->load->view('layout/user/wrapper', $data, FALSE);
+        }
     }
 
 

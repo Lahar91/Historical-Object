@@ -42,6 +42,15 @@ class M_konten extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    public  function vnp_artikel($slug)
+    {
+        $this->db->select('*');
+        $this->db->from('artikel');
+        $this->db->where('artikel.id_kategori', $slug['id_kategori']);
+
+        return $this->db->get()->result_array();
+    }
+
     public function countkategori($slug)
     {
         $this->db->from('artikel');

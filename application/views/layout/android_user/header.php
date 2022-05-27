@@ -2,9 +2,11 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar sticky-top navbar-expand-md navbar-light navbar-white ">
+        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
             <div class="container">
-                <a href="<?= base_url() ?>" class="navbar-brand">
+                <?php $img_user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); ?>
+
+                <a href="<?= base_url('user/home') ?>" class="navbar-brand">
                     <img src="<?= base_url() ?>assets/image/logo/Logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.9">
                     <span class="brand-text font-weight-light">Historical Object</span>
                 </a>
@@ -15,26 +17,11 @@
 
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                     <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Kategori</a>
-                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <?php foreach ($db_kategori as $key => $value) { ?>
-                                    <li><a href="<?= base_url('guest/kategori/' . $value->k_slug) ?>" class="dropdown-item"><?= $value->nama_kategori; ?></a></li>
-                                    <li class="dropdown-divider"></li>
-                                <?php } ?>
-                            </ul>
-                        </li>
 
-                    </ul>
 
-                    <!-- Right navbar links -->
                     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                         <!-- SEARCH FORM -->
-                        <?= form_open_multipart('guest/cari') ?>
+                        <?= form_open_multipart('user/konten/cari') ?>
 
                         <div class="input-group input-group-sm">
                             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="keyboard">
@@ -51,20 +38,17 @@
                         ?>
                         <!-- END SEARCH FORM -->
 
-
-
-                        <!-- button login -->
-                        <a href="<?= base_url('Auth') ?>" class="btn btn-outline-success pl-3 pr-3 ml-3">Login</a>
-
-                        <!-- button login -->
-
-
+                        <!-- button register-->
                     </ul>
                 </div>
 
 
+
+                <!-- Right navbar links -->
+
             </div>
         </nav>
+
         <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->

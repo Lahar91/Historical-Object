@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Historical Object | Register</title>
-    <link rel="shortcut icon" href="<?= base_url() ?>assets/image/logo/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/image/logo/Logo.png" type="image/x-icon">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
     <div class="register-box">
         <div class="login-logo" style="margin-top: -150px;">
             <div>
-                <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="AdminLTE Logo" width="220" style="opacity: .8">
+                <img src="<?= base_url() ?>assets/image/logo/Logo.png" alt="AdminLTE Logo" width="220" style="opacity: .8">
             </div>
             <a href="<?= base_url() ?>index2.html"><b>Historical</b> Object</a>
         </div>

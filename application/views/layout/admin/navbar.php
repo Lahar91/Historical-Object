@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="<?= base_url('admin/Dashboard') ?>" class="brand-link">
-        <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation" style="opacity: 0.9">
+        <img src="<?= base_url() ?>assets/image/logo/Logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation" style="opacity: 0.9">
         <span class="brand-text font-weight-light">Historical Object</span>
     </a>
 

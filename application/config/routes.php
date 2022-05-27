@@ -60,12 +60,14 @@ $route['admin/konten/add'] = 'admin/Konten/add';
 $route['admin/konten/edit/(:any)'] = 'admin/Konten/edit';
 
 
+$route['user/kategori'] = 'user/kategori/list_kategori';
 $route['user/view/(:any)'] = 'user/Konten/view';
 $route['user/kategori/(:any)'] = 'user/kategori/view';
 $route['user/home/(:any)'] = 'user/home/index/$1';
 
 
+$route['guest/kategori'] = 'guest/list_kategori';
 $route['guest/kategori/(:any)'] = 'Guest/kategori';
 $route['guest/view/(:any)'] = 'Guest/view';
-$route['guest/(:any)'] = 'guest/index/$1';
+$route['guest/(:num)'] = 'guest/index/$1';
 $route['guest/kategori/(:any)/(:num)'] = 'Guest/kategori/$1/$1';

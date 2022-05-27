@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-2">
-                    <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="" class=" rounded  img-thumbnail mx-auto d-block img-fluid">
+                    <img src="<?= base_url() ?>assets/image/logo/Logo.png" alt="" class=" rounded  img-thumbnail mx-auto d-block img-fluid">
                 </div>
                 <div class="col-md-8 mt-auto">
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus reprehenderit quia unde reiciendis repellat, deserunt qui adipisci, molestiae ad repellendus omnis ipsa odio. Minus voluptatum est provident a saepe tenetur.</p>

@@ -7,7 +7,7 @@
     <title>Historical Object | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="<?= base_url() ?>assets/image/logo/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/image/logo/Logo.png" type="image/x-icon">
 
 
     <!-- Font Awesome -->
@@ -29,7 +29,7 @@
     <div class="login-box">
         <div class="login-logo" style="margin-top: -150px;">
             <div>
-                <img src="<?= base_url() ?>assets/image/logo/logo.png" alt="AdminLTE Logo" width="220" style="opacity: .8">
+                <img src="<?= base_url() ?>assets/image/logo/Logo.png" alt="AdminLTE Logo" width="220" style="opacity: .8">
             </div>
             <a href="<?= base_url() ?>index2.html"><b>Historical</b> Object</a>
         </div>
@@ -93,5 +93,16 @@
     </script>
 <?php endif; ?>
 <?php $this->session->unset_userdata('errorlogin');; ?>
+
+<?php if ($this->session->flashdata('ilegal_login')) : ?>
+    <script>
+        Swal.fire(
+            'Pemberitahuan!',
+            'admin tidak bisa login di dalam applikasi android',
+            'info'
+        )
+    </script>
+<?php endif; ?>
+<?php $this->session->unset_userdata('ilegal_login'); ?>
 
 </html>
