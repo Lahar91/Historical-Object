@@ -14,7 +14,7 @@
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <?php if ($this->session->userdata('lebarlayar') > '860') { ?>
+                <?php if ($this->session->userdata('lebarlayar') > '860' && $this->session->userdata('lebarlayar') != null) { ?>
 
                     <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                         <!-- Left navbar links -->

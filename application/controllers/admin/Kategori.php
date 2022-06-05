@@ -10,6 +10,9 @@ class Kategori extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_kategori', 'kategori');
+        if ($this->session->userdata('level_user') != "1") {
+            redirect("auth/logout");
+        }
     }
 
     public function index()

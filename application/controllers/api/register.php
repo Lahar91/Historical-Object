@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . 'libraries/RestController.php';
 require APPPATH . 'libraries/Format.php';
 
-class register extends RestController
+class Register extends RestController
 
 {
 

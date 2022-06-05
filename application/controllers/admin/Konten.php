@@ -13,6 +13,9 @@ class Konten extends CI_Controller
         parent::__construct();
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
+        if ($this->session->userdata('level_user') != "1") {
+            redirect("auth/logout");
+        }
     }
 
     public function index()

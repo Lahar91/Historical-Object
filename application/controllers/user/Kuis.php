@@ -10,6 +10,9 @@ class Kuis extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user');
+        if ($this->session->userdata('level_user') != "2") {
+            redirect("auth/logout");
+        }
     }
     public function index()
     {

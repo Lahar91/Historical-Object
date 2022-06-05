@@ -29,22 +29,32 @@ class Login extends RestController
         $result['login'] = array();
         $cek = $this->db->get_where('user', ['email' => $email])->row_array();
 
-
         if (password_verify($password, $cek['Password'])) {
+            $level = $cek['id_role'];
 
             $index['username'] = $cek['username'];
             $index['email'] = $cek['email'];
-            $level     = $cek['id_role'];
+
+            $data['id_user']   = $cek['id_user'];
+            $data['email']      = $cek['email'];
+            $data['img']      = $cek['img'];
+            $data['level_user'] = $level;
+            $data['nama_users'] = $cek['username'];
+            $this->session->set_userdata($index);
+
 
             if ($level == '2') {
                 array_push($result['login'], $index);
                 $this->response(
                     $result['success'] = "1",
                     $result['message'] = "success",
+
                     200
                 );
 
                 echo json_encode($result);
+
+
                 $this->db->close();
             } else {
                 array_push($result['login'], $index);

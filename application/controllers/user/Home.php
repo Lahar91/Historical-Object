@@ -11,6 +11,9 @@ class Home extends CI_Controller
         $this->load->model('M_konten', 'konten');
 
         $this->load->library('pagination');
+        if ($this->session->userdata('level_user') != "2") {
+            redirect("auth/logout");
+        }
     }
 
 

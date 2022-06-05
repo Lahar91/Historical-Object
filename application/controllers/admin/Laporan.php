@@ -10,6 +10,9 @@ class Laporan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_laporan', 'laporan');
+        if ($this->session->userdata('level_user') != "1") {
+            redirect("auth/logout");
+        }
     }
 
     public function index()

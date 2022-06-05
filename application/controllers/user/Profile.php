@@ -13,6 +13,9 @@ class Profile extends CI_Controller
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_user');
+        if ($this->session->userdata('level_user') != "2") {
+            redirect("auth/logout");
+        }
     }
 
     public function index()
@@ -115,7 +118,7 @@ class Profile extends CI_Controller
 
                     $this->load->view('layout/wrapper', $data, FALSE);
                 }
-            } else {
+            } elseif ($this->input->post('new_password') == null || $this->input->post('new_password') == "") {
 
                 $data = array(
                     'id_user' => $this->session->userdata('id_user'),
@@ -125,7 +128,7 @@ class Profile extends CI_Controller
 
                 );
                 $this->profile->edit($data);
-                $this->session->set_flashdata('GagalPassword', 'data Gagal di rubah');
+                $this->session->set_flashdata('s_img', 'data Gagal di rubah');
                 redirect('user/profile');
 
 

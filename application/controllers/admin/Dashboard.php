@@ -13,6 +13,10 @@ class Dashboard extends CI_Controller
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_kuis', 'kuis');
         $this->load->model('M_user', 'user');
+
+        if ($this->session->userdata('level_user') != "1") {
+            redirect("auth/logout");
+        }
     }
 
 

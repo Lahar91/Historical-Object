@@ -10,6 +10,9 @@ class Kuis extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_kuis', 'kuis');
+        if ($this->session->userdata('level_user') != "1") {
+            redirect("auth/logout");
+        }
     }
 
     public function index()
@@ -42,9 +45,9 @@ class Kuis extends CI_Controller
             $data = array(
                 'soal_kuis' => $this->input->post('soal'),
                 'jawaban_benar' => $jawab_a,
-                'Pilihan_A' => $this->input->post('Pilihan_A'),
-                'Pilihan_B' => $this->input->post('Pilihan_B'),
-                'Pilihan_C' => $this->input->post('Pilihan_C'),
+                'Pilihan_A' => $this->input->post('jawab_a'),
+                'Pilihan_B' => $this->input->post('jawab_b'),
+                'Pilihan_C' => $this->input->post('jawab_c'),
                 'aktif' => "Y",
 
             );
@@ -127,15 +130,15 @@ class Kuis extends CI_Controller
                 'id_kuis' => $id_kuis,
                 'soal_kuis' => $this->input->post('soal'),
                 'jawaban_benar' => $jawab_a,
-                'Pilihan_A' => $this->input->post('Pilihan_A'),
-                'Pilihan_B' => $this->input->post('Pilihan_B'),
-                'Pilihan_C' => $this->input->post('Pilihan_C'),
+                'Pilihan_A' => $this->input->post('jawab_a'),
+                'Pilihan_B' => $this->input->post('jawab_b'),
+                'Pilihan_C' => $this->input->post('jawab_c'),
                 'aktif' => "Y",
 
             );
             $this->kuis->u_kuis($data);
             $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
-            redirect('admin/kategori');
+            redirect('admin/kuis');
         }
         if ($kjawab == "b") {
             $data = array(
@@ -150,7 +153,7 @@ class Kuis extends CI_Controller
             );
             $this->kuis->u_kuis($data);
             $this->session->set_flashdata('pesan', 'Data Berhasil di Ubah');
-            redirect('admin/kategori');
+            redirect('admin/kuis');
         }
         if ($kjawab == "c") {
             $data = array(

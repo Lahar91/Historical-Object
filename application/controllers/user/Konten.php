@@ -11,6 +11,9 @@ class Konten extends CI_Controller
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_user', 'user');
+        if ($this->session->userdata('level_user') != "2") {
+            redirect("auth/logout");
+        }
     }
 
     public function view()

@@ -19,6 +19,9 @@ class Profile extends CI_Controller
             'isi' => 'admin/profile2'
         );
         $this->load->view('layout/admin/wrapper', $data, FALSE);
+        if ($this->session->userdata('level_user') != "1") {
+            redirect("auth/logout");
+        }
     }
 
 
@@ -79,27 +82,33 @@ class Profile extends CI_Controller
             $config['source_image'] = './assets/image/user' . $upload_data['uploads']['file_name'];
             $this->load->library('image_lib', $config);
 
-            if ($this->input->post('new_password') != "") {
+
+
+            if ($this->input->post('password') != "" && $this->input->post('password') != null) {
 
                 $get_id = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array();
                 $get_password =  $get_id['Password'];
+                if (password_verify($this->input->post('password'), $get_password)) {
+                    if ($this->input->post('new_password') != "" && $this->input->post('new_password') == $this->input->post('confrim_password')) {
 
-                if ($this->input->post('new_password') != "" && $this->input->post('new_password') == $this->input->post('confrim_password')) {
+                        $data = array(
+                            'id_user' => $this->session->userdata('id_user'),
+                            'username' => $this->session->userdata('nama_users'),
+                            'email' => $this->input->post('email'),
+                            'Password' => password_hash($this->input->post('new_password'), PASSWORD_DEFAULT),
+                            'img' => $upload_data['uploads']['file_name'],
 
-                    $data = array(
-                        'id_user' => $this->session->userdata('id_user'),
-                        'username' => $this->session->userdata('nama_users'),
-                        'email' => $this->input->post('email'),
-                        'Password' => password_hash($this->input->post('new_password'), PASSWORD_DEFAULT),
-                        'img' => $upload_data['uploads']['file_name'],
-
-                    );
-                    $this->profile->edit($data);
-                    $this->session->set_flashdata('Spassword', 'data Berhasil dirubah');
+                        );
+                        $this->profile->edit($data);
+                        $this->session->set_flashdata('Spassword', 'data Berhasil dirubah');
+                        redirect('admin/profile');
+                    } else {
+                        $this->session->set_flashdata('error-pass-baru', 'error');
+                        redirect('admin/profile');
+                    }
+                } else {
+                    $this->session->set_flashdata('passwordsalah', 'error');
                     redirect('admin/profile');
-
-
-                    $this->load->view('layout/wrapper', $data, FALSE);
                 }
             } else {
 
@@ -113,9 +122,6 @@ class Profile extends CI_Controller
                 $this->profile->edit($data);
                 $this->session->set_flashdata('s_img', 'gambar berhasil di rubah');
                 redirect('admin/profile');
-
-
-                $this->load->view('layout/wrapper', $data, FALSE);
             }
         }
     }
