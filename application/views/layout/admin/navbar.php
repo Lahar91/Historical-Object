@@ -39,7 +39,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/konten') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'konten') {
+                    <a href="<?= base_url('admin/Konten') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'konten') {
                                                                                     echo "active";
                                                                                 } ?>">
                         <i class="nav-icon fas fa-newspaper" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/profile') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'profile') {
+                    <a href="<?= base_url('admin/Profile') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'profile') {
                                                                                     echo "active";
                                                                                 } ?>">
                         <i class=" nav-icon fa fa-user" aria-hidden="true"></i>

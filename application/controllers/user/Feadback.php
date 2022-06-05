@@ -15,7 +15,7 @@ class Feadback extends CI_Controller {
     public function index()
     {
         $data['tittle'] = "Feadback List";
-        $data['db_feadback'] = ;
+
         $data['isi'] = "user/feadback";
         $this->load->view('layout/user/wrapper', $data, FALSE);
         
@@ -34,5 +34,3 @@ class Feadback extends CI_Controller {
 }
 
 /* End of file Feadback.php */
-
-?>
