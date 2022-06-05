@@ -36,7 +36,7 @@ class Auth extends CI_Controller
 
     public function _login()
     {
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
             $email    = $this->input->post('email');
             $password = $this->input->post('password');
 
@@ -98,8 +98,7 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-
-        session_destroy();
+        $this->session->sess_destroy();
         $this->session->set_flashdata('pesan', 'Anda Berhasil Logout !!!!');
         redirect('Auth');
     }

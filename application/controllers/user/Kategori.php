@@ -25,6 +25,12 @@ class Kategori extends CI_Controller
             $data['isi'] = 'android_user/list_kategori';
 
             $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        } else {
+            $data['tittle'] = 'Dashboard';
+            $data['kategori'] = $this->user->kategori();
+            $data['isi'] = 'user/list_kategori';
+
+            $this->load->view('layout/user/wrapper', $data, FALSE);
         }
     }
     public function view()
