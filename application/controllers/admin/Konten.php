@@ -3,7 +3,6 @@
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Konten extends CI_Controller
 {
 

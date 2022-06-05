@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_Profile extends CI_Model
+class M_profile extends CI_Model
 {
 
     public function read_profile()
