@@ -10,6 +10,8 @@ class Profile extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_profile', 'profile');
+        $this->load->helper('ho_helper');
+
         if ($this->session->userdata('level_user') != "1") {
             redirect("auth/logout");
         }
@@ -30,7 +32,7 @@ class Profile extends CI_Controller
     {
         $config['upload_path'] = './assets/image/user';
         $config['allowed_types'] = 'jpeg|jpg|png';
-        $config['file_name'] = time();
+        $config['file_name'] = generateRandomString();
         $config['max_size']  = '2000';
         $this->upload->initialize($config);
         $field_name = "img";

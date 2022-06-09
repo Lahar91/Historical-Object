@@ -83,6 +83,17 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="<?= base_url('admin/Feadback') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'Feadback') {
+                                                                                    echo "active";
+                                                                                } ?>">
+                        <i class="nav-icon fa fa-comments"></i>
+                        <p>
+                            Feadback
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="<?= base_url('Auth/logout') ?>" class="nav-link" id="log_out">
 
                         <i class="nav-icon fas fa-sign"></i>

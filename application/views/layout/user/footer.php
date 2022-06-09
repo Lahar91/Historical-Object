@@ -80,7 +80,9 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
+<!-- ckeditor -->
+<script src="<?= base_url() ?>assets/plugins/ckeditor5/ckeditor.js"></script>
+<script src="<?= base_url() ?>assets/plugins/ckfinder/ckfinder.js"></script>
 
 
 </body>

@@ -9,6 +9,7 @@ class Register extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user', 'user');
+        $this->load->helper('ho_helper');
     }
 
     public function index()
@@ -44,6 +45,7 @@ class Register extends CI_Controller
         if ($password == $r_passowrd) {
             $pass = password_hash($password, PASSWORD_DEFAULT);
             $data = array(
+                'id_user' => generateuserid("2"),
                 'username' => $name,
                 'email' => $this->input->post('email'),
                 'Password' => $pass,

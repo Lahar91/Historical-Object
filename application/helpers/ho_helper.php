@@ -45,3 +45,162 @@ function idconverttittle($idt)
         }
     }
 }
+
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function generateuserid($role)
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_user', 'desc')
+        ->limit(1)
+        ->get('user');
+    $no     = $auto->result_array();
+    $kodeid = $no[0]['id_user'];
+    $urutan = (int) substr($kodeid, 8, 8);
+    $urutan++;
+    $firstcode = "US-";
+    $month = date('m');
+    $year = date('y');
+    $finalid = $firstcode . $role . $year . $month . sprintf("%03s", $urutan);
+    return $finalid;
+
+    // $data = mysqli_fetch_array($query);
+    // $kodeBarang = $data['kodeTerbesar'];
+
+    // mengambil angka dari kode barang terbesar, menggunakan fungsi substr
+    // dan diubah ke integer dengan (int)
+    // $urutan = (int) substr($kodeBarang, 3, 3);
+
+    // bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
+    // $urutan++;
+
+    // membentuk kode barang baru
+    // perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
+    // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
+    // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
+    // $huruf = "BRG";
+    // $kodeBarang = $huruf . sprintf("%03s", $urutan);
+}
+
+function generatfeedbackid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_feadback', 'desc')
+        ->limit(1)
+        ->get('feadback');
+    $no     = $auto->result_array();
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "FD-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id_feadback'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "FD-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}
+
+function generatartikelid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_artikel', 'desc')
+        ->limit(1)
+        ->get('artikel');
+    $no     = $auto->result_array();
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "AR";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id_feadback'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "AR-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}
+
+function generatkategoriid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_kategori', 'desc')
+        ->limit(1)
+        ->get('kategori');
+    $no     = $auto->result_array();
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "KG-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id_feadback'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "KG-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}
+
+function generatlaporanid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_laporan', 'desc')
+        ->limit(1)
+        ->get('laporan');
+    $no     = $auto->result_array();
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "LP-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id_laporan'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "LP-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}

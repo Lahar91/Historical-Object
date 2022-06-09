@@ -91,6 +91,7 @@ echo form_open_multipart('user/Profile/edit') ?>
 
 
                         </div>
+
                         <label class="mt-3"> Ganti Password</label>
 
                         <div class="card-body">
@@ -118,9 +119,15 @@ echo form_open_multipart('user/Profile/edit') ?>
 
 
                 </div>
+                <div class="row">
 
-                <div class=" text-right ">
-                    <button type="submit" class="btn  btn-outline-primary btn-lg">Simpan</button>
+
+                    <div class="mr-auto">
+                        <a href="<?= base_url('user/feadback') ?>" type="submit" class="btn  btn-outline-primary btn-lg">Feadback</a>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn  btn-outline-primary btn-lg">Simpan</button>
+                    </div>
                 </div>
             </div>
 
@@ -129,7 +136,11 @@ echo form_open_multipart('user/Profile/edit') ?>
     </div>
 </div>
 <?php echo form_close(); ?>
+<script>
+    $(document).ready(function() {
 
+    });
+</script>
 
 <script>
     function bacaGambar(input) {
