@@ -13,6 +13,8 @@ class Konten extends CI_Controller
         parent::__construct();
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
+        $this->load->helper('ho_helper');
+
         if ($this->session->userdata('level_user') != "1") {
             redirect("auth/logout");
         }
@@ -79,6 +81,7 @@ class Konten extends CI_Controller
             $slug = str_replace(' ', '-', $this->input->post('judul'));
 
             $data = array(
+                'id_artikel' => generatartikelid(),
                 'img_artikel' => $upload_data['uploads']['file_name'],
                 'nama_artikel' => $this->input->post('judul'),
                 'artikel_slug' => $slug,

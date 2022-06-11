@@ -204,3 +204,32 @@ function generatlaporanid()
         return $finalid;
     }
 }
+
+
+function generattmpid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id', 'desc')
+        ->limit(1)
+        ->get('tmp_nilai');
+    $no     = $auto->result_array();
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "TN-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "TN-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}

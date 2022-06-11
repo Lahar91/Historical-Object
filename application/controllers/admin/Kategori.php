@@ -10,6 +10,8 @@ class Kategori extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_kategori', 'kategori');
+        $this->load->helper('ho_helper');
+
         if ($this->session->userdata('level_user') != "1") {
             redirect("auth/logout");
         }
@@ -30,6 +32,7 @@ class Kategori extends CI_Controller
         $k_slug = str_replace(' ', '-', $this->input->post('nama_kategori'));
 
         $data = array(
+            'id_kategori' => generatkategoriid(),
             'nama_kategori' => $this->input->post('nama_kategori'),
             'k_slug' =>  $k_slug,
         );

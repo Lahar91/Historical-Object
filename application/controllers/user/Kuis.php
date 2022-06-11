@@ -158,6 +158,7 @@ class Kuis extends CI_Controller
             if ($cari == null) {
                 //insert nilai ke tmp_nilai
                 $data = array(
+                    'id_tn' => generattmpid(),
                     'id_user' => $this->session->userdata('id_user'),
                     'nilai' => $nilai,
                     'soal' => 1,
@@ -231,7 +232,7 @@ class Kuis extends CI_Controller
             $this->M_user->insertnilai($data);
 
             //delete data di tmp_nilai
-            $data_delete = array('id' =>  $shownilai['id']);
+            $data_delete = array('id_tn' =>  $shownilai['id_tn']);
             $this->M_user->deltmp_nilai($data_delete);
         } else {
             $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
@@ -244,7 +245,7 @@ class Kuis extends CI_Controller
             $this->M_user->upfinalnilai($data);
 
             //delete data di tmp_nilai
-            $data_delete = array('id' =>  $shownilai['id']);
+            $data_delete = array('id_tn' =>  $shownilai['id_tn']);
 
             $this->M_user->deltmp_nilai($data_delete);
         }
