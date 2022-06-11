@@ -133,12 +133,18 @@ class Kuis extends CI_Controller
         $jawabbener = $hasil['jawaban_benar'];
         if ($this->input->post('jawab1') != null || $this->input->post('jawab1') != "") {
             $jawab = $this->input->post('jawab1');
+            $this->_hasil_andro();
         } else if ($this->input->post('jawab2') != null || $this->input->post('jawab2') != "") {
             $jawab = $this->input->post('jawab2');
+            $this->_hasil_andro();
         } elseif ($this->input->post('jawab3') != null || $this->input->post('jawab3') != "") {
             $jawab = $this->input->post('jawab3');
+            $this->_hasil_andro();
         }
+    }
 
+    public function _hasil_andro()
+    {
         if ($jawab ==  $jawabbener) {
             $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 

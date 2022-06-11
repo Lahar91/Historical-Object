@@ -119,8 +119,15 @@ echo form_open_multipart('user/Profile/edit') ?>
 
                 </div>
 
-                <div class=" text-right ">
-                    <button type="submit" class="btn  btn-outline-primary btn-lg">Simpan</button>
+                <div class="row">
+
+
+                    <div class="mr-auto">
+                        <a href="<?= base_url('user/feadback') ?>" type="submit" class="btn  btn-outline-primary btn-lg">Feadback</a>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn  btn-outline-primary btn-lg">Simpan</button>
+                    </div>
                 </div>
             </div>
 

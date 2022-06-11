@@ -26,6 +26,21 @@
 </head>
 
 <body class="hold-transition login-page">
+    <?php
+    if (!isset($_SESSION['lebarlayar'])) {
+        echo "<script language=\"JavaScript\">document.location=\"?r=1&width=\"+screen.width+\"&Height=\"+screen.height;</script>";
+        // $tampilan['lebarlayar'] = echo "<script>screen.width</scprit>";
+        // $tampilan['tinggilayar'] = echo "<script>screen.height</scprit>";
+        // $this->session->set_userdata($tampilan);
+        if (isset($_GET['width']) && isset($_GET['Height'])) {
+            $tampilan['lebarlayar'] = $_GET['width'];
+            $tampilan['tinggilayar'] = $_GET['Height'];
+
+            $this->session->set_userdata($tampilan);
+            $_SESSION['lebarlayar'] = $_GET['width'];
+            $_SESSION['tinggilayar'] = $_GET['Height'];
+        }
+    } ?>
     <div class="login-box">
         <div class="login-logo" style="margin-top: -150px;">
             <div>
