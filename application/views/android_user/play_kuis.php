@@ -134,7 +134,8 @@
         </div>
         <script>
             $("#form_jawab_5").submit(function(e) {
-                $("#cardbox_5").hide();
+                $("#form_jawab_5").hide();
+                $("#cardbox_5").show();
                 $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
 
 
