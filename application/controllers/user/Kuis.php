@@ -145,6 +145,9 @@ class Kuis extends CI_Controller
 
     public function _hasil_andro()
     {
+        var_dump($jawab);
+        var_dump($jawabbener);
+        die;
         if ($jawab ==  $jawabbener) {
             $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
