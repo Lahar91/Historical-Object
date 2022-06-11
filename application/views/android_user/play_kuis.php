@@ -48,7 +48,7 @@
     ?>
         <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
 
-            <div class="card card-primary mt-5">
+            <div class="card card-primary mt-2">
 
                 <div class="card-body">
 
