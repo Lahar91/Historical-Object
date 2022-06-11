@@ -65,21 +65,21 @@
                 <div class="col-lg-12">
 
                     <div class="buttons mb-3">
-                        <input label="<?= $row["Pilihan_A"] ?>" type="submit" name="jawab1" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
+                        <input label="<?= $row["Pilihan_A"] ?>" type="submit" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
                     </div>
                 </div>
 
                 <div class="col-lg-12  mb-3">
 
                     <div class="buttons">
-                        <input label="<?= $row["Pilihan_B"] ?>" type="submit" name="jawab2" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
+                        <input label="<?= $row["Pilihan_B"] ?>" type="submit" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
                     </div>
                 </div>
 
                 <div class="col-lg-12  mb-3">
 
                     <div class="buttons">
-                        <input label="<?= $row["Pilihan_C"] ?>" type="submit" name="jawab3" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
+                        <input label="<?= $row["Pilihan_C"] ?>" type="submit" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
                     </div>
                 </div>
 
@@ -135,7 +135,6 @@
         <script>
             $("#form_jawab_5").submit(function(e) {
                 $("#form_jawab_5").hide();
-                $("#cardbox_5").show();
                 $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
 
 
