@@ -37,7 +37,7 @@
 </style>
 
 
-<div class="col-lg-12 mt-2">
+<div class="col-lg-12">
 
     <?php
 
