@@ -129,8 +129,7 @@ class Kuis extends CI_Controller
 
     public function hasil_andro()
     {
-        $hasil =  $this->db->get_where('kuis', ['id_kuis' => $this->input->post('id_kuis')])->row_array();
-        $jawabbener = $hasil['jawaban_benar'];
+
         if ($this->input->post('jawab1') != null || $this->input->post('jawab1') != "") {
             $jawab = $this->input->post('jawab1');
             $this->_hasil_andro();
@@ -145,6 +144,9 @@ class Kuis extends CI_Controller
 
     public function _hasil_andro()
     {
+        $hasil =  $this->db->get_where('kuis', ['id_kuis' => $this->input->post('id_kuis')])->row_array();
+        $jawabbener = $hasil['jawaban_benar'];
+
         var_dump($jawab);
         var_dump($jawabbener);
         die;
