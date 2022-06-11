@@ -46,7 +46,7 @@
     while ($row = $query->unbuffered_row('array')) :
 
     ?>
-        <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
+        <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil_andro') ?>">
 
             <div class="card card-primary mt-2">
 
@@ -134,7 +134,7 @@
         </div>
         <script>
             $("#form_jawab_5").submit(function(e) {
-                $("#cardbox_5").show();
+                $("#cardbox_5").hide();
                 $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
 
 
