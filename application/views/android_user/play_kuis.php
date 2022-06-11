@@ -46,7 +46,7 @@
     while ($row = $query->unbuffered_row('array')) :
 
     ?>
-        <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil_andro') ?>">
+        <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
 
             <div class="card card-primary mt-2">
 
