@@ -86,7 +86,6 @@
 
 
 
-
             </div>
 
         </form>
@@ -95,45 +94,36 @@
             $("#form_jawab_<?= $no; ?>").submit(function() {
 
                 var next = '<?= $no + 1; ?>';
-                if (!$("#jawaban_<?= $no; ?>:checked").val()) {
-                    swal({
-                        title: "Hello.. !",
-                        text: "Pilih dulu jawabannya bro..!!",
-                        imageUrl: '<?= base_url() ?>assets/image/logo/warn.png'
-                    });
-                    return false;
-                } else {
-                    $.ajax({
-                        type: 'POST',
-                        url: $(this).attr('action'),
-                        data: $(this).serialize(),
-                        success: function(data) {
-                            var myarr = data.split('/');
-                            if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
-                                Swal.fire({
-                                    title: "Benar !",
-                                    text: 'jawaban anda benar, anda dapat 20 point',
-                                    imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: "Salah !",
-                                    text: 'jawaban anda salah ',
-                                    imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
-                                });
-                            }
-                            $('#nilai').text(myarr[1]);
-                            $('#form_jawab_<?= $no; ?>').hide();
-                            $('#form_jawab_' + next).show();
-                            $('#form_jawab_6').hide();
 
-
-
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                        var myarr = data.split('/');
+                        if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
+                            Swal.fire({
+                                title: "Benar !",
+                                text: 'jawaban anda benar, anda dapat 20 point',
+                                imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Salah !",
+                                text: 'jawaban anda salah ',
+                                imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
+                            });
                         }
-                    });
-                    return false;
+                        $('#nilai').text(myarr[1]);
+                        $('#form_jawab_<?= $no; ?>').hide();
+                        $('#form_jawab_' + next).show();
+                        $('#form_jawab_6').hide();
 
-                };
+
+
+                    }
+                });
+                return false;
 
 
             });
