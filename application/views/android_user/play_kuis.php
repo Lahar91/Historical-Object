@@ -65,28 +65,25 @@
                 <div class="col-lg-12">
 
                     <div class="buttons mb-3">
-                        <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
+                        <input label="<?= $row["Pilihan_A"] ?>" type="submit" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
                     </div>
                 </div>
 
                 <div class="col-lg-12  mb-3">
 
                     <div class="buttons">
-                        <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
+                        <input label="<?= $row["Pilihan_B"] ?>" type="submit" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
                     </div>
                 </div>
 
                 <div class="col-lg-12  mb-3">
 
                     <div class="buttons">
-                        <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
+                        <input label="<?= $row["Pilihan_C"] ?>" type="submit" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
                     </div>
                 </div>
 
 
-                <div class="mx-auto">
-                    <button id="btn_pilih_<?= $no; ?>" type="submit" class="btn btn-outline-primary">Pilih</button>
-                </div>
 
 
 
