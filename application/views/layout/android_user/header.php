@@ -2,34 +2,40 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
-            <div class="container ">
+        <?php
+        $url = $this->uri->segment(3);
+        if ($url != "kuis") { ?>
 
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand mx-auto">
-                    <!-- SEARCH FORM -->
-                    <?= form_open_multipart('user/konten/cari') ?>
+            <nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
+                <div class="container ">
 
-                    <div class="input-group input-group-md">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="keyboard">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
+                    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand mx-auto">
+                        <!-- SEARCH FORM -->
+                        <?= form_open_multipart('user/konten/cari') ?>
+
+                        <div class="input-group input-group-md">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="keyboard">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+
+                            </div>
 
                         </div>
+                        <?=
+                        form_close();
+                        ?>
+                        <!-- END SEARCH FORM -->
 
-                    </div>
-                    <?=
-                    form_close();
-                    ?>
-                    <!-- END SEARCH FORM -->
+                    </ul>
 
-                </ul>
+                </div>
+            </nav>
+            <!-- /.navbar -->
+        <?php } else { ?>
 
-            </div>
-        </nav>
-        <!-- /.navbar -->
-
+        <?php } ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
