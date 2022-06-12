@@ -10,6 +10,8 @@ class Kuis extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user');
+        $this->load->helper('ho_helper');
+
         if ($this->session->userdata('level_user') != "2") {
             redirect("auth/logout");
         }
@@ -117,6 +119,7 @@ class Kuis extends CI_Controller
             } else {
                 //insert nilai ke tmp_nilai
                 $data = array(
+                    'id_tn' => generattmpid(),
                     'id_user' => $this->session->userdata('id_user'),
                     'nilai' => "0",
                     'soal' => 1
