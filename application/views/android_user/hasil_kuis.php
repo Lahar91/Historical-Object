@@ -1,4 +1,4 @@
-<div class="col-lg-7 offset-2 mt-5">
+<div class="col-lg-7 mt-5">
     <div class="card card-primary">
         <div class="card-header"></div>
         <div class="mx-auto">
