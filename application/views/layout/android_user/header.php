@@ -3,7 +3,7 @@
 
         <!-- Navbar -->
         <?php
-        $url = $this->uri->segment(3);
+        $url = $this->uri->segment(2);
         if ($url != "kuis") { ?>
 
             <nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
