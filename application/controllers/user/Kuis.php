@@ -76,6 +76,7 @@ class Kuis extends CI_Controller
             if ($cari == null) {
                 //insert nilai ke tmp_nilai
                 $data = array(
+                    'id_tn' => generattmpid(),
                     'id_user' => $this->session->userdata('id_user'),
                     'nilai' => $nilai,
                     'soal' => 1,
@@ -130,90 +131,6 @@ class Kuis extends CI_Controller
         echo $notif . '/' . 'selamat';
     }
 
-    public function hasil_andro()
-    {
-
-        if ($this->input->post('jawab1') != null || $this->input->post('jawab1') != "") {
-            $jawab = $this->input->post('jawab1');
-            $this->_hasil_andro();
-        } else if ($this->input->post('jawab2') != null || $this->input->post('jawab2') != "") {
-            $jawab = $this->input->post('jawab2');
-            $this->_hasil_andro();
-        } elseif ($this->input->post('jawab3') != null || $this->input->post('jawab3') != "") {
-            $jawab = $this->input->post('jawab3');
-            $this->_hasil_andro();
-        }
-    }
-
-    public function _hasil_andro()
-    {
-        $hasil =  $this->db->get_where('kuis', ['id_kuis' => $this->input->post('id_kuis')])->row_array();
-        $jawabbener = $hasil['jawaban_benar'];
-
-        var_dump($jawab);
-        var_dump($jawabbener);
-        die;
-        if ($jawab ==  $jawabbener) {
-            $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-
-            $notif = 'jawaban anda benar, anda dapat 20 point';
-            $nilai = 20;
-            if ($cari == null) {
-                //insert nilai ke tmp_nilai
-                $data = array(
-                    'id_tn' => generattmpid(),
-                    'id_user' => $this->session->userdata('id_user'),
-                    'nilai' => $nilai,
-                    'soal' => 1,
-                );
-                $this->M_user->insttmp_nilai($data);
-            } else {
-
-
-                //update nilai ke tmp_nilai
-                $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-
-                $soal = $cari['soal'] + 1;
-                $upnilai = $cari['nilai'] + $nilai;
-                $data = array(
-                    'id_user' => $this->session->userdata('id_user'),
-                    'nilai' => $upnilai,
-                    'soal' => $soal
-                );
-                $this->M_user->uptmp_nilai($data);
-                if ($this->input->post('form_jawab') == "form_jawab_5") {
-                    $this->finsih();
-                }
-            }
-        } else {
-            $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-
-            $notif = 'jawaban anda Salah, ';
-            if ($cari != null) {
-                //update nilai ke tmp_nilai
-                $soal = $cari['soal'] + 1;
-
-                $data = array(
-                    'id_user' => $this->session->userdata('id_user'),
-                    'soal' => $soal
-                );
-                $this->M_user->uptmp_nilai($data);
-                if ($this->input->post('form_jawab') == "form_jawab_5") {
-
-                    $this->finsih();
-                }
-            } else {
-                //insert nilai ke tmp_nilai
-                $data = array(
-                    'id_user' => $this->session->userdata('id_user'),
-                    'nilai' => "0",
-                    'soal' => 1
-                );
-                $this->M_user->insttmp_nilai($data);
-            }
-        }
-        echo $notif . '/' . 'selamat';
-    }
 
     public function finsih()
     {
@@ -227,8 +144,9 @@ class Kuis extends CI_Controller
         $finalnilai = $this->db->get_where('hasil_kuis', ['id_user' => $this->session->userdata('id_user')])->row_array();
         if ($finalnilai == null) {
 
-            //update hasil_nilai
+            //insert hasil_nilai
             $data = array(
+                'id_hasil' => generathasilnilaiid(),
                 'id_user' => $this->session->userdata('id_user'),
                 'nilai' => $this->session->userdata('snilai')
             );
@@ -240,7 +158,7 @@ class Kuis extends CI_Controller
         } else {
             $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
 
-            //insert hasil_nilai
+            //update hasil_nilai
             $data = array(
                 'id_user' => $this->session->userdata('id_user'),
                 'nilai' => $mxnilai

@@ -130,7 +130,7 @@ function generatartikelid()
         ->limit(1)
         ->get('artikel');
     $no     = $auto->result_array();
-
+    $finalid = "";
     if ($no[0] == null || $no[0] == "") {
         $firstcode = "AR";
         $month = date('m');
@@ -211,17 +211,17 @@ function generattmpid()
     $ci = &get_instance();
 
     $auto = $ci->db->select('*')
-        ->order_by('id', 'desc')
+        ->order_by('id_tn', 'desc')
         ->limit(1)
         ->get('tmp_nilai');
     $no     = $auto->result_array();
+    $finalid = "";
 
     if ($no[0] == null || $no[0] == "") {
         $firstcode = "TN-";
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
-        return $finalid;
     } else {
         $kodeid = $no[0]['id'];
         $urutan = (int) substr($kodeid, 7, 7);
@@ -230,6 +230,34 @@ function generattmpid()
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
-        return $finalid;
     }
+    return $finalid;
+}
+
+function generathasilnilaiid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_hasil', 'desc')
+        ->limit(1)
+        ->get('hasil_kuis');
+    $no     = $auto->result_array();
+    $finalid = "";
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "HN-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+    } else {
+        $kodeid = $no[0]['id'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "HN-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+    }
+    return $finalid;
 }

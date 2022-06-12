@@ -1,5 +1,6 @@
 <style>
     .buttons {
+        width: inherit;
         padding: inherit;
         border-radius: inherit;
     }
