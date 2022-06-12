@@ -3,8 +3,8 @@
 
         <!-- Navbar -->
         <?php
-        $url = $this->uri->segment(2);
-        if ($url != "kuis") { ?>
+        $url = $this->uri->segment(3);
+        if ($url != "play") { ?>
 
             <nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
                 <div class="container ">
