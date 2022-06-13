@@ -27,8 +27,7 @@ class Feadback extends CI_Controller
     {
 
         $data['id_feadback'] = $id_feadback;
-        $data['id_user'] = $this->input->post('id_user');
-        $data['isi_feadback'] = $this->input->post('isi_feadback');
+
         $data['status'] = $this->input->post('status');
         $this->feadback->update_feadback($data);
     }

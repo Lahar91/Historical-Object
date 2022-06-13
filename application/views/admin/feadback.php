@@ -28,7 +28,15 @@
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $value["id_feadback"] ?></td>
-                            <td><?= $value["status"] ?></td>
+                            <td><?= $value["status"] ?>
+                                <?php if ($value["status"] == "New") { ?>
+                                    <i class="fa-regular fa-envelope-dot"></i>
+                                <?php } else if ($value["status"] == "Terima") { ?>
+                                    <i class="fa-regular fa-envelope-circle-check primary"></i>
+                                <?php } else if ($value["status"] == "Tolak") { ?>
+                                    <i class="fa-light fa-envelope-open danger"></i>
+                                <?php } ?>
+                            </td>
                             <td>
                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view<?= $value["id_feadback"] ?>"><i class="fa fa-edit"></i></button>
 
@@ -66,8 +74,8 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?= $value["isi_feadback"] ?>" disabled><?= $value["isi_feadback"] ?></textarea>
-                            <input type="text" class="form-control" id="ketarangan" name="ketarangan" rows="3" value="<?= $value["isi_feadback"] ?>" hidden>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" id="ketarangan" rows="3" value="<?= $value["isi_feadback"] ?>" disabled><?= $value["isi_feadback"] ?></textarea>
+                            <input type="text" class="form-control" name="isi_feadback" rows="3" value="<?= $value["isi_feadback"] ?>" hidden>
 
                         </div>
 
@@ -75,8 +83,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
 
-                        <input type="submit" class="btn btn-danger" value="Tolak">
-                        <input type="submit" class="btn btn-primary" value="Terima">
+                        <input type="submit" name="status" class="btn btn-danger" value="Tolak">
+                        <input type="submit" name="status" class="btn btn-primary" value="Terima">
                     </div>
                     <?php echo form_close() ?>
 
@@ -86,3 +94,33 @@
         </div>
     <?php } ?>
 </div>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#ketarangan'), {
+
+            toolbar: [''],
+
+
+            ckfinder: {
+                // Upload the images to the server using the CKFinder QuickUpload command.
+                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
+                // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
+            }
+        }).then(editor => {
+            console.log(editor);
+            editor.enableReadOnlyMode('#ketarangan');
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    function show() {
+        document.getElementById('area1').style.display = 'block';
+    }
+
+
+    function hide() {
+        document.getElementById('area1').style.display = 'none';
+    }
+</script>
