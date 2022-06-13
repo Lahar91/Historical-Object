@@ -1,4 +1,4 @@
-<div class="col-lg-7 mt-5">
+<div class="col-lg-12">
     <div class="card card-primary">
         <div class="card-header"></div>
         <div class="mx-auto">
@@ -11,3 +11,29 @@
         </div>
     </div>
 </div>
+<?php session_destroy('snilai'); ?>
+<script>
+    var seconds = 7; // seconds for HTML
+    var foo; // variable for clearInterval() function
+
+    function redirect() {
+        document.location.href = <?php base_url() ?>;
+    }
+
+    function updateSecs() {
+        document.getElementById("seconds").innerHTML = seconds;
+        seconds--;
+        if (seconds == -1) {
+            clearInterval(foo);
+            redirect();
+        }
+    }
+
+    function countdownTimer() {
+        foo = setInterval(function() {
+            updateSecs()
+        }, 1000);
+    }
+
+    countdownTimer();
+</script>

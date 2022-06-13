@@ -54,7 +54,8 @@ function generateRandomString($length = 10)
     for ($i = 0; $i < $length; $i++) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
-    return $randomString;
+    $final = $randomString + time();
+    return $final;
 }
 
 function generateuserid($role)
@@ -132,7 +133,7 @@ function generatartikelid()
     $no     = $auto->result_array();
     $finalid = "";
     if ($no[0] == null || $no[0] == "") {
-        $firstcode = "AR";
+        $firstcode = "AR-";
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);

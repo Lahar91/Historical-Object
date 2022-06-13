@@ -60,10 +60,9 @@
                             <label for="exampleFormControlInput1">Nomor Tiket <?= $value["id_feadback"] ?></label>
                             <input type="text" class="form-control" value="<?= $value["id_feadback"] ?>" name="id_feadback" hidden>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="exampleFormControlInput1">Nomor Tiket <?= $value["username"] ?></label>
-                            <input type="text" class="form-control" value="<?= $value["id_feadback"] ?>" name="id_feadback" hidden>
-                        </div> -->
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nomor <?= $value["username"] ?></label>
+                        </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>

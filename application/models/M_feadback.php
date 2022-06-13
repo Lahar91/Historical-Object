@@ -22,6 +22,7 @@ class M_feadback extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('feadback');
+        $this->db->join('user', 'user.id_user = feadback.id_user', 'inner');
 
         return $this->db->get()->result_array();
     }
