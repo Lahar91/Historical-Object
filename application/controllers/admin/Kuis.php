@@ -43,6 +43,7 @@ class Kuis extends CI_Controller
         $jawab_c = $this->input->post('jawab_c');
         if ($kjawab == "a") {
             $data = array(
+                'id_kuis' => 'KS-' . generateRandomString(),
                 'soal_kuis' => $this->input->post('soal'),
                 'jawaban_benar' => $jawab_a,
                 'Pilihan_A' => $this->input->post('jawab_a'),
@@ -57,6 +58,7 @@ class Kuis extends CI_Controller
         }
         if ($kjawab == "b") {
             $data = array(
+                'id_kuis' => 'KS-' . generateRandomString(),
                 'soal_kuis' => $this->input->post('soal'),
                 'jawaban_benar' => $jawab_b,
                 'Pilihan_A' => $this->input->post('jawab_a'),
@@ -71,6 +73,7 @@ class Kuis extends CI_Controller
         }
         if ($kjawab == "c") {
             $data = array(
+                'id_kuis' => 'KS-' . generateRandomString(),
                 'soal_kuis' => $this->input->post('soal'),
                 'jawaban_benar' => $jawab_c,
                 'Pilihan_A' => $this->input->post('jawab_a'),

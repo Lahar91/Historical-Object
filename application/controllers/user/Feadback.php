@@ -16,9 +16,16 @@ class Feadback extends CI_Controller
 
     public function index()
     {
-        $data['tittle'] = "Feadback";
-        $data['isi'] = "android_user/feadback";
-        $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+
+            $data['tittle'] = "Feadback";
+            $data['isi'] = "android_user/feadback";
+            $this->load->view('layout/android_user/wrapper', $data, FALSE);
+        } else {
+            $data['tittle'] = "Feadback";
+            $data['isi'] = "user/feadback";
+            $this->load->view('layout/user/wrapper', $data, FALSE);
+        }
     }
 
     public function insert_feadback()
