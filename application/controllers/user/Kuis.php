@@ -155,6 +155,7 @@ class Kuis extends CI_Controller
             //delete data di tmp_nilai
             $data_delete = array('id_tn' =>  $shownilai['id_tn']);
             $this->M_user->deltmp_nilai($data_delete);
+            $this->hasil_kuis();
         } else {
             $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
 
@@ -169,6 +170,7 @@ class Kuis extends CI_Controller
             $data_delete = array('id_tn' =>  $shownilai['id_tn']);
 
             $this->M_user->deltmp_nilai($data_delete);
+            $this->hasil_kuis();
         }
     }
 
