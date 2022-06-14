@@ -143,9 +143,9 @@
             });
         </script>
 
+        <div id="cardbox_<?= $no; ?>"> </div>
 
 </div>
-<div class="col-lg-12" id="cardbox_<?= $no; ?>"> </div>
 
 <script>
     $("#form_jawab_5").submit(function(e) {
