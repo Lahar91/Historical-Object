@@ -181,16 +181,14 @@ class Kuis extends CI_Controller
             $data = array(
                 'tittle' => 'kuis',
                 'db_kategori' => $this->M_user->kategori(),
-                'isi' => 'android_user/hasil_kuis'
             );
-            $this->load->view('layout/android_user/wrapper', $data, FALSE);
+            $this->load->view('android_user/hasil_kuis', $data, FALSE);
         } else {
             $data = array(
                 'tittle' => 'kuis',
                 'db_kategori' => $this->M_user->kategori(),
-                'isi' => 'user/hasil_kuis'
             );
-            $this->load->view('layout/user/wrapper', $data, FALSE);
+            $this->load->view('user/hasil_kuis', $data, FALSE);
         }
     }
 }
