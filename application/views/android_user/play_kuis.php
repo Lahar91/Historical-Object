@@ -145,6 +145,8 @@
 
 
 </div>
+<div class="col-lg-12" id="cardbox_<?= $no; ?>"> </div>
+
 <script>
     $("#form_jawab_5").submit(function(e) {
         $("#cardbox_5").show();
@@ -161,22 +163,21 @@
 
 <?php endwhile; ?>
 
-<div class="col-lg-12" id="cardbox_<?= $no; ?>">
 
-    <?php for ($i = 2; $i <= 5; $i++) {  ?>
-        <script>
-            $("#form_jawab_<?= $i; ?>").hide()
-        </script>
+<?php for ($i = 2; $i <= 5; $i++) {  ?>
+    <script>
+        $("#form_jawab_<?= $i; ?>").hide()
+    </script>
 
 
-    <?php } ?>
+<?php } ?>
 
-    <?php for ($h = 1; $h <= 5; $h++) { ?>
-        <script>
-            $("#cardbox_<?= $h; ?>").hide();
-            $("#bfinish_<?= $h; ?>").hide();
-        </script>
-    <?php } ?>
+<?php for ($h = 1; $h <= 5; $h++) { ?>
+    <script>
+        $("#cardbox_<?= $h; ?>").hide();
+        $("#bfinish_<?= $h; ?>").hide();
+    </script>
+<?php } ?>
 
 
 </div>
