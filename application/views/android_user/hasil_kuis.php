@@ -1,4 +1,4 @@
-<div class="col-lg-7">
+<div>
     <div class="card card-primary">
         <div class="card-header"></div>
         <div class="mx-auto">
