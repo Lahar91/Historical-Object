@@ -38,7 +38,7 @@
 </style>
 
 
-<div class="col-lg-12">
+<div class="col-lg-12" id="kuis_display">
 
     <?php
 
@@ -143,12 +143,14 @@
             });
         </script>
 
-        <div id="cardbox_<?= $no; ?>"> </div>
 
 </div>
 
+<div class="col-lg-12" id="cardbox_<?= $no; ?>"> </div>
+
 <script>
     $("#form_jawab_5").submit(function(e) {
+        $("#kuis_display").hide();
         $("#cardbox_5").show();
         $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
 
