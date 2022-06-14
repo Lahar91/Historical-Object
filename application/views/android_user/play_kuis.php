@@ -146,6 +146,9 @@
 
 </div>
 
+
+<?php $no++; ?>
+
 <div class="col-lg-12" id="cardbox_<?= $no; ?>"> </div>
 
 <script>
@@ -157,11 +160,6 @@
 
     });
 </script>
-
-
-
-<?php $no++; ?>
-
 
 <?php endwhile; ?>
 
