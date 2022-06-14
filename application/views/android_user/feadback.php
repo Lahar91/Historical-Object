@@ -4,7 +4,7 @@
 
     }
 </style>
-<div class="col-lg-12">
+<div class="col-lg-12 mb-5">
     <div class="col-lg-12 bg-primary">
         <h3 class="text-center">Feadback</h3>
     </div>

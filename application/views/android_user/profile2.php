@@ -31,7 +31,7 @@ $belakang = removePrevText($name, $awal);
 $get = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 echo form_open_multipart('user/Profile/edit') ?>
-<div class="row justify-content-lg-center mt-1">
+<div class="row justify-content-lg-center mt-1 mb-5">
     <div class="col-lg-3">
         <div class="card card-primary">
             <div class=" card-header">

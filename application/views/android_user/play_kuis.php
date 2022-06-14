@@ -143,24 +143,26 @@
             });
         </script>
 
-        <div id="cardbox_<?= $no; ?>">
 
-        </div>
-        <script>
-            $("#form_jawab_5").submit(function(e) {
-                $("#cardbox_5").show();
-                $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
-
-
-            });
-        </script>
+</div>
+<script>
+    $("#form_jawab_5").submit(function(e) {
+        $("#cardbox_5").show();
+        $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
 
 
+    });
+</script>
 
-        <?php $no++; ?>
 
 
-    <?php endwhile; ?>
+<?php $no++; ?>
+
+
+<?php endwhile; ?>
+
+<div class="col-lg-12" id="cardbox_<?= $no; ?>">
+
     <?php for ($i = 2; $i <= 5; $i++) {  ?>
         <script>
             $("#form_jawab_<?= $i; ?>").hide()

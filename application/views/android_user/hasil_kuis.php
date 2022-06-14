@@ -12,28 +12,3 @@
     </div>
 </div>
 <?php session_destroy('snilai'); ?>
-<script>
-    var seconds = 7; // seconds for HTML
-    var foo; // variable for clearInterval() function
-
-    function redirect() {
-        document.location.href = <?php base_url() ?>;
-    }
-
-    function updateSecs() {
-        document.getElementById("seconds").innerHTML = seconds;
-        seconds--;
-        if (seconds == -1) {
-            clearInterval(foo);
-            redirect();
-        }
-    }
-
-    function countdownTimer() {
-        foo = setInterval(function() {
-            updateSecs()
-        }, 1000);
-    }
-
-    countdownTimer();
-</script>

@@ -12,6 +12,9 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
+
+    <link href="<?= base_url() ?>assets/plugins/fontawesome-6.1.1/css/all.main.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/plugins/fontawesome-6.1.1//css/solid.css" rel="stylesheet">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->

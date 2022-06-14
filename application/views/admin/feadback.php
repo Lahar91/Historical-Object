@@ -28,13 +28,13 @@
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $value["id_feadback"] ?></td>
-                            <td><?= $value["status"] ?>
+                            <td>
                                 <?php if ($value["status"] == "New") { ?>
-                                    <i class="fa-regular fa-envelope-dot"></i>
+                                    <i class="fa-solid fa-envelope fa-lg"></i>
                                 <?php } else if ($value["status"] == "Terima") { ?>
-                                    <i class="fa-regular fa-envelope-circle-check primary"></i>
+                                    <i class="fa-solid fa-envelope-circle-check fa-lg"></i>
                                 <?php } else if ($value["status"] == "Tolak") { ?>
-                                    <i class="fa-light fa-envelope-open danger"></i>
+                                    <i class="fa-light fa-envelope-open fa-lg"></i>
                                 <?php } ?>
                             </td>
                             <td>
@@ -69,22 +69,26 @@
                             <input type="text" class="form-control" value="<?= $value["id_feadback"] ?>" name="id_feadback" hidden>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Nomor <?= $value["username"] ?></label>
+                            <label for="exampleFormControlInput1">Nama <?= $value["username"] ?></label>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" id="ketarangan" rows="3" value="<?= $value["isi_feadback"] ?>" disabled><?= $value["isi_feadback"] ?></textarea>
+                            <textarea class="form-control" id="ketarangan" rows="3"><?= $value["isi_feadback"] ?></textarea>
                             <input type="text" class="form-control" name="isi_feadback" rows="3" value="<?= $value["isi_feadback"] ?>" hidden>
 
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                        <?php if ($value["status"] != "New") { ?>
+                            <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
 
-                        <input type="submit" name="status" class="btn btn-danger" value="Tolak">
-                        <input type="submit" name="status" class="btn btn-primary" value="Terima">
+                        <?php } else { ?>
+                            <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                            <input type="submit" name="status" class="btn btn-danger" value="Tolak">
+                            <input type="submit" name="status" class="btn btn-primary" value="Terima">
+                        <?php } ?>
                     </div>
                     <?php echo form_close() ?>
 
