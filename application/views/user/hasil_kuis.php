@@ -10,4 +10,6 @@
             <a href="<?= base_url('user/kuis') ?>" class="btn btn-outline-primary  btn-lg">Selesai</a>
         </div>
     </div>
+    <?php session_destroy('snilai'); ?>
+
 </div>
