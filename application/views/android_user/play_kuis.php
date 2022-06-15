@@ -128,6 +128,7 @@
                                 }
                                 $('#nilai').text(myarr[1]);
                                 $('#form_jawab_<?= $no; ?>').hide();
+                                $("#cardbox").hide();
                                 $('#form_jawab_' + next).show();
                                 $('#form_jawab_6').hide();
 
@@ -148,7 +149,7 @@
 
 
     <?php $no++; ?>
-    <div class="col-lg-12" id="cardbox">
+    <div class="" id="cardbox">
 
     </div>
 </div>
