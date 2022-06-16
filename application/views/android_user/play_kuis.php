@@ -37,121 +37,120 @@
     }
 </style>
 
-<div class="row">
-    <div class="col-lg-12" id="kuis_display">
+<div class="col-lg-12" id="kuis_display">
 
-        <?php
+    <?php
 
-        $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ");
-        $no = 1;
-        while ($row = $query->unbuffered_row('array')) :
+    $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ");
+    $no = 1;
+    while ($row = $query->unbuffered_row('array')) :
 
-        ?>
-            <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
+    ?>
+        <form id="form_jawab_<?= $no; ?>" method="POST" action="<?= base_url('user/kuis/hasil') ?>">
 
-                <div class="card card-primary">
+            <div class="card card-primary">
 
-                    <div class="card-body">
+                <div class="card-body">
 
-                        <input type="hidden" id="id" name="id_kuis" value="<?= $row["id_kuis"] ?>">
-                        <input hidden id="id" name="form_jawab" value="form_jawab_<?= $no; ?>">
-
-                    </div>
-                    <div class="card pt-5 pb-5">
-                        <div class="card-body">
-                            <p class="mx-auto"> <?= $no; ?> . <?= $row["soal_kuis"] ?></p>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-
-                        <div class="buttons mb-3">
-                            <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12  mb-3">
-
-                        <div class="buttons">
-                            <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12  mb-3">
-
-                        <div class="buttons">
-                            <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
-                        </div>
-                    </div>
-
-
-                    <div class="mx-auto">
-                        <button id="btn_pilih_<?= $no; ?>" type="submit" class="btn btn-outline-primary">Pilih</button>
-                    </div>
-
-
+                    <input type="hidden" id="id" name="id_kuis" value="<?= $row["id_kuis"] ?>">
+                    <input hidden id="id" name="form_jawab" value="form_jawab_<?= $no; ?>">
 
                 </div>
+                <div class="card pt-5 pb-5">
+                    <div class="card-body">
+                        <p class="mx-auto"> <?= $no; ?> . <?= $row["soal_kuis"] ?></p>
 
-            </form>
+                    </div>
+                </div>
+                <div class="col-lg-12">
 
-            <script>
-                $("#form_jawab_<?= $no; ?>").submit(function() {
+                    <div class="buttons mb-3">
+                        <input label="<?= $row["Pilihan_A"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_A"] ?>">
+                    </div>
+                </div>
 
-                    var next = '<?= $no + 1; ?>';
-                    if (!$("#jawaban_<?= $no; ?>:checked").val()) {
-                        swal({
-                            title: "Hello.. !",
-                            text: "Pilih dulu jawabannya bro..!!",
-                            imageUrl: '<?= base_url() ?>assets/image/logo/warn.png'
-                        });
-                        return false;
-                    } else {
-                        $.ajax({
-                            type: 'POST',
-                            url: $(this).attr('action'),
-                            data: $(this).serialize(),
-                            success: function(data) {
-                                var myarr = data.split('/');
-                                if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
-                                    Swal.fire({
-                                        title: "Benar !",
-                                        text: 'jawaban anda benar, anda dapat 20 point',
-                                        imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: "Salah !",
-                                        text: 'jawaban anda salah ',
-                                        imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
-                                    });
-                                }
-                                $('#nilai').text(myarr[1]);
-                                $('#form_jawab_<?= $no; ?>').hide();
-                                $('#form_jawab_' + next).show();
-                                $('#form_jawab_6').hide();
+                <div class="col-lg-12  mb-3">
+
+                    <div class="buttons">
+                        <input label="<?= $row["Pilihan_B"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_B"] ?>">
+                    </div>
+                </div>
+
+                <div class="col-lg-12  mb-3">
+
+                    <div class="buttons">
+                        <input label="<?= $row["Pilihan_C"] ?>" type="radio" name="jawab" id="jawaban_<?= $no; ?>" value="<?= $row["Pilihan_C"] ?>">
+                    </div>
+                </div>
+
+
+                <div class="mx-auto">
+                    <button id="btn_pilih_<?= $no; ?>" type="submit" class="btn btn-outline-primary">Pilih</button>
+                </div>
 
 
 
+            </div>
+
+        </form>
+
+        <script>
+            $("#form_jawab_<?= $no; ?>").submit(function() {
+
+                var next = '<?= $no + 1; ?>';
+                if (!$("#jawaban_<?= $no; ?>:checked").val()) {
+                    swal({
+                        title: "Hello.. !",
+                        text: "Pilih dulu jawabannya bro..!!",
+                        imageUrl: '<?= base_url() ?>assets/image/logo/warn.png'
+                    });
+                    return false;
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            var myarr = data.split('/');
+                            if (myarr[0] == 'jawaban anda benar, anda dapat 20 point') {
+                                Swal.fire({
+                                    title: "Benar !",
+                                    text: 'jawaban anda benar, anda dapat 20 point',
+                                    imageUrl: '<?= base_url() ?>assets/image/logo/up.png'
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Salah !",
+                                    text: 'jawaban anda salah ',
+                                    imageUrl: '<?= base_url() ?>assets/image/logo/down.png'
+                                });
                             }
-                        });
-                        return false;
-
-                    };
-
-
-                });
-            </script>
+                            $('#nilai').text(myarr[1]);
+                            $('#form_jawab_<?= $no; ?>').hide();
+                            $('#form_jawab_' + next).show();
+                            $('#form_jawab_6').hide();
 
 
-    </div>
+
+                        }
+                    });
+                    return false;
+
+                };
 
 
-    <?php $no++; ?>
-    <div id="cardbox">
+            });
+        </script>
 
-    </div>
+
 </div>
+
+
+<?php $no++; ?>
+<div id="cardbox">
+
+</div>
+
 <script>
     $("#form_jawab_5").submit(function(e) {
         $("#form_jawab_5").hide();
