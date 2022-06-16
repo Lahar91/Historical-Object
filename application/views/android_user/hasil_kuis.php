@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-lg-12">
     <div class="card card-primary">
         <div class="card-header"></div>
         <div class="mx-auto">
@@ -10,6 +10,6 @@
             <a href="<?= base_url('user/kuis') ?>" class="btn btn-outline-primary  btn-lg">Selesai</a>
         </div>
     </div>
-    <?php $this->session->unset_userdata('snilai'); ?>
 
 </div>
+<?php $this->session->unset_userdata('snilai'); ?>
