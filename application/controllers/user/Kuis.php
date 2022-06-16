@@ -176,7 +176,7 @@ class Kuis extends CI_Controller
 
     public function hasil_kuis()
     {
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+        if ($this->session->userdata('android') == "true") {
 
             $data = array(
                 'tittle' => 'kuis',

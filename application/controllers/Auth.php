@@ -37,6 +37,7 @@ class Auth extends CI_Controller
     public function _login()
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+
             $email    = $this->input->post('email');
             $password = $this->input->post('password');
 
@@ -52,6 +53,8 @@ class Auth extends CI_Controller
                 $data['img']      = $cek['img'];
                 $data['level_user'] = $level;
                 $data['nama_users'] = $nama_user;
+                $data['android'] = "true";
+
 
                 $this->session->set_userdata($data);
 
