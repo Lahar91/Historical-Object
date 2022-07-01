@@ -122,6 +122,33 @@ function generatfeedbackid()
     }
 }
 
+function generatevieweruser()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_viewer', 'desc')
+        ->limit(1)
+        ->get('counterviewer');
+    $no     = $auto->result_array();
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "VU-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id_viewer'];
+        $urutan = (int) substr($kodeid, 8, 8);
+        $urutan++;
+        $firstcode = "VU-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}
+
 function generatartikelid()
 {
     $ci = &get_instance();

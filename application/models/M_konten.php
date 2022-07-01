@@ -95,6 +95,37 @@ class M_konten extends CI_Model
     {
         $this->db->delete('artikel', $data);
     }
+
+    public function artikel_top()
+    {
+        $this->db->select('YEAR(tanggal) as tahun, id_artikel, COUNT(*) as count_artikel');
+        $this->db->from('rekomendasi_artikel');
+        $this->db->group_by('id_artikel');
+        $this->db->order_by('count_artikel', 'DESC');
+        $this->db->limit(5);
+
+        return $this->db->get()->result();
+    }
+
+    public function artikel_top5()
+    {
+        $this->db->select('YEAR(tanggal) as tahun, id_artikel, COUNT(*) as count_artikel');
+        $this->db->from('rekomendasi_artikel');
+        $this->db->group_by('id_artikel');
+        $this->db->order_by('count_artikel', 'DESC');
+        $this->db->limit(5);
+
+        return $this->db->get()->result();
+    }
+
+    public function dis_top()
+    {
+        $this->db->distinct()->select('Year(tanggal) as tahun');
+        $this->db->from('rekomendasi_artikel');
+
+
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file M_laporan.php */

@@ -124,6 +124,11 @@ class M_user extends CI_Model
 
         return $this->db->get()->result();
     }
+
+    public function counteruser($data)
+    {
+        $this->db->insert('counterviewer', $data);
+    }
 }
 
 /* End of file M.user.php */

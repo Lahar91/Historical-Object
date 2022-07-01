@@ -28,6 +28,8 @@ class Dashboard extends CI_Controller
             'countkategori' => $this->kategori->countkategori(),
             'countkuis' => $this->kuis->countkuis(),
             'countuser' => $this->user->countuser(),
+            'top_5' => $this->konten->artikel_top(),
+            'year' => $this->konten->dis_top(),
             'isi' => 'admin/dashboard'
         );
         $this->load->view('layout/admin/wrapper', $data, FALSE);

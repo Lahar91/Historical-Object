@@ -12,4 +12,3 @@
     </div>
 
 </div>
-<?php $this->session->unset_userdata('snilai'); ?>

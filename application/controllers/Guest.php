@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\VarDumper\Cloner\Data;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Guest extends CI_Controller
@@ -11,6 +13,8 @@ class Guest extends CI_Controller
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_user', 'user');
+        $this->load->helper('ho_helper');
+
         if (!isset($_SESSION['lebarlayar'])) {
             echo "<script language=\"JavaScript\">document.location=\"?r=1&width=\"+screen.width+\"&Height=\"+screen.height;</script>";
             // $tampilan['lebarlayar'] = echo "<script>screen.width</scprit>";
@@ -25,6 +29,35 @@ class Guest extends CI_Controller
                 $_SESSION['tinggilayar'] = $_GET['Height'];
             }
         }
+
+        $browser = $_SERVER['HTTP_USER_AGENT'];
+        $chrome = '/Chrome/';
+        $firefox = '/Firefox/';
+        $ie = '/IE/';
+        if (preg_match($chrome, $browser))
+            $isi = "Chrome/Opera";
+
+        if (preg_match($firefox, $browser))
+            $isi = "Firefox";
+
+        if (preg_match($ie, $browser))
+            $isi = "IE";
+
+        $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
+        $browser = $isi;
+        $tanggal = date('Y-m-d');
+        $kunjungan = 1;
+
+        $counter['id_viewer'] = generatevieweruser();
+        $counter['tanggal'] = $tanggal;
+        $counter['ip_address'] = $ipaddress;
+        $counter['counter'] = $kunjungan;
+        $counter['browser'] = $browser;
+        if ($this->session->userdata('visitor') != null || $this->session->userdata('visitor') != "") {
+            $vistor['visitor'] = $ipaddress;
+            $this->session->set_userdata($vistor);
+            $this->user->counteruser($counter);
+        }
     }
 
 
@@ -36,8 +69,8 @@ class Guest extends CI_Controller
 
             $data['title'] = 'Dashboard';
             $data['artikel'] = $this->user->artikeldesc();
-            $data['db_kategori'] = $this->user->kategori();
-            $data['isi'] = 'android_guest/index';
+            $daata['db_kategori'] = $this->user->kategori();
+            $data['isi'] = 'guest/index';
 
 
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
@@ -83,6 +116,7 @@ class Guest extends CI_Controller
             $data['isi'] = 'guest/index';
 
 
+
             $this->load->view('layout/guest/wrapper', $data, FALSE);
         }
     }
@@ -90,10 +124,18 @@ class Guest extends CI_Controller
     public function view()
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+            $vistorid = $this->db->get_where('counterviewer', ['ip_address' => $this->session->userdata('visitor')])->row_array();
 
             $slug = $this->uri->segment(3);
+            $db_konten = $this->konten->get_data($slug);
+            // $rekomendasi['id_rekomendasi'] = ganareterecid();
+            $rekomendasi['id_artikel'] = $db_konten->id_artikel;
+            $rekomendasi['id_viewer'] = $this->session->userdata('id_viewer');
+
+
+            $this->konten->add_rekomendasi();
             $data = array(
-                'db_konten' => $this->konten->get_data($slug),
+                'db_konten' => $db_konten,
                 'db_kategori' => $this->user->kategori(),
                 'isi' => 'android_guest/view',
             );

@@ -9,6 +9,35 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        $browser = $_SERVER['HTTP_USER_AGENT'];
+        $chrome = '/Chrome/';
+        $firefox = '/Firefox/';
+        $ie = '/IE/';
+        if (preg_match($chrome, $browser))
+            $isi = "Chrome/Opera";
+
+        if (preg_match($firefox, $browser))
+            $isi = "Firefox";
+
+        if (preg_match($ie, $browser))
+            $isi = "IE";
+
+        $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
+        $browser = $isi;
+        $tanggal = date('Y-m-d');
+        $kunjungan = 1;
+
+        $counter['id_viewer'] = generatevieweruser();
+        $counter['tanggal'] = $tanggal;
+        $counter['ip_address'] = $ipaddress;
+        $counter['counter'] = $kunjungan;
+        $counter['browser'] = $browser;
+        if ($this->session->userdata('visitor') != null || $this->session->userdata('visitor') != "") {
+            $vistor['visitor'] = $ipaddress;
+            $this->session->set_userdata($vistor);
+            $this->user->counteruser($counter);
+        }
     }
 
 
