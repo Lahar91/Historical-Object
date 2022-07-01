@@ -166,7 +166,7 @@ function generatartikelid()
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
         return $finalid;
     } else {
-        $kodeid = $no[0]['id_feadback'];
+        $kodeid = $no[0]['id_artikel'];
         $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "AR-";
