@@ -289,3 +289,18 @@ function generathasilnilaiid()
     }
     return $finalid;
 }
+
+function populeryear()
+{
+    date_default_timezone_set('Asia/Jakarta');
+    $today = date('d-m-Y');
+    $break = explode("-", $today);
+    $year = '';
+    if (isset($_GET['populeryear']) && $_GET['populeryear'] !== '' && isset($_SESSION['populeryear']) && $_SESSION['populeryear'] !== '') {
+        $year['populeryear'] = $_GET['populeryear'];
+        $_SESSION['populeryear'];
+    } else {
+        $year = $break[2];
+    }
+    return $year;
+}

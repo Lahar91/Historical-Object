@@ -13,6 +13,8 @@ class Dashboard extends CI_Controller
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_kuis', 'kuis');
         $this->load->model('M_user', 'user');
+        $this->load->helper('ho_helper');
+
 
         if ($this->session->userdata('level_user') != "1") {
             redirect("auth/logout");
@@ -33,6 +35,10 @@ class Dashboard extends CI_Controller
             'isi' => 'admin/dashboard'
         );
         $this->load->view('layout/admin/wrapper', $data, FALSE);
+    }
+
+    public function printpdf()
+    {
     }
 }
 

@@ -9,22 +9,24 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('M_user', 'user');
 
-        $browser = $_SERVER['HTTP_USER_AGENT'];
-        $chrome = '/Chrome/';
-        $firefox = '/Firefox/';
-        $ie = '/IE/';
-        if (preg_match($chrome, $browser))
-            $isi = "Chrome/Opera";
+        $browsers = $_SERVER['HTTP_USER_AGENT'];
+        var_dump($browsers);
 
-        if (preg_match($firefox, $browser))
+        if (preg_match('/Chrome/', $browsers))
+            $isi = "Chrome";
+
+        if (preg_match('/Firefox/', $browsers))
             $isi = "Firefox";
 
-        if (preg_match($ie, $browser))
-            $isi = "IE";
+        if (preg_match('/Opera/', $browsers))
+            $isi = "Opera";
 
-        $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
-        $browser = $isi;
+
+
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+        $browser = isset($isi) && $isi !== '' ? $isi : 'Unknown';
         $tanggal = date('Y-m-d');
         $kunjungan = 1;
 
@@ -33,7 +35,7 @@ class Auth extends CI_Controller
         $counter['ip_address'] = $ipaddress;
         $counter['counter'] = $kunjungan;
         $counter['browser'] = $browser;
-        if ($this->session->userdata('visitor') != null || $this->session->userdata('visitor') != "") {
+        if ($this->session->userdata('visitor') !== null || $this->session->userdata('visitor') !== '') {
             $vistor['visitor'] = $ipaddress;
             $this->session->set_userdata($vistor);
             $this->user->counteruser($counter);
