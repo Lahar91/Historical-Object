@@ -7,7 +7,11 @@
                 <div class="card-body">
 
                     <div class="float-left">
-                        <i class="fas fa-users fa-2x text-info"></i>
+                        <div class="d-flex">
+                            <i class="fas fa-users fa-2x text-info"></i>
+                            <H4 class="ml-3"> User</H4>
+
+                        </div>
                     </div>
                     <h4 class="float-right"><?= $countuser; ?></h4>
 
@@ -19,7 +23,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="float-left">
-                        <i class="fa fa-clone fa-2x text-info"></i>
+                        <div class="d-flex">
+                            <i class="fa fa-clone fa-2x text-info"></i>
+                            <H4 class="ml-3"> Kategori</H4>
+                        </div>
                     </div>
                     <h4 class="float-right"><?= $countkategori; ?></h4>
                 </div>
@@ -30,8 +37,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="float-left">
-                        <i class="fas fa-newspaper fa-2x text-info" aria-hidden="true">
-                        </i>
+                        <div class="d-flex">
+                            <i class="fas fa-newspaper fa-2x text-info" aria-hidden="true">
+                            </i>
+                            <H4 class="ml-3"> Artikel</H4>
+
+                        </div>
+
                     </div>
                     <h4 class="float-right"><?= $countartikel; ?></h4>
                 </div>
@@ -44,8 +56,8 @@
                 <div class="card-body">
                     <div class="float-left">
                         <div class="d-flex">
-                            <i class="fa fa-comments fa-2x text-info"> </i>
-                            <H4> Laporan</H4>
+                            <i class="fa fa-comments fa-2x text-info" aria-hidden="true"> </i>
+                            <H4 class="ml-3"> Laporan</H4>
                         </div>
 
                     </div>
@@ -63,11 +75,14 @@ $break = explode("-", $today);
 
 $yearpengunjung = isset($_GET['pengunjungyear']) && $_GET['pengunjungyear']  ? $_GET['pengunjungyear'] : $break[2];
 
-var_dump($yearpengunjung);
-$pengunjung_query = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Count(*) as total FROM rekomendasi_artikel WHERE YEAR(tanggal) = $yearpengunjung GROUP BY id_artikel order by total DESC limit 5")->result_array();
+$pengunjung_query = $this->db->query("SELECT YEAR(tanggal) as tahun, DATE_FORMAT(tanggal, '%M') as month, Count(*) as total FROM counterviewer WHERE YEAR(tanggal) = $yearpengunjung GROUP BY DATE_FORMAT(tanggal, '%m')
+")->result_array();
+
+
+// $pengunjung_query = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Count(*) as total FROM rekomendasi_artikel WHERE YEAR(tanggal) = $yearpengunjung GROUP BY id_artikel order by total DESC limit 5")->result_array();
 
 $yearpopuler = isset($_GET['populeryear']) && $_GET['populeryear']  ? $_GET['populeryear'] : $break[2];
-$artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Count(*) as total FROM rekomendasi_artikel WHERE YEAR(tanggal) = $yearpopuler GROUP BY id_artikel order by total DESC limit 5")->result_array();
+$artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_artikel.id_artikel, nama_artikel, Count(*) as total FROM rekomendasi_artikel INNER JOIN artikel on rekomendasi_artikel.id_artikel = artikel.id_artikel WHERE YEAR(tanggal) = $yearpopuler GROUP BY id_artikel order by total DESC limit 5")->result_array();
 
 ?>
 
@@ -98,7 +113,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Coun
             </div>
         </div>
         <div class="card-body">
-            <canvas id="mychart" height="50px"></canvas>
+            <canvas id="mychart" height="60px"></canvas>
         </div>
     </div>
 </div>
@@ -128,7 +143,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Coun
             </div>
         </div>
         <div class="card-body">
-            <canvas id="mychart2" height="50px"></canvas>
+            <canvas id="mychart2" height="60px"></canvas>
 
         </div>
     </div>
@@ -160,12 +175,14 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Coun
         data: {
             //membuat label chart
 
-            labels: [<?php foreach ($pengunjung_query as $key => $value) {
-                            echo '"' . $value['id_artikel'] . '",';
-                        } ?>],
+            /**  labels: [<?php foreach ($pengunjung_query as $key => $value) {
+                                echo '"' . $value['month']  . '",';
+                            } ?>],*/
+
+            labels: ["Januari", "Febuari", "Maret", "April", "May", "Juni", "July", "Agustus", "September", "Oktober", "November ", "Desember"],
 
             datasets: [{
-                label: "Pengunjung",
+                label: "Pengunjung <?= $yearpengunjung ?>",
                 borderColor: "#80b6f4",
                 pointBorderColor: "#80b6f4",
                 pointBackgroundColortime_diff: "#80b6f4",
@@ -221,7 +238,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Coun
 
 <script>
     /*
-    Chart pengunjung
+    Chart Artikel Top
 */
 
     const by_year2 = document.querySelector('#by_year2');
@@ -242,11 +259,12 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, id_artikel, Coun
             //membuat label chart
 
             labels: [<?php foreach ($artikel_top as $key => $value) {
-                            echo '"' . $value['id_artikel'] . '",';
+
+                            echo '"' . $value['nama_artikel'] . '",';
                         } ?>],
 
             datasets: [{
-                label: "Viewer",
+                label: "Viewer <?= $yearpopuler ?>",
                 borderColor: "#80b6f4",
                 pointBorderColor: "#80b6f4",
                 pointBackgroundColortime_diff: "#80b6f4",

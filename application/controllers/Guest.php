@@ -22,6 +22,7 @@ class Guest extends CI_Controller
             // $tampilan['lebarlayar'] = echo "<script>screen.width</scprit>";
             // $tampilan['tinggilayar'] = echo "<script>screen.height</scprit>";
             // $this->session->set_userdata($tampilan);
+
             if (isset($_GET['width']) && isset($_GET['Height'])) {
                 $tampilan['lebarlayar'] = $_GET['width'];
                 $tampilan['tinggilayar'] = $_GET['Height'];
@@ -40,6 +41,7 @@ class Guest extends CI_Controller
 
     public function index()
     {
+
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
 
             $data['title'] = 'Dashboard';
@@ -50,6 +52,7 @@ class Guest extends CI_Controller
 
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
         } else { //browser 
+
             $config['base_url'] = site_url('guest/');
             $config['total_rows'] = $this->konten->countartikel();
             $config['per_page'] = 8;
@@ -133,6 +136,7 @@ class Guest extends CI_Controller
         );
 
         $this->input->set_cookie($cookie);
+        $this->index();
     }
 
     public function view()

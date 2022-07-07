@@ -74,7 +74,8 @@
                 <div class="splide__track mr-5 ml-5 ">
                     <ul class="splide__list mr-5 ml-5 mb-5">
 
-                        <?php $query = $this->db->query("SELECT * FROM artikel  ORDER BY RAND() LIMIT 6 ")->result();
+                        <?php
+                        $query = $this->db->query("SELECT count(*) as total, artikel_slug, img_artikel, nama_artikel, artikel.id_artikel as id_artikel FROM rekomendasi_artikel Inner join artikel  on rekomendasi_artikel.id_artikel = artikel.id_artikel GROUP BY id_artikel order by total desc LIMIT 5")->result();
                         foreach ($query as $key => $value) : {
                             }
                         ?>
