@@ -14,6 +14,8 @@ class Guest extends CI_Controller
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_user', 'user');
         $this->load->helper('ho_helper');
+        $this->load->helper('cookie');
+
 
         if (!isset($_SESSION['lebarlayar'])) {
             echo "<script language=\"JavaScript\">document.location=\"?r=1&width=\"+screen.width+\"&Height=\"+screen.height;</script>";
@@ -30,37 +32,10 @@ class Guest extends CI_Controller
             }
         }
 
-        $browser = $_SERVER['HTTP_USER_AGENT'];
-        $chrome = '/Chrome/';
-        $firefox = '/Firefox/';
-        $ie = '/IE/';
-        if (preg_match($chrome, $browser))
-            $isi = "Chrome/Opera";
-
-        if (preg_match($firefox, $browser))
-            $isi = "Firefox";
-
-        if (preg_match($ie, $browser))
-            $isi = "IE";
-
-        $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
-        $browser = $isi;
-        $tanggal = date('Y-m-d');
-        $kunjungan = 1;
-
-        $counter['id_viewer'] = generatevieweruser();
-        $counter['tanggal'] = $tanggal;
-        $counter['ip_address'] = $ipaddress;
-        $counter['counter'] = $kunjungan;
-        $counter['browser'] = $browser;
-        if ($this->session->userdata('visitor') != null || $this->session->userdata('visitor') != "") {
-            $vistor['visitor'] = $ipaddress;
-            $this->session->set_userdata($vistor);
-            $this->user->counteruser($counter);
+        if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "") {
+            $this->_readviewer();
         }
     }
-
-
 
 
     public function index()
@@ -121,19 +96,60 @@ class Guest extends CI_Controller
         }
     }
 
+    public function _readviewer()
+    {
+        $browser = $_SERVER['HTTP_USER_AGENT'];
+        $chrome = '/Chrome/';
+        $firefox = '/Firefox/';
+        $ie = '/IE/';
+        if (preg_match($chrome, $browser))
+            $isi = "Chrome/Opera";
+
+        if (preg_match($firefox, $browser))
+            $isi = "Firefox";
+
+        if (preg_match($ie, $browser))
+            $isi = "IE";
+
+        $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
+        $browser = $isi;
+        $tanggal = date('Y-m-d');
+        $kunjungan = 1;
+
+        $counter['id_viewer'] = generatevieweruser();
+        $counter['tanggal'] = $tanggal;
+        $counter['ip_address'] = $ipaddress;
+        $counter['counter'] = $kunjungan;
+        $counter['browser'] = $browser;
+        $this->user->counteruser($counter);
+
+        $cookie = array(
+
+            'name'   => 'viewer',
+            'value'  => $counter['id_viewer'],
+            'expire' => '7200',
+            'secure' => TRUE
+
+        );
+
+        $this->input->set_cookie($cookie);
+    }
+
     public function view()
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
-            $vistorid = $this->db->get_where('counterviewer', ['ip_address' => $this->session->userdata('visitor')])->row_array();
 
             $slug = $this->uri->segment(3);
             $db_konten = $this->konten->get_data($slug);
-            // $rekomendasi['id_rekomendasi'] = ganareterecid();
+            date_default_timezone_set('Asia/Jakarta');
+
+            $rekomendasi['id_rekomendasi'] = ganareterecid();
             $rekomendasi['id_artikel'] = $db_konten->id_artikel;
-            $rekomendasi['id_viewer'] = $this->session->userdata('id_viewer');
+            $rekomendasi['id_viewer'] = $this->input->cookie('viewer', true);
+            $rekomendasi['tanggal'] = date('Y-m-d');
+            $rekomendasi['time'] = date('H:i:s');
+            $this->konten->add_rekomendasi($rekomendasi);
 
-
-            $this->konten->add_rekomendasi();
             $data = array(
                 'db_konten' => $db_konten,
                 'db_kategori' => $this->user->kategori(),
@@ -142,6 +158,15 @@ class Guest extends CI_Controller
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
         } else {
             $slug = $this->uri->segment(3);
+            $db_konten = $this->konten->get_data($slug);
+
+            $rekomendasi['id_rekomendasi'] = ganareterecid();
+            $rekomendasi['id_artikel'] = $db_konten->id_artikel;
+            $rekomendasi['id_viewer'] = $this->input->cookie('viewer', true);
+            $rekomendasi['tanggal'] = date('Y-m-d');
+            $rekomendasi['time'] = date('H:i:s');
+            $this->konten->add_rekomendasi($rekomendasi);
+
             $data = array(
                 'db_konten' => $this->konten->get_data($slug),
                 'db_kategori' => $this->user->kategori(),

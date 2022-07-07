@@ -11,34 +11,8 @@ class Auth extends CI_Controller
         parent::__construct();
         $this->load->model('M_user', 'user');
 
-        $browsers = $_SERVER['HTTP_USER_AGENT'];
-        var_dump($browsers);
-
-        if (preg_match('/Chrome/', $browsers))
-            $isi = "Chrome";
-
-        if (preg_match('/Firefox/', $browsers))
-            $isi = "Firefox";
-
-        if (preg_match('/Opera/', $browsers))
-            $isi = "Opera";
-
-
-
-        $ipaddress = $_SERVER['REMOTE_ADDR'];
-        $browser = isset($isi) && $isi !== '' ? $isi : 'Unknown';
-        $tanggal = date('Y-m-d');
-        $kunjungan = 1;
-
-        $counter['id_viewer'] = generatevieweruser();
-        $counter['tanggal'] = $tanggal;
-        $counter['ip_address'] = $ipaddress;
-        $counter['counter'] = $kunjungan;
-        $counter['browser'] = $browser;
-        if ($this->session->userdata('visitor') !== null || $this->session->userdata('visitor') !== '') {
-            $vistor['visitor'] = $ipaddress;
-            $this->session->set_userdata($vistor);
-            $this->user->counteruser($counter);
+        if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "") {
+            $this->_readviewer();
         }
     }
 
@@ -128,6 +102,45 @@ class Auth extends CI_Controller
                 redirect('auth/login');
             }
         }
+    }
+
+    public function _readviewer()
+    {
+        $browser = $_SERVER['HTTP_USER_AGENT'];
+        $chrome = '/Chrome/';
+        $firefox = '/Firefox/';
+        $ie = '/IE/';
+        if (preg_match($chrome, $browser))
+            $isi = "Chrome/Opera";
+
+        if (preg_match($firefox, $browser))
+            $isi = "Firefox";
+
+        if (preg_match($ie, $browser))
+            $isi = "IE";
+
+        $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
+        $browser = $isi;
+        $tanggal = date('Y-m-d');
+        $kunjungan = 1;
+
+        $counter['id_viewer'] = generatevieweruser();
+        $counter['tanggal'] = $tanggal;
+        $counter['ip_address'] = $ipaddress;
+        $counter['counter'] = $kunjungan;
+        $counter['browser'] = $browser;
+        $this->user->counteruser($counter);
+
+        $cookie = array(
+
+            'name'   => 'viewer',
+            'value'  => $counter['id_viewer'],
+            'expire' => '7200',
+            'secure' => TRUE
+
+        );
+
+        $this->input->set_cookie($cookie);
     }
 
     public function logout()

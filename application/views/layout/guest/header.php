@@ -68,7 +68,7 @@
         <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper mt-5">
+        <div class="content-wrapper">
 
 
             <!-- Main content -->

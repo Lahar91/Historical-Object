@@ -126,6 +126,11 @@ class M_konten extends CI_Model
 
         return $this->db->get()->result();
     }
+
+    public function add_rekomendasi($data)
+    {
+        $this->db->insert('rekomendasi_artikel', $data);
+    }
 }
 
 /* End of file M_laporan.php */

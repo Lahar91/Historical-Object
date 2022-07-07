@@ -304,3 +304,31 @@ function populeryear()
     }
     return $year;
 }
+
+function ganareterecid()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_rekomendasi', 'desc')
+        ->limit(1)
+        ->get('rekomendasi_artikel');
+    $no     = $auto->result_array();
+    $finalid = "";
+
+    if ($no[0] == null || $no[0] == "") {
+        $firstcode = "RA-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+    } else {
+        $kodeid = $no[0]['id_rekomendasi'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "RA-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+    }
+    return $finalid;
+}

@@ -21,6 +21,16 @@ class Konten extends CI_Controller
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
 
             $slug = $this->uri->segment(3);
+
+            $db_konten = $this->konten->get_data($slug);
+            date_default_timezone_set('Asia/Jakarta');
+            $rekomendasi['id_rekomendasi'] = ganareterecid();
+            $rekomendasi['id_artikel'] = $db_konten->id_artikel;
+            $rekomendasi['id_viewer'] = $this->input->cookie('viewer', true);
+            $rekomendasi['tanggal'] = date('Y-m-d');
+            $rekomendasi['time'] = date('H:i:s');
+            $this->konten->add_rekomendasi($rekomendasi);
+
             $data = array(
                 'db_konten' => $this->konten->get_data($slug),
                 'db_kategori' => $this->user->kategori(),
@@ -29,6 +39,16 @@ class Konten extends CI_Controller
             $this->load->view('layout/android_user/wrapper', $data, FALSE);
         } else {
             $slug = $this->uri->segment(3);
+
+            $db_konten = $this->konten->get_data($slug);
+            date_default_timezone_set('Asia/Jakarta');
+            $rekomendasi['id_rekomendasi'] = ganareterecid();
+            $rekomendasi['id_artikel'] = $db_konten->id_artikel;
+            $rekomendasi['id_viewer'] = $this->input->cookie('viewer', true);
+            $rekomendasi['tanggal'] = date('Y-m-d');
+            $rekomendasi['time'] = date('H:i:s');
+            $this->konten->add_rekomendasi($rekomendasi);
+
             $data = array(
                 'db_konten' => $this->konten->get_data($slug),
                 'db_kategori' => $this->user->kategori(),
