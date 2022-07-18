@@ -46,7 +46,7 @@
             <div>
                 <img src="<?= base_url() ?>assets/image/logo/Logo.png" alt="AdminLTE Logo" width="220" style="opacity: .8">
             </div>
-            <a href="<?= base_url() ?>index2.html"><b>Historical</b> Object</a>
+            <a href="<?= base_url() ?>"><b>Historical</b> Object</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">

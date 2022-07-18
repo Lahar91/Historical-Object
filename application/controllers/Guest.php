@@ -19,22 +19,14 @@ class Guest extends CI_Controller
 
         if (!isset($_SESSION['lebarlayar'])) {
             echo "<script language=\"JavaScript\">document.location=\"?r=1&width=\"+screen.width+\"&Height=\"+screen.height;</script>";
-            // $tampilan['lebarlayar'] = echo "<script>screen.width</scprit>";
-            // $tampilan['tinggilayar'] = echo "<script>screen.height</scprit>";
-            // $this->session->set_userdata($tampilan);
 
             if (isset($_GET['width']) && isset($_GET['Height'])) {
+                $tampilan['android'] =  $_SERVER['HTTP_X_REQUESTED_WITH'];
                 $tampilan['lebarlayar'] = $_GET['width'];
                 $tampilan['tinggilayar'] = $_GET['Height'];
 
                 $this->session->set_userdata($tampilan);
-                $_SESSION['lebarlayar'] = $_GET['width'];
-                $_SESSION['tinggilayar'] = $_GET['Height'];
             }
-        }
-
-        if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "") {
-            $this->_readviewer();
         }
     }
 
@@ -42,7 +34,10 @@ class Guest extends CI_Controller
     public function index()
     {
 
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
+        if ($this->session->userdata('android') == "com.rrd.ho" && $this->session->userdata('android') !== "") {
+
+            if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
+                $this->_readviewer();
 
             $data['title'] = 'Dashboard';
             $data['artikel'] = $this->user->artikeldesc();
@@ -52,6 +47,10 @@ class Guest extends CI_Controller
 
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
         } else { //browser 
+            var_dump($this->session->userdata('android'));
+
+            if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
+                $this->_readviewer();
 
             $config['base_url'] = site_url('guest/');
             $config['total_rows'] = $this->konten->countartikel();
@@ -136,7 +135,6 @@ class Guest extends CI_Controller
         );
 
         $this->input->set_cookie($cookie);
-        $this->index();
     }
 
     public function view()

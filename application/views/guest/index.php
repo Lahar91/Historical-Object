@@ -66,17 +66,18 @@
                         <ul class="splide__list mr-5 ml-5">
                             <?php
 
-                            $query = $this->db->query("SELECT count(*) as total, artikel_slug, img_artikel, nama_artikel, artikel.id_artikel as id_artikel FROM rekomendasi_artikel Inner join artikel  on rekomendasi_artikel.id_artikel = artikel.id_artikel GROUP BY id_artikel order by total desc LIMIT 5")->result();
-                            foreach ($query as $key => $value) : {
-                                }
+                            $querys = $this->db->query("SELECT artikel.id_artikel as id, Count(*) as total, artikel_slug, img_artikel, nama_artikel FROM rekomendasi_artikel INNER JOIN artikel ON rekomendasi_artikel.id_artikel = artikel.id_artikel GROUP BY rekomendasi_artikel.id_artikel  order by total DESC LIMIT 5")->result_array();
+
+                            foreach ($querys as $key => $value) {
                             ?>
+
                                 <li class="splide__slide mb-4">
-                                    <div class="splide__slide_container"><a href="<?= base_url('guest/view/' . $value->artikel_slug) ?>"><img src="<?= base_url() ?>assets/image/konten_img/<?= $value->img_artikel ?>">
+                                    <div class="splide__slide_container"><a href="<?= base_url('guest/view/' . $value['artikel_slug']) ?>"><img src="<?= base_url() ?>assets/image/konten_img/<?= $value['img_artikel'] ?>">
                                     </div>
-                                    <center><?= $value->nama_artikel ?></center></a>
+                                    <center><?= $value['nama_artikel'] ?></center></a>
                                 </li>
 
-                            <?php endforeach ?>
+                            <?php } ?>
 
                         </ul>
                     </div>
@@ -169,7 +170,7 @@
                 <div class="splide__track mr-5 ml-5">
                     <ul class="splide__list mr-5 ml-5">
                         <?php
-                        $query = $this->db->query("SELECT count(*) as total, artikel_slug, img_artikel, nama_artikel, artikel.id_artikel as id_artikel FROM rekomendasi_artikel Inner join artikel  on rekomendasi_artikel.id_artikel = artikel.id_artikel GROUP BY id_artikel order by total desc LIMIT 5")->result();
+                        $querys = $this->db->query("SELECT artikel.id_artikel as id, Count(*) as total, artikel_slug, img_artikel, nama_artikel FROM rekomendasi_artikel INNER JOIN artikel ON rekomendasi_artikel.id_artikel = artikel.id_artikel GROUP BY rekomendasi_artikel.id_artikel  order by total DESC LIMIT 5")->result_array();
                         foreach ($query as $key => $value) : {
                             }
                         ?>

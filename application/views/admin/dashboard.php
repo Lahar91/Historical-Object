@@ -1,4 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.11/jspdf.plugin.autotable.min.js"></script>
+
+
 
 <div class="col-lg-12">
     <div class="row">
@@ -109,7 +113,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
             </div>
             <div class="ml-auto mr-2">
-                <button class="btn btn-outline-primary">Print PDF</button>
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="savePDF()" />
             </div>
         </div>
         <div class="card-body">
@@ -214,7 +218,8 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                         fontStyle: "bold",
                         beginAtZero: true,
                         maxTicksLimit: 5,
-                        padding: 20
+                        padding: 20,
+
                     },
                     gridLines: {
                         drawTicks: false,
@@ -316,4 +321,24 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
             }
         }
     });
+</script>
+
+<script>
+    function savePDF() {
+        var doc = new jsPDF()
+        var no = 0
+        doc.autoTable({
+            head: [
+                ['Bulan ', 'Pengunjung ']
+            ],
+            body: [
+                <?php foreach ($pengunjung_query as $key => $value) { ?>[[<?= '"' . $value['month'] . '",' ?>]
+                        [<?= '"' . $value['total'] . '",' ?>]]
+                <?php } ?>
+            ]
+
+
+        })
+        doc.save('save.pdf')
+    }
 </script>

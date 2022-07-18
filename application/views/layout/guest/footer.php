@@ -23,7 +23,11 @@
         Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <?php
+    $ctahun = explode("-", date("d-m-Y"));
+
+    ?>
+    <strong>Copyright &copy; 2021 - <?= $ctahun[2]; ?> <a href="<?= base_url() ?>">Historical Object</a>.</strong> All rights reserved.
 </footer>
 </div>
 <!-- ./wrapper -->
