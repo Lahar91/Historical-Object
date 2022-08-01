@@ -39,19 +39,53 @@ class Guest extends CI_Controller
             if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
                 $this->_readviewer();
 
-            $data['title'] = 'Dashboard';
-            $data['artikel'] = $this->user->artikeldesc();
-            $daata['db_kategori'] = $this->user->kategori();
-            $data['isi'] = 'guest/index';
+                $config['base_url'] = site_url('guest/');
+                $config['total_rows'] = $this->konten->countartikel();
+                $config['per_page'] = 8;
+    
+                $config['full_tag_open'] = '<nav aria-label="Page navigation example"><ul class="pagination justify-content-center">';
+                $config['full_tag_close'] = '<ul></nav>';
+    
+                $config['first_link'] = 'First';
+                $config['first_tag_open'] = ' <li class="page-item">';
+                $config['first_tag_close'] = ' </li>';
+    
+                $config['last_link'] = 'Last';
+                $config['last_tag_open'] = ' <li class="page-item">';
+                $config['last_tag_close'] = ' </li>';
+    
+    
+                $config['next_link'] = '&raquo';
+                $config['next_tag_open'] = ' <li class="page-item">';
+                $config['next_tag_close'] = '</li>';
+    
+                $config['prev_link'] = '&laquo';
+                $config['prev_tag_open'] = ' <li class="page-item">';
+                $config['prev_tag_close'] = '</li>';
+    
+                $config['cur_tag_open'] = ' <li class="page-item active"><a class="page-link" href="#">';
+                $config['cur_tag_close'] = '</a></li>';
+    
+                $config['num_tag_open'] = ' <li class="page-item ">';
+                $config['num_tag_close'] = '</li>';
+    
+                $config['attributes'] = array('class' => 'page-link');
+                $this->pagination->initialize($config);
+
+
+                $data['title'] = 'Dashboard';
+                $data['artikel'] = $this->user->artikeldesc();
+                $data['start'] = $this->uri->segment(2);
+                $data['pagartikel'] = $this->konten->get_artikel($config['per_page'], $data['start']);
+                $data['db_kategori'] = $this->user->kategori();
+            $data['isi'] = 'android_guest/index';
 
 
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
         } else { //browser 
-            var_dump($this->session->userdata('android'));
 
             if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
                 $this->_readviewer();
-
             $config['base_url'] = site_url('guest/');
             $config['total_rows'] = $this->konten->countartikel();
             $config['per_page'] = 8;
@@ -161,6 +195,7 @@ class Guest extends CI_Controller
         } else {
             $slug = $this->uri->segment(3);
             $db_konten = $this->konten->get_data($slug);
+            date_default_timezone_set('Asia/Jakarta');
 
             $rekomendasi['id_rekomendasi'] = ganareterecid();
             $rekomendasi['id_artikel'] = $db_konten->id_artikel;
