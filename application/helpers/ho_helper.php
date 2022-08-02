@@ -215,7 +215,7 @@ function generatlaporanid()
         ->get('report_artikel');
     $no     = $auto->result_array();
 
-    if ($no[0] == null || $no[0] == "") {
+    if ($no[0] == null || $no[0] == "" || empty($no[0])) {
         $firstcode = "LP-";
         $month = date('m');
         $year = date('y');
