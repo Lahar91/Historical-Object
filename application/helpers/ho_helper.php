@@ -187,7 +187,7 @@ function generatkategoriid()
         ->get('kategori');
     $no     = $auto->result_array();
 
-    if ($no[0] == null || $no[0] == "") {
+    if (empty($no[0]['id_feadback'])) {
         $firstcode = "KG-";
         $month = date('m');
         $year = date('y');
@@ -215,14 +215,14 @@ function generatlaporanid()
         ->get('report_artikel');
     $no     = $auto->result_array();
 
-    if ($no[0] == null || $no[0] == "" || empty($no[0])) {
+    if (empty($no[0]['report_artikel'])) {
         $firstcode = "LP-";
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
         return $finalid;
     } else {
-        $kodeid = $no[0]['id_laporan'];
+        $kodeid = $no[0]['report_artikel'];
         $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "LP-";
