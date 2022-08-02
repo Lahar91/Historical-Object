@@ -210,7 +210,7 @@ function generatlaporanid()
     $ci = &get_instance();
 
     $auto = $ci->db->select('*')
-        ->order_by('id_laporan', 'desc')
+        ->order_by('id_report', 'desc')
         ->limit(1)
         ->get('report_artikel');
     $no     = $auto->result_array();
