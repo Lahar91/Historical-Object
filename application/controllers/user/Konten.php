@@ -8,6 +8,7 @@ class Konten extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('ho_helper');
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_user', 'user');
@@ -90,6 +91,7 @@ class Konten extends CI_Controller
     {
         if ($this->input->post('radio1') != "lain") {
             $data = array(
+                'id_report' => generatlaporanid(),
                 'id_artikel' => $id_artikel,
                 'id_user' => $this->session->userdata('id_user'),
                 'keterangan' => $this->input->post('radio1'),
@@ -102,6 +104,7 @@ class Konten extends CI_Controller
             redirect('user/home');
         } else {
             $data = array(
+                'id_report' => generatlaporanid(),
                 'id_artikel' => $id_artikel,
                 'id_user' => $this->session->userdata('id_user'),
                 'keterangan' => $this->input->post('area1'),

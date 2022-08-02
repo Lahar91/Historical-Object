@@ -65,7 +65,7 @@ class Profile extends CI_Controller
                         'email' => $this->input->post('email'),
                         'Password' => password_hash($this->input->post('new_password'), PASSWORD_DEFAULT),
                     );
-                    $this->profile->edit($data);
+                    $this->M_user->edit($data);
                     $this->session->set_flashdata('Gpassword', 'Password Berhasil di rubah');
 
                     $this->logout();
@@ -112,7 +112,7 @@ class Profile extends CI_Controller
                         'img' => $upload_data['uploads']['file_name'],
 
                     );
-                    $this->profile->edit($data);
+                    $this->M_user->edit($data);
                     $this->session->set_flashdata('Spassword', 'data Berhasil dirubah');
                     redirect('user/profile');
 
@@ -128,7 +128,7 @@ class Profile extends CI_Controller
                     'img' => $upload_data['uploads']['file_name'],
 
                 );
-                $this->profile->edit($data);
+                $this->M_user->edit($data);
                 $this->session->set_flashdata('s_img', 'data Gagal di rubah');
                 redirect('user/profile');
 
