@@ -38,7 +38,7 @@ class Guest extends CI_Controller
 
             if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
                 $this->_readviewer();
-
+                
                 $config['base_url'] = site_url('guest/');
                 $config['total_rows'] = $this->konten->countartikel();
                 $config['per_page'] = 8;

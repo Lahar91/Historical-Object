@@ -81,7 +81,7 @@
                 <?php echo form_close() ?>
 
                 <p class="mb-0 mt-3 text-center">
-                    <a href="<?= base_url() ?>register" class="text-center">Register</a>
+                    <a href="<?= base_url() ?>Register" class="text-center">Register</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
