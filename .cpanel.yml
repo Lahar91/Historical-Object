@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/myck8125/public_html/
+    - export DEPLOYPATH=/home/myck8125/public_html/HistoricalObject/
     - /bin/cp * $DEPLOYPATH
