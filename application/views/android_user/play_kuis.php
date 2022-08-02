@@ -147,7 +147,7 @@
 
 
 <?php $no++; ?>
-<div id="cardbox">
+<div col-lg-12 id="cardbox">
 
 </div>
 

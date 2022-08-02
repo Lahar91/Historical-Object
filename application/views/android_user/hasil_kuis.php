@@ -1,5 +1,5 @@
 <div class="col-lg-12">
-    <div class="card card-primary">
+    <div class="card card-primary mt-5 mx-auto">
         <div class="card-header"></div>
         <div class="mx-auto">
             <h4 class="ml-1">Score anda :</h4>

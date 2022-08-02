@@ -9,7 +9,6 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_profile', 'profile');
         $this->load->model('M_konten', 'konten');
         $this->load->model('M_kategori', 'kategori');
         $this->load->model('M_user');
