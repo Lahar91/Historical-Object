@@ -215,14 +215,14 @@ function generatlaporanid()
         ->get('report_artikel');
     $no     = $auto->result_array();
 
-    if (empty($no[0]['report_artikel'])) {
+    if (empty($no[0]['id_report'])) {
         $firstcode = "LP-";
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
         return $finalid;
     } else {
-        $kodeid = $no[0]['report_artikel'];
+        $kodeid = $no[0]['id_report'];
         $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "LP-";
