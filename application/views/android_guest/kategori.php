@@ -21,7 +21,7 @@
         <div class="card-body mx-auto">
             <div class="row">
 
-                <?php foreach ($artikel as $key) {
+                <?php foreach ($db_konten as $key) {
                 ?>
                     <div class="card-deck my-2 mx-auto">
                         <a href="<?= base_url('user/view/' . $key['artikel_slug']) ?>" class="card " style="max-width: 8rem; min-width: 8rem;">

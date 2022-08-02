@@ -16,6 +16,7 @@
         foreach ($kategori as $key => $value) : ?>
             <a href="<?= base_url('guest/kategori/' . $value->k_slug) ?>" class="btn btn-transparent mb-1"><?= $value->nama_kategori; ?></a>
 
+
         <?php endforeach ?>
     </div>
 </div>

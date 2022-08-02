@@ -35,7 +35,7 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Daftar Akun</p>
 
-                <?php echo form_open('register/reg') ?>
+                <?php echo form_open('reg') ?>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Nama Depan" name="D_name">
                     <div class="input-group-append">
