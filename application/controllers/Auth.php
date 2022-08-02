@@ -48,7 +48,7 @@ class Auth extends CI_Controller
 
             $cek = $this->db->get_where('user', ['email' => $email])->row_array();
 
-            if (password_verify($password, $cek['Password'])) {
+            if (!empty($cek) && password_verify($password, $cek['Password'])) {
 
                 $level     = $cek['id_role'];
                 $nama_user = $cek['username'];
@@ -79,7 +79,7 @@ class Auth extends CI_Controller
 
             $cek = $this->db->get_where('user', ['email' => $email])->row_array();
 
-            if (password_verify($password, $cek['Password'])) {
+            if (!empty($cek) && password_verify($password, $cek['Password'])) {
 
                 $level     = $cek['id_role'];
                 $nama_user = $cek['username'];

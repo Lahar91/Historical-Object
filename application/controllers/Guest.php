@@ -47,7 +47,6 @@ class Guest extends CI_Controller
 
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
         } else { //browser 
-            var_dump($this->session->userdata('android'));
 
             if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
                 $this->_readviewer();
