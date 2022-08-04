@@ -1,3 +1,7 @@
+
+<?php 
+error_reporting(0);
+?>
 <div class="col-lg-12">
     <div class="card card-primary mt-5 mx-auto">
         <div class="card-header"></div>

@@ -104,7 +104,7 @@ function generatfeedbackid()
         ->get('feadback');
     $no     = $auto->result_array();
 
-    if ($no[0] == null || $no[0] == "") {
+    if (empty([$no]['id_feadbanck'])) {
         $firstcode = "FD-";
         $month = date('m');
         $year = date('y');
@@ -131,7 +131,7 @@ function generatevieweruser()
         ->limit(1)
         ->get('counterviewer');
     $no     = $auto->result_array();
-    if ($no[0] == null || $no[0] == "") {
+    if (empty($no[0]['id_viewer'])) {
         $firstcode = "VU-";
         $month = date('m');
         $year = date('y');
@@ -159,7 +159,7 @@ function generatartikelid()
         ->get('artikel');
     $no     = $auto->result_array();
     $finalid = "";
-    if ($no[0] == null || $no[0] == "") {
+    if (empty($no[0]['id_artikel'])) {
         $firstcode = "AR-";
         $month = date('m');
         $year = date('y');
@@ -245,13 +245,13 @@ function generattmpid()
     $no     = $auto->result_array();
     $finalid = "";
 
-    if ($no[0] == null || $no[0] == "") {
+    if (empty(no[0]['id_tn'])) {
         $firstcode = "TN-";
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
     } else {
-        $kodeid = $no[0]['id'];
+        $kodeid = $no[0]['id_tn'];
         $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "TN-";
@@ -273,7 +273,7 @@ function generathasilnilaiid()
     $no     = $auto->result_array();
     $finalid = "";
 
-    if ($no[0] == null || $no[0] == "") {
+    if (empty($no[0]['id_hasil'])) {
         $firstcode = "HN-";
         $month = date('m');
         $year = date('y');
@@ -316,7 +316,7 @@ function ganareterecid()
     $no     = $auto->result_array();
     $finalid = "";
 
-    if ($no[0] == null || $no[0] == "") {
+    if (empty($no[0]['id_rekomendasi'])) {
         $firstcode = "RA-";
         $month = date('m');
         $year = date('y');
