@@ -36,8 +36,28 @@ class Guest extends CI_Controller
         
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
             if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == ""){
-                $this->_readviewer();
-            }
+
+                $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
+                $tanggal = date('Y-m-d');
+                $kunjungan = 1;
+        
+                $counter['id_viewer'] = generatevieweruser();
+                $counter['tanggal'] = $tanggal;
+                $counter['ip_address'] = $ipaddress;
+                $counter['counter'] = $kunjungan;
+                $counter['browser'] = "android";
+                $this->user->counteruser($counter);
+        
+                $cookie = array(
+        
+                    'name'   => 'viewer',
+                    'value'  => $counter['id_viewer'],
+                    'expire' => '7200',
+                    'secure' => TRUE
+        
+                );
+        
+                $this->input->set_cookie($cookie);            }
 
             $data['title'] = 'Dashboard';
             $data['artikel'] = $this->user->artikeldesc();
