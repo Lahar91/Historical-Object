@@ -3,7 +3,6 @@
     <div class="card card-primary card-outline">
         <div class="card-body mx-auto">
             <div class="row">
-                <?php var_dump($this->session->userdata('android')); ?>
                 <?php foreach ($artikel as $key) {
                 ?>
                     <div class="card-deck my-2 mx-auto">
