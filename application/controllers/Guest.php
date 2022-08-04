@@ -62,7 +62,7 @@ class Guest extends CI_Controller
             $data['title'] = 'Dashboard';
             $data['artikel'] = $this->user->artikeldesc();
             $daata['db_kategori'] = $this->user->kategori();
-            $data['isi'] = 'guest/index';
+            $data['isi'] = 'android_guest/index';
 
 
             $this->load->view('layout/android_guest/wrapper', $data, FALSE);
