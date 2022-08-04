@@ -30,7 +30,7 @@ class Laporan extends CI_Controller
         $data = array(
             'id_report' => $id_report,
             'id_artikel' => $this->input->post('id_artikel'),
-            'id_user' => $this->input->post('id_user'),
+            'id_user' => $this->$this->session->userdata('id_user'),
             'keterangan' => $this->input->post('ketarangan'),
             'status' => $this->input->post('cek'),
 

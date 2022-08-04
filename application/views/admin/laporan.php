@@ -61,10 +61,10 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">nama artikel</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= idconverttittle($value->id_artikel) ?>" disabled>
-                            <input type="text" class="form-control" id="id_artikel" value="<?= $value->id_artikel ?>" name="jenis" hidden>
+                            <input type="text" class="form-control" id="id_artikel" value="<?= $value->id_artikel ?>" name="id_artikel" hidden>
+                            <input type="text" name="id_artikel" value="<?= $value->id?>" hidden>
 
                         </div>
-
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?= $value->keterangan ?>" disabled><?= $value->keterangan ?></textarea>
