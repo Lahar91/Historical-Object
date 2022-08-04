@@ -168,7 +168,6 @@ class Kuis extends CI_Controller
 
             //delete data di tmp_nilai
             $data_delete = array('id_tn' =>  $shownilai['id_tn']);
-
             $this->M_user->deltmp_nilai($data_delete);
             $this->hasil_kuis();
         }
@@ -178,18 +177,33 @@ class Kuis extends CI_Controller
     {
         if ($this->session->userdata('android') == "true") {
 
-            $data = array(
-                'tittle' => 'kuis',
-                'db_kategori' => $this->M_user->kategori(),
-            );
-            $this->load->view('android_user/hasil_kuis', $data, FALSE);
-        } else {
-            $data = array(
-                'tittle' => 'kuis',
-                'db_kategori' => $this->M_user->kategori(),
-            );
-            $this->load->view('user/hasil_kuis', $data, FALSE);
+            $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+            if($dlt_tmp['soal'] >= "5"){
+                $this->finsih();
+            }else{
+                $data = array(
+                    'tittle' => 'kuis',
+                    'db_kategori' => $this->M_user->kategori(),
+                );
+                $this->load->view('android_user/hasil_kuis', $data, FALSE);
+            }
+        } 
+        else 
+        {
+            $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+            if($dlt_tmp['soal'] >= "5"){
+                $this->finsih();
+            }else{
+                $data = array(
+                    'tittle' => 'kuis',
+                    'db_kategori' => $this->M_user->kategori(),
+                );
+                $this->load->view('user/hasil_kuis', $data, FALSE);
+            }
+
         }
+            
+
     }
 }
 

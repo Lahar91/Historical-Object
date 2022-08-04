@@ -9,7 +9,7 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_profile', 'profile');
+        $this->load->model('M_user', 'profile');
         $this->load->helper('ho_helper');
 
         if ($this->session->userdata('level_user') != "1") {

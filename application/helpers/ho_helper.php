@@ -279,7 +279,7 @@ function generathasilnilaiid()
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
     } else {
-        $kodeid = $no[0]['id'];
+        $kodeid = $no[0]['id_hasil'];
         $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "HN-";
