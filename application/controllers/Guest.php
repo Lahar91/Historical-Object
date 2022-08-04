@@ -35,9 +35,9 @@ class Guest extends CI_Controller
     {
         
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
-            $this->session->userdata('android') == "com.rrd.ho"
-            if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == "")
+            if ($this->input->cookie('viewer', true) == null && $this->input->cookie('viewer', true) == ""){
                 $this->_readviewer();
+            }
 
             $data['title'] = 'Dashboard';
             $data['artikel'] = $this->user->artikeldesc();
