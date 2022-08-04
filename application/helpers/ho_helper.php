@@ -245,7 +245,7 @@ function generattmpid()
     $no     = $auto->result_array();
     $finalid = "";
 
-    if (empty(no[0]['id_tn'])) {
+    if (empty($no[0]['id_tn'])) {
         $firstcode = "TN-";
         $month = date('m');
         $year = date('y');
