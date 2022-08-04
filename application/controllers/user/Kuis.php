@@ -178,7 +178,7 @@ class Kuis extends CI_Controller
         if ($this->session->userdata('android') == "true") {
 
             $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-            if($dlt_tmp['soal'] >= "5"){
+            if(!empty($dlt_tmp['soal'])){
                 $this->finsih();
             }else{
                 $data = array(
@@ -191,7 +191,7 @@ class Kuis extends CI_Controller
         else 
         {
             $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-            if($dlt_tmp['soal'] >= "5"){
+            if(!empty($dlt_tmp['soal'])){
                 $this->finsih();
             }else{
                 $data = array(
