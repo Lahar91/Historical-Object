@@ -93,6 +93,18 @@
                     </a>
                 </li>
 
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/User') ?>" class="nav-link <?php if ($this->uri->segment(2) == 'User') {
+                                                                                    echo "active";
+                                                                                } ?>">
+                        <i class="fa fa-users"></i>
+                        <p>
+                            Users
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="<?= base_url('Auth/logout') ?>" class="nav-link" id="log_out">
 
