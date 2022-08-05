@@ -173,8 +173,9 @@ function generateTable() {
     var doc = new jsPDF('p', 'pt', 'a4');
     var y = 20;
     doc.setLineWidth(2);
-    doc.text(200, y = y + 30, "Historicla Object Kateogri");
-        doc.text(250, y = y + 30, "Kategori");
+    var width = doc.internal.pageSize.getWidth()
+doc.text('Historical Object', width/2, y= y+20, { align: 'center' })
+doc.text('Kategori', width/2, y= y+30, { align: 'center' })
     doc.autoTable({
         html: '#kontenjs',
         startY: 85,
@@ -182,7 +183,7 @@ function generateTable() {
         columnStyles: {
             0: {
                 halign: 'right',
-                tableWidth: 50,
+                tableWidth: 100,
                 },
             1: {
                 tableWidth: 100,

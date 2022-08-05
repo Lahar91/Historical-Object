@@ -1,3 +1,7 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.11/jspdf.plugin.autotable.min.js"></script>
+
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header">
@@ -91,3 +95,37 @@
         </div>
     <?php } ?>
 </div>
+
+<script>
+    function generateTable() {
+    var doc = new jsPDF('p', 'pt', 'a4');
+    var y = 20;
+    doc.setLineWidth(2);
+    var width = doc.internal.pageSize.getWidth()
+doc.text('Historical Object', width/2, y= y+20, { align: 'center' })
+doc.text('Laporan', width/2, y= y+30, { align: 'center' })
+    doc.autoTable({
+        html: '#kontenjs',
+        startY: 85,
+        theme: 'grid',
+        columnStyles: {
+            0: {
+                halign: 'right',
+                tableWidth: 100,
+                },
+            1: {
+                tableWidth: 100,
+               },
+            2: {
+                halign: 'right',
+                tableWidth: 100,
+               },
+            3: {
+                halign: 'right',
+                tableWidth: 100,
+               }
+        },
+    })
+    doc.save('kuis.pdf');
+}
+</script>
