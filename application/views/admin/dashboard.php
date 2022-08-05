@@ -115,7 +115,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
             </div>
             <div class="ml-auto mr-2">
-                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF()" />
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF2()" />
             </div>
         </div>
         <div class="card-body">
@@ -173,16 +173,16 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
             </div>
         </div>
         <div class="ml-auto mr-2">
-                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF2()" />
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF()" />
             </div>
         <div class="card-body">
             <canvas id="mychart2" height="60px"></canvas>
-            <table class="table table-bordered text-center" id="Topartikel" hidden>
+            <table class="table table-bordered text-center" id="Topartikeljs" hidden>
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th class="w-25">Bulan</th>
-                        <th>Pengunjung</th>
+                        <th class="w-25">Nama Aritkel</th>
+                        <th>total</th>
                     </tr>
                 </thead>
 
@@ -382,7 +382,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
 <script>
 function downloadPDF(){
-    var canvas = document.getElementById('mychart');
+    var canvas = document.getElementById('mychart2');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
@@ -400,14 +400,14 @@ function downloadPDF(){
 }
 
 function downloadPDF2(){
-    var canvas = document.getElementById('mychart2');
+    var canvas = document.getElementById('mychart1');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
     var y = 20;
     var width = pdf.internal.pageSize.getWidth();
     pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
-    pdf.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
+    pdf.text('artikel Pengunjung', width/2, y= y+30, { align: 'center' })
     pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
     pdf.autoTable({
         html: '#pengunjungjs',
