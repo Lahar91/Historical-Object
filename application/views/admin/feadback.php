@@ -105,14 +105,14 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>
-                            <textarea class="form-control" id="ketarangan" rows="3"><?= $value["isi_feadback"] ?></textarea>
+                            <textarea class="form-control" id="editor1" rows="3"><?= $value["isi_feadback"] ?></textarea>
                             <input type="text" class="form-control" name="isi_feadback" rows="3" value="<?= $value["isi_feadback"] ?>" hidden>
 
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <?php if ($value["status"] != "New") { ?>
+                        <?php if ($value["status"] != "new") { ?>
                             <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
 
                         <?php } else { ?>
@@ -130,35 +130,35 @@
     <?php } ?>
 </div>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#ketarangan'), {
+        ClassicEditor
+            .create(document.querySelector('#editor1'), {
 
-            toolbar: [''],
-
-
-            ckfinder: {
-                // Upload the images to the server using the CKFinder QuickUpload command.
-                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
-                // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
-            }
-        }).then(editor => {
-            console.log(editor);
-            editor.enableReadOnlyMode('#ketarangan');
-
-        })
-        .catch(error => {
-            console.error(error);
-        });
-
-    function show() {
-        document.getElementById('area1').style.display = 'block';
-    }
+                toolbar: [''],
 
 
-    function hide() {
-        document.getElementById('area1').style.display = 'none';
-    }
-</script>
+                ckfinder: {
+                    // Upload the images to the server using the CKFinder QuickUpload command.
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
+                    // uploadUrl: 'base_url('admin/konten/upload_image2') ?>',
+                }
+            }).then(editor => {
+                console.log(editor);
+                editor.enableReadOnlyMode('#editor1');
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        function show() {
+            document.getElementById('area1').style.display = 'block';
+        }
+
+
+        function hide() {
+            document.getElementById('area1').style.display = 'none';
+        }
+    </script>
 
 <script>
     function generateTable() {
