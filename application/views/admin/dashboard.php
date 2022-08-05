@@ -387,8 +387,8 @@ function downloadPDF(){
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
     var y = 20;
-    doc.text('Historical Object', width/2, y= y+20, { align: 'center' })
-    doc.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
+    pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
+    pdf.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
     pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
     doc.autoTable({
         html: '#topartikeljs',
@@ -404,10 +404,10 @@ function downloadPDF2(){
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
     var y = 20;
-    doc.text('Historical Object', width/2, y= y+20, { align: 'center' })
-    doc.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
+    pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
+    pdf.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
     pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
-    doc.autoTable({
+    pdf.autoTable({
         html: '#pengunjungjs',
         startY: 110,
         theme: 'grid',
