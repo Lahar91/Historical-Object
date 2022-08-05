@@ -59,7 +59,7 @@ class M_konten extends CI_Model
     }
 
     public function countlaporan(){
-        return $this->db->get('report_artike')->num_rows();
+        return $this->db->get('report_artikel')->num_rows();
     }
 
     public  function artikeldesc()
