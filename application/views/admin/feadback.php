@@ -105,7 +105,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan</label>
-                            <textarea class="form-control" id="editor1" rows="3"><?= $value["isi_feadback"] ?></textarea>
+                            <textarea class="form-control" id="editor1" rows="3"  disabled ><?= $value["isi_feadback"] ?></textarea>
                             <input type="text" class="form-control" name="isi_feadback" rows="3" value="<?= $value["isi_feadback"] ?>" hidden>
 
                         </div>
