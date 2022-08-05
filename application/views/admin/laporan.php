@@ -96,7 +96,7 @@
                             <label for="exampleFormControlInput1">nama artikel</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= idconverttittle($value->id_artikel) ?>" disabled>
                             <input type="text" class="form-control" id="id_artikel" value="<?= $value->id_artikel ?>" name="id_artikel" hidden>
-                            <input type="text" name="id_artikel" value="<?= $value->id_report?>" hidden>
+                            <input type="text" name="id_artikel" value="<?= $value->id_artikel?>" hidden>
 
                         </div>
                         <div class="form-group">
