@@ -104,7 +104,7 @@ function generatfeedbackid()
         ->get('feadback');
     $no     = $auto->result_array();
 
-    if (empty([$no]['id_feadbanck'])) {
+    if (empty([$no]['id_feadback'])) {
         $firstcode = "FD-";
         $month = date('m');
         $year = date('y');
@@ -187,14 +187,14 @@ function generatkategoriid()
         ->get('kategori');
     $no     = $auto->result_array();
 
-    if (empty($no[0]['id_feadback'])) {
+    if (empty($no[0]['id_kategori'])) {
         $firstcode = "KG-";
         $month = date('m');
         $year = date('y');
         $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
         return $finalid;
     } else {
-        $kodeid = $no[0]['id_feadback'];
+        $kodeid = $no[0]['id_kategori'];
         $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "KG-";
