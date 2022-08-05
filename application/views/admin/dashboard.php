@@ -221,78 +221,65 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
         window.location.href = halamanSaatIni + '?pengunjungyear=' + this.value + '&populeryear=' + top_rec1.value;
 
     });
-    var ctx = document.getElementById('mychart').getContext('2d');
-
-
-    var mychart = new Chart(ctx, {
-        //chart akan ditampilkan sebagai bar chart
-        type: 'bar',
-        data: {
-            //membuat label chart
-
-            /**  labels: [<?php foreach ($pengunjung_query as $key => $value) {
-                                echo '"' . $value['month']  . '",';
-                            } ?>],*/
-
+   // setup
+    const data = {
             labels: ["Januari", "Febuari", "Maret", "April", "May", "Juni", "July", "Agustus", "September", "Oktober", "November ", "Desember"],
-
-            datasets: [{
-                label: "Pengunjung <?= $yearpengunjung ?>",
-                borderColor: "#80b6f4",
-                pointBorderColor: "#80b6f4",
-                pointBackgroundColortime_diff: "#80b6f4",
-                pointHoverBackgroundColor: "#80b6f4",
-                pointHoverBorderColor: "#80b6f4",
-                pointBorderWidth: 10,
-                pointHoverRadius: 10,
-                pointHoverBorderWidth: 1,
-                pointRadius: 3,
-                fill: false,
-                borderWidth: 4,
-                //isi chart
+      datasets: [{
+        label: 'Pengunjung <?= $yearpengunjung ?>',
                 data: [<?php foreach ($pengunjung_query as $key => $value) {
                             echo '"' . $value['total'] . '",';
-                        } ?>],
-
-
-            }]
-            
-        },
-
-        options: {
-            legend: {
-                responsive: true,
-                position: "bottom"
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        fontColor: "rgba(0,0,0,0.5)",
-                        fontStyle: "bold",
-                        beginAtZero: true,
-                        maxTicksLimit: 5,
-                        padding: 20,
-
-                    },
-                    gridLines: {
-                        drawTicks: false,
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        zeroLineColor: "transparent"
-                    },
-                    ticks: {
-                        padding: 20,
-                        fontColor: "rgba(0,0,0,0.5)",
-                        fontStyle: "bold"
-                    }
-                }]
-            }
+                        } ?>],        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+ 
+    const bgColor = {
+        id:'bgColor',
+        beforeDraw:(chart,options) => {
+            const {ctx,width,height} = chart
+            ctx.fillStyle = 'white'
+            ctx.fillRect(0, 0, width, height)
+            ctx.restore()
         }
-
-    });
+    }
+ 
+    // config
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+      plugins:[bgColor]
+    };
+ 
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('mychart'),
+      config
+    );
+ 
 </script>
 
 <script>
@@ -308,73 +295,69 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
         window.location.href = halamanSaatIni + '?populeryear=' + this.value + '&pengunjungyear=' + pengunjung1.value;
     });
 
-    var ctx2 = document.getElementById('mychart2').getContext('2d');
-
-
-    var mychart2 = new Chart(ctx2, {
-        //chart akan ditampilkan sebagai bar chart
-        type: 'bar',
-        data: {
-            //membuat label chart
-
+   // setup
+    const datas = {
             labels: [<?php foreach ($artikel_top as $key => $value) {
 
                             echo '"' . $value['nama_artikel'] . '",';
                         } ?>],
-
-            datasets: [{
-                label: "Viewer <?= $yearpopuler ?>",
-                borderColor: "#80b6f4",
-                pointBorderColor: "#80b6f4",
-                pointBackgroundColortime_diff: "#80b6f4",
-                pointHoverBackgroundColor: "#80b6f4",
-                pointHoverBorderColor: "#80b6f4",
-                pointBorderWidth: 10,
-                pointHoverRadius: 10,
-                pointHoverBorderWidth: 1,
-                pointRadius: 3,
-                fill: false,
-                borderWidth: 4,
-                //isi chart
-                data: [<?php foreach ($artikel_top as $key => $value) {
+      datasets: [{
+        label: ' "populer Artikel <?= $yearpopuler ?>"',
+                 data: [<?php foreach ($artikel_top as $key => $value) {
                             echo '"' . $value['total'] . '",';
-                        } ?>],
-
-
-            }]
-        },
-        options: {
-            legend: {
-                responsive: true,
-                position: "bottom"
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        fontColor: "rgba(0,0,0,0.5)",
-                        fontStyle: "bold",
-                        beginAtZero: true,
-                        maxTicksLimit: 5,
-                        padding: 20
-                    },
-                    gridLines: {
-                        drawTicks: false,
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        zeroLineColor: "transparent"
-                    },
-                    ticks: {
-                        padding: 20,
-                        fontColor: "rgba(0,0,0,0.5)",
-                        fontStyle: "bold"
-                    }
-                }]
-            }
+                        } ?>],       
+		backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+ 
+    const bgColor2 = {
+        id:'bgColor2',
+        beforeDraw:(chart,options) => {
+            const {ctx,width,height} = chart
+            ctx.fillStyle = 'white'
+            ctx.fillRect(0, 0, width, height)
+            ctx.restore()
         }
-    });
+    }
+ 
+    // config
+    const config2 = {
+      type: 'bar',
+      data: datas,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+      plugins:[bgColor2]
+    };
+ 
+    // render init block
+    const mychart2 = new Chart(
+      document.getElementById('mychart2'),
+      config2
+    );
+ 
 </script>
 
 <script>
