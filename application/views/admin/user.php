@@ -74,9 +74,9 @@
                             <td><?= $value->username ?></td>
                             <td><?= $value->email ?></td>
                             <td><?php if ($value->id_role !== "1"){ ?> 
-                                    <p>Admin</p>
-                                <?php }else { ?>
                                     <p>User</p>
+                                <?php }else { ?>
+                                    <p>Admin</p>
                                     <?php }?>
                         
                             </td>
