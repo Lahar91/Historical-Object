@@ -138,7 +138,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $value->month ?>l</td>
+                            <td><?= $value->month ?></td>
                             <td><?= $value->total ?></td>
 
                         </tr>
@@ -193,8 +193,8 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $value->artikel_top ?></td>
-                            <td><?= $value->total ?></td>
+                            <td><?= $value['nama_artikel'] ?></td>
+                            <td><?= $value['total'] ?></td>
 
                         </tr>
                     <?php } ?>
