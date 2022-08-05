@@ -89,7 +89,9 @@ $yearpopuler = isset($_GET['populeryear']) && $_GET['populeryear']  ? $_GET['pop
 $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_artikel.id_artikel, nama_artikel, Count(*) as total FROM rekomendasi_artikel INNER JOIN artikel on rekomendasi_artikel.id_artikel = artikel.id_artikel WHERE YEAR(tanggal) = $yearpopuler GROUP BY id_artikel order by total DESC limit 5")->result_array();
 
 ?>
-
+<?php foreach ($pengunjung_query as $key => $value) {
+    var_dump($value);
+}?>
 <div class="col-lg-12">
 
     <div class="card card-primary">
@@ -119,6 +121,35 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
         <div class="card-body">
             <canvas id="mychart" height="60px"></canvas>
         </div>
+        <table class="table table-bordered text-center" id="pengunjungjs" hidden>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th class="w-25">Bulan</th>
+                        <th>Jumlah</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($db_laporan as $key => $value) {
+                        $PecahStr = explode("-", $name);
+                        $monthNu = $PecahStr[1];
+                        $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+                        $monthName = $dateObj->format('F');
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= idconverttittle($value->id_artikel) ?></td>
+                            <td><?= $value->keterangan ?></td>
+                            <td><?= $value->status ?></td>
+
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
     </div>
 </div>
 
@@ -148,7 +179,29 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
         </div>
         <div class="card-body">
             <canvas id="mychart2" height="60px"></canvas>
+            <table class="table table-bordered text-center" id="Topartikel" hidden>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th class="w-25">Bulan</th>
+                        <th>Pengunjung</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($db_laporan as $key => $value) {
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= idconverttittle($value->id_artikel) ?></td>
+                            <td><?= $value->keterangan ?></td>
+
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -205,7 +258,12 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
 
             }]
+            
         },
+        bgColor : {
+
+        },
+
         options: {
             legend: {
                 responsive: true,
@@ -238,6 +296,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                 }]
             }
         }
+
     });
 </script>
 
@@ -324,21 +383,37 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 </script>
 
 <script>
-    function savePDF() {
-        var doc = new jsPDF()
-        var no = 0
-        doc.autoTable({
-            head: [
-                ['Bulan ', 'Pengunjung ']
-            ],
-            body: [
-                <?php foreach ($pengunjung_query as $key => $value) { ?>[[<?= '"' . $value['month'] . '",' ?>]
-                        [<?= '"' . $value['total'] . '",' ?>]]
-                <?php } ?>
-            ]
+function downloadPDF(){
+    var canvas = document.getElementById('myChart');
+    var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.setFontSize(20);
+    var y = 20;
+    doc.text('Historical Object', width/2, y= y+20, { align: 'center' })
+    doc.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
+    pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
+    doc.autoTable({
+        html: '#topartikeljs',
+        startY: 110,
+        theme: 'grid',
+    })
+    pdf.save('Topartikel.pdf')
+}
 
-
-        })
-        doc.save('save.pdf')
-    }
+function downloadPDF2(){
+    var canvas = document.getElementById('myChart');
+    var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.setFontSize(20);
+    var y = 20;
+    doc.text('Historical Object', width/2, y= y+20, { align: 'center' })
+    doc.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
+    pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
+    doc.autoTable({
+        html: '#pengunjungjs',
+        startY: 110,
+        theme: 'grid',
+    })
+    pdf.save('Pengunjung.pdf')
+}
 </script>

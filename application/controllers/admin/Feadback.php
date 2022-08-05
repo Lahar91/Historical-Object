@@ -30,6 +30,11 @@ class Feadback extends CI_Controller
 
         $data['status'] = $this->input->post('status');
         $this->feadback->update_feadback($data);
+        
+        $data['tittle'] = "Feadback";
+        $data['isi'] = "admin/feadback";
+        $data['db_feadback'] = $this->feadback->viewlist();
+        $this->load->view('layout/admin/wrapper', $data, FALSE);
     }
 }
 
