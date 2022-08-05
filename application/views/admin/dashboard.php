@@ -177,7 +177,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
             </div>
         <div class="card-body">
             <canvas id="mychart2" height="60px"></canvas>
-            <table class="table table-bordered text-center" id="Topartikeljs" hidden>
+            <table class="table table-bordered text-center" id="topartikeljs" hidden>
                 <thead>
                     <tr>
                         <th>No</th>
@@ -387,17 +387,17 @@ function downloadtoparikel(){
     var width = pdf.internal.pageSize.getWidth();
     pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
     pdf.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
-    pdf.addImage(canvasImage, 'JPEG', width/2, y= y+30,  200, 150);
+    pdf.addImage(canvasImage, 'JPEG', 35, y = y+20,  520, 250);
     pdf.autoTable({
         html: '#topartikeljs',
-        startY: 110,
+        startY: 350,
         theme: 'grid',
     })
     pdf.save('Topartikel.pdf')
 }
 
 function downloadpengunjung(){
-    var canvas = document.getElementById('mychart1');
+    var canvas = document.getElementById('mychart');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
@@ -405,10 +405,10 @@ function downloadpengunjung(){
     var width = pdf.internal.pageSize.getWidth();
     pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
     pdf.text('artikel Pengunjung', width/2, y= y+30, { align: 'center' })
-    pdf.addImage(canvasImage, 'JPEG', width/2, y= y+30,  200, 150);
+    pdf.addImage(canvasImage, 'JPEG', 35, y = y+20,  520, 250);
     pdf.autoTable({
         html: '#pengunjungjs',
-        startY: 110,
+        startY: 350,
         theme: 'grid',
     })
     pdf.save('Pengunjung.pdf')
