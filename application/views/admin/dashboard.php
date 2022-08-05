@@ -61,7 +61,7 @@
                     <div class="float-left">
                         <div class="d-flex">
                             <i class="fa fa-comments fa-2x text-info" aria-hidden="true"> </i>
-                            <H4 class="ml-3"> Laporan</H4>
+                            <H4 class="ml-3"> KUIS</H4>
                         </div>
 
                     </div>

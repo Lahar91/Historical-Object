@@ -9,7 +9,9 @@
                  <div class="ml-2">
                      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add">Tambah</button>
                  </div>
-
+                 <div class="ml-2">
+                     <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="generateTable()">Prinf PDF</button>
+                 </div>
 
              </div>
 
@@ -41,7 +43,35 @@
                      <?php } ?>
                  </tbody>
              </table>
-         </div>
+             
+             <table class="table table-bordered text-center" id="kontenjs" hidden>
+                 <thead>
+                     <tr>
+                         <th>No</th>
+                         <th>Nama Kategori</th>
+                         <th>Action</th>
+                     </tr>
+                 </thead>
+
+                 <tbody>
+                     <?php
+                        $no = 1;
+                        foreach ($db_kategori as $key => $value) {
+                        ?>
+                         <tr>
+                             <td><?= $no++; ?></td>
+                             <td><?= $value->nama_kategori ?></td>
+                             <td>
+
+                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $value->id_kategori ?>"><i class="fa fa-edit"></i></button>
+                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_kategori ?>"><i class="fa fa-trash"></i></button>
+
+
+                             </td>
+                         </tr>
+                     <?php } ?>
+                 </tbody>
+             </table>
 
      </div>
 
@@ -143,3 +173,36 @@
 
 
  </div>
+
+ <script>
+
+function generateTable() {
+    var doc = new jsPDF('p', 'pt', 'a4');
+    var y = 20;
+    doc.setLineWidth(2);
+    doc.text(200, y = y + 30, "Historicla Object Kateogri");
+    doc.autoTable({
+        html: '#kontenjs',
+        startY: 70,
+        theme: 'grid',
+        columnStyles: {
+            0: {
+                halign: 'right',
+                tableWidth: 100,
+                },
+            1: {
+                tableWidth: 100,
+               },
+            2: {
+                halign: 'right',
+                tableWidth: 100,
+               },
+            3: {
+                halign: 'right',
+                tableWidth: 100,
+               }
+        },
+    })
+    doc.save('Kategori.pdf');
+}
+ </script>

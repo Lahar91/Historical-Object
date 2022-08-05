@@ -11,6 +11,9 @@ class Feadback extends CI_Controller
         parent::__construct();
         $this->load->model('M_feadback', 'feadback');
         $this->load->helper('ho_helper');
+        if(!empty($this->session->userdata('k_android'))){
+            $this->session->unset_userdata('k_android');
+        }
     }
 
 

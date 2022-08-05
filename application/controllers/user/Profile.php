@@ -17,6 +17,9 @@ class Profile extends CI_Controller
         if ($this->session->userdata('level_user') != "2") {
             redirect("auth/logout");
         }
+        if(!empty($this->session->userdata('k_android'))){
+            $this->session->unset_userdata('k_android');
+        }
     }
 
     public function index()

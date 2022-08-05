@@ -19,7 +19,11 @@ class Kategori extends CI_Controller
     public function list_kategori()
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.rrd.ho") {
-
+            
+            $array = array('k_android' => 'true');
+            
+            $this->session->set_userdata( $array );
+            
             $data['tittle'] = 'Dashboard';
             $data['kategori'] = $this->user->kategori();
             $data['isi'] = 'android_user/list_kategori';

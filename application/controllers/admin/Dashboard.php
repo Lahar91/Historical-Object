@@ -28,6 +28,7 @@ class Dashboard extends CI_Controller
             'tittle' => 'Dashboard',
             'countartikel' => $this->konten->countartikel(),
             'countkategori' => $this->kategori->countkategori(),
+            'countlaporan' => $this->konten->countlaporan(),
             'countkuis' => $this->kuis->countkuis(),
             'countuser' => $this->user->countuser(),
             'top_5' => $this->konten->artikel_top(),
