@@ -40,7 +40,7 @@
                                 <?php } else if ($value["status"] == "Terima") { ?>
                                     <i class="fa-solid fa-envelope-circle-check fa-lg"></i>
                                 <?php } else if ($value["status"] == "Tolak") { ?>
-                                    <i class="fa-light fa-envelope-open fa-lg"></i>
+                                    <i class="fa-solid fa-envelope-open fa-lg"></i>
                                 <?php } ?>
                             </td>
                             <td>
