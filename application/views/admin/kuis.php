@@ -66,7 +66,6 @@
                         <th>Pilihan A</th>
                         <th>Pilihan B</th>
                         <th>Pilihan C</th>
-                        <th class="w-25">Action</th>
                     </tr>
                 </thead>
 
@@ -94,7 +93,7 @@
                     <?php } ?>
                 </tbody>
             </table>
-            
+
         </div>
 
     </div>
