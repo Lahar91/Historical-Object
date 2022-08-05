@@ -78,6 +78,11 @@
 
 <script src="<?= base_url() ?>assets/plugins/fontawesome-6.1.1/js/all.js"></script>
 
+
+  <!-- ckeditor -->
+  <script src="<?= base_url() ?>assets/plugins/ckeditor5/ckeditor.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/ckfinder/ckfinder.js"></script>
+
 </body>
 
 </html>
