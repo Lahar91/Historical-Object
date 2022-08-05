@@ -76,8 +76,8 @@
                      <?php } ?>
                  </tbody>
              </table>
-
-     </div>
+            </div>
+        </div>
 
      <!-- model add-->
      <div class="modal fade" id="add">
@@ -174,11 +174,7 @@
          <!-- /.modal -->
      <?php } ?>
      <!--End Modal Delete-->
-
-
- </div>
-
- <script>
+<script>
 
 function generateTable() {
     var doc = new jsPDF('p', 'pt', 'a4');
@@ -210,3 +206,6 @@ function generateTable() {
     doc.save('Kategori.pdf');
 }
  </script>
+
+ </div>
+
