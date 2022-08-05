@@ -115,7 +115,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
             </div>
             <div class="ml-auto mr-2">
-                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF2()" />
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadpengunjung()" />
             </div>
         </div>
         <div class="card-body">
@@ -138,8 +138,8 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $value->month ?></td>
-                            <td><?= $value->total ?></td>
+                            <td><?= $value['month']?></td>
+                            <td><?= $value['total'] ?></td>
 
                         </tr>
                     <?php } ?>
@@ -173,7 +173,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
             </div>
         </div>
         <div class="ml-auto mr-2">
-                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF()" />
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadtoparikel()" />
             </div>
         <div class="card-body">
             <canvas id="mychart2" height="60px"></canvas>
@@ -257,9 +257,6 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
             }]
             
-        },
-        bgColor : {
-
         },
 
         options: {
@@ -381,7 +378,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 </script>
 
 <script>
-function downloadPDF(){
+function downloadtoparikel(){
     var canvas = document.getElementById('mychart2');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
@@ -390,8 +387,8 @@ function downloadPDF(){
     var width = pdf.internal.pageSize.getWidth();
     pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
     pdf.text('Laporan Pengunjung', width/2, y= y+30, { align: 'center' })
-    pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
-    doc.autoTable({
+    pdf.addImage(canvasImage, 'JPEG', width/2, y= y+30,  200, 150);
+    pdf.autoTable({
         html: '#topartikeljs',
         startY: 110,
         theme: 'grid',
@@ -399,7 +396,7 @@ function downloadPDF(){
     pdf.save('Topartikel.pdf')
 }
 
-function downloadPDF2(){
+function downloadpengunjung(){
     var canvas = document.getElementById('mychart1');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
@@ -408,7 +405,7 @@ function downloadPDF2(){
     var width = pdf.internal.pageSize.getWidth();
     pdf.text('Historical Object', width/2, y= y+20, { align: 'center' })
     pdf.text('artikel Pengunjung', width/2, y= y+30, { align: 'center' })
-    pdf.addImage(canvasImage, 'JPEG', 15, 15,  y= y+30, 150);
+    pdf.addImage(canvasImage, 'JPEG', width/2, y= y+30,  200, 150);
     pdf.autoTable({
         html: '#pengunjungjs',
         startY: 110,
