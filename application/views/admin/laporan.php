@@ -43,6 +43,33 @@
                     <?php } ?>
                 </tbody>
             </table>
+
+            
+            <table class="table table-bordered text-center" id="kontenjs" hidden>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th class="w-25">Judul artikel</th>
+                        <th>Keterangan</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($db_laporan as $key => $value) {
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= idconverttittle($value->id_artikel) ?></td>
+                            <td><?= $value->keterangan ?></td>
+                            <td><?= $value->status ?></td>
+
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
 
     </div>
