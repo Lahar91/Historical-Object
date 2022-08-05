@@ -38,7 +38,7 @@
                             <td><?= $value->id_user ?></td>
                             <td><?= $value->username ?></td>
                             <td><?= $value->email ?></td>
-                            <td><?php if ($value->id_role !== 1){ ?> 
+                            <td><?php if ($value->id_role !== "1"){ ?> 
                                     <p>Admin</p>
                                 <?php }else { ?>
                                     <p>User</p>
@@ -46,10 +46,6 @@
                         
                             </td>
 
-                            <td>
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view<?= $value->id_report ?>"><i class="fa fa-edit"></i></button>
-
-                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
