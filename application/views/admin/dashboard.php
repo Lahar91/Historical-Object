@@ -115,7 +115,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
             </div>
             <div class="ml-auto mr-2">
-                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="savePDF()" />
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF()" />
             </div>
         </div>
         <div class="card-body">
@@ -127,24 +127,21 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                         <th>No</th>
                         <th class="w-25">Bulan</th>
                         <th>Jumlah</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($db_laporan as $key => $value) {
+                    foreach ($pengunjung_query as $key => $value) {
                         $PecahStr = explode("-", $name);
                         $monthNu = $PecahStr[1];
-                        $dateObj   = DateTime::createFromFormat('!m', $monthNum);
-                        $monthName = $dateObj->format('F');
+
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= idconverttittle($value->id_artikel) ?></td>
-                            <td><?= $value->keterangan ?></td>
-                            <td><?= $value->status ?></td>
+                            <td><?= $value->month ?>l</td>
+                            <td><?= $value->total ?></td>
 
                         </tr>
                     <?php } ?>
@@ -177,6 +174,9 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                 </select>
             </div>
         </div>
+        <div class="ml-auto mr-2">
+                <input class="btn btn-outline-primary" type="button" value="Save as PDF" onclick="downloadPDF2()" />
+            </div>
         <div class="card-body">
             <canvas id="mychart2" height="60px"></canvas>
             <table class="table table-bordered text-center" id="Topartikel" hidden>
@@ -191,12 +191,12 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($db_laporan as $key => $value) {
+                    foreach ($artikel_top as $key => $value) {
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= idconverttittle($value->id_artikel) ?></td>
-                            <td><?= $value->keterangan ?></td>
+                            <td><?= $value->artikel_top ?></td>
+                            <td><?= $value->total ?></td>
 
                         </tr>
                     <?php } ?>
