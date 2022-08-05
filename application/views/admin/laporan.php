@@ -11,6 +11,9 @@
         <div class="card-body">
             <div class="row mb-3">
 
+            <div class="ml-2">
+                     <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="generateTable()">Print PDF</button>
+                 </div>
 
             </div>
 

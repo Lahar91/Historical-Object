@@ -13,6 +13,9 @@
                 <div class="ml-2">
                     <a href="<?= base_url('admin/konten/add') ?>" class="btn btn-primary btn-sm">Tambah</a>
                 </div>
+                <div class="ml-2">
+                     <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="generateTable()">Print PDF</button>
+                 </div>
 
 
             </div>
