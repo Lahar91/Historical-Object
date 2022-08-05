@@ -134,8 +134,6 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                     <?php
                     $no = 1;
                     foreach ($pengunjung_query as $key => $value) {
-                        $PecahStr = explode("-", $name);
-                        $monthNu = $PecahStr[1];
 
                     ?>
                         <tr>
