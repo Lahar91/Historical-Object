@@ -382,7 +382,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
 <script>
 function downloadPDF(){
-    var canvas = document.getElementById('myChart');
+    var canvas = document.getElementById('mychart');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
@@ -399,7 +399,7 @@ function downloadPDF(){
 }
 
 function downloadPDF2(){
-    var canvas = document.getElementById('myChart');
+    var canvas = document.getElementById('mychart2');
     var canvasImage = canvas.toDataURL('image/jpeg', 1.0);
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(20);
