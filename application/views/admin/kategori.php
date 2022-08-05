@@ -53,7 +53,6 @@
                      <tr>
                          <th>No</th>
                          <th>Nama Kategori</th>
-                         <th>Action</th>
                      </tr>
                  </thead>
 
@@ -65,13 +64,7 @@
                          <tr>
                              <td><?= $no++; ?></td>
                              <td><?= $value->nama_kategori ?></td>
-                             <td>
 
-                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $value->id_kategori ?>"><i class="fa fa-edit"></i></button>
-                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_kategori ?>"><i class="fa fa-trash"></i></button>
-
-
-                             </td>
                          </tr>
                      <?php } ?>
                  </tbody>
@@ -181,14 +174,15 @@ function generateTable() {
     var y = 20;
     doc.setLineWidth(2);
     doc.text(200, y = y + 30, "Historicla Object Kateogri");
+        doc.text(250, y = y + 30, "Kategori");
     doc.autoTable({
         html: '#kontenjs',
-        startY: 70,
+        startY: 85,
         theme: 'grid',
         columnStyles: {
             0: {
                 halign: 'right',
-                tableWidth: 100,
+                tableWidth: 50,
                 },
             1: {
                 tableWidth: 100,
