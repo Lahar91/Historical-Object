@@ -104,7 +104,7 @@ function generatfeedbackid()
         ->get('feadback');
     $no     = $auto->result_array();
 
-    if (empty([$no]['id_feadback'])) {
+    if (empty($no[0]['id_feadback'])) {
         $firstcode = "FD-";
         $month = date('m');
         $year = date('y');
