@@ -90,7 +90,6 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
 
 ?>
 <?php foreach ($pengunjung_query as $key => $value) {
-    var_dump($value);
 }?>
 <div class="col-lg-12">
 
