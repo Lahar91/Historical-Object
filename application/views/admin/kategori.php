@@ -14,7 +14,7 @@
                      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add">Tambah</button>
                  </div>
                  <div class="ml-2">
-                     <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="generateTable()">Prinf PDF</button>
+                     <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="generateTable()">Print PDF</button>
                  </div>
 
              </div>
@@ -169,6 +169,7 @@
      <!--End Modal Delete-->
 <script>
 
+
 function generateTable() {
     var doc = new jsPDF('p', 'pt', 'a4');
     var y = 20;
@@ -180,23 +181,6 @@ doc.text('Kategori', width/2, y= y+30, { align: 'center' })
         html: '#kontenjs',
         startY: 85,
         theme: 'grid',
-        columnStyles: {
-            0: {
-                halign: 'right',
-                tableWidth: 100,
-                },
-            1: {
-                tableWidth: 100,
-               },
-            2: {
-                halign: 'right',
-                tableWidth: 100,
-               },
-            3: {
-                halign: 'right',
-                tableWidth: 100,
-               }
-        },
     })
     doc.save('Kategori.pdf');
 }

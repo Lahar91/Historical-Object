@@ -138,24 +138,7 @@ doc.text('Laporan', width/2, y= y+30, { align: 'center' })
         html: '#kontenjs',
         startY: 85,
         theme: 'grid',
-        columnStyles: {
-            0: {
-                halign: 'right',
-                tableWidth: 100,
-                },
-            1: {
-                tableWidth: 100,
-               },
-            2: {
-                halign: 'right',
-                tableWidth: 100,
-               },
-            3: {
-                halign: 'right',
-                tableWidth: 100,
-               }
-        },
     })
-    doc.save('kuis.pdf');
+    doc.save('laporan.pdf');
 }
 </script>

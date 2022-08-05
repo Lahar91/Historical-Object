@@ -56,6 +56,45 @@
                     <?php } ?>
                 </tbody>
             </table>
+
+            <table class="table table-bordered text-center" id="kontenjs" hidden>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th class="w-25">Soal Kuis</th>
+                        <th>jawaban_benar</th>
+                        <th>Pilihan A</th>
+                        <th>Pilihan B</th>
+                        <th>Pilihan C</th>
+                        <th class="w-25">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($db_kuis as $key => $value) {
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $value->soal_kuis ?></td>
+                            <td><?= $value->jawaban_benar ?></td>
+                            <td><?= $value->Pilihan_A ?></td>
+                            <td><?= $value->Pilihan_B ?></td>
+                            <td><?= $value->Pilihan_C ?></td>
+
+                            <td>
+
+                                <a href="<?= base_url('admin/kuis/edit/' . $value->id_kuis) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                <a href="#" onclick="konfirmasi('<?= $value->id_kuis ?>')" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></a>
+
+
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            
         </div>
 
     </div>
@@ -109,23 +148,7 @@ doc.text('Kuis', width/2, y= y+30, { align: 'center' })
         html: '#kontenjs',
         startY: 85,
         theme: 'grid',
-        columnStyles: {
-            0: {
-                halign: 'right',
-                tableWidth: 100,
-                },
-            1: {
-                tableWidth: 100,
-               },
-            2: {
-                halign: 'right',
-                tableWidth: 100,
-               },
-            3: {
-                halign: 'right',
-                tableWidth: 100,
-               }
-        },
+       
     })
     doc.save('kuis.pdf');
 }

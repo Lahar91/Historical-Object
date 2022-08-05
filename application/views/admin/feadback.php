@@ -35,7 +35,7 @@
                             <td><?= $no++; ?></td>
                             <td><?= $value["id_feadback"] ?></td>
                             <td>
-                                <?php if ($value["status"] == "New") { ?>
+                                <?php if ($value["status"] == "new") { ?>
                                     <i class="fa-solid fa-envelope fa-lg"></i>
                                 <?php } else if ($value["status"] == "Terima") { ?>
                                     <i class="fa-solid fa-envelope-circle-check fa-lg"></i>
@@ -57,7 +57,7 @@
                     <tr>
                         <th>No</th>
                         <th class="w-25">No Tiket</th>
-                        <th>Status</th>
+                        <th>Feadback</th>
                     </tr>
                 </thead>
 
@@ -69,15 +69,8 @@
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $value["id_feadback"] ?></td>
-                            <td>
-                                <?php if ($value["status"] == "New") { ?>
-                                    <i class="fa-solid fa-envelope fa-lg"></i>
-                                <?php } else if ($value["status"] == "Terima") { ?>
-                                    <i class="fa-solid fa-envelope-circle-check fa-lg"></i>
-                                <?php } else if ($value["status"] == "Tolak") { ?>
-                                    <i class="fa-light fa-envelope-open fa-lg"></i>
-                                <?php } ?>
-                            </td>
+                            <td><?= $value["isi_feadback"] ?></td>
+
 
                         </tr>
                     <?php } ?>
@@ -179,23 +172,6 @@ doc.text('Feadback', width/2, y= y+30, { align: 'center' })
         html: '#kontenjs',
         startY: 85,
         theme: 'grid',
-        columnStyles: {
-            0: {
-                halign: 'right',
-                tableWidth: 100,
-                },
-            1: {
-                tableWidth: 100,
-               },
-            2: {
-                halign: 'right',
-                tableWidth: 100,
-               },
-            3: {
-                halign: 'right',
-                tableWidth: 100,
-               }
-        },
     })
     doc.save('Feadback.pdf');
 }
