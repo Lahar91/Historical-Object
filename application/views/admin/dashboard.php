@@ -225,18 +225,11 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
             labels: ["Januari", "Febuari", "Maret", "April", "May", "Juni", "July", "Agustus", "September", "Oktober", "November ", "Desember"],
       datasets: [{
         label: 'Pengunjung <?= $yearpengunjung ?>',
-                data: [<?php $no= 1; 
-                        foreach ($pengunjung_query as $key => $value) {
-                            $PecahStr = explode("-", $value['tanggal']);
-                            $awal = $PecahStr[1];
-                            if($awal !== $no){
-                                echo '" 0 ",';
-                                $no++;
-                            }else {
-                            echo '"' . $value['total'] . '",';
-                            $no++;
+                data: [<?php 
+                        foreach ($pengunjung_query as $key => $value) { 
+                            echo '"' . $value['total'] . '",'; 
                             }
-                        } ?>],        
+                         ?>],        
         backgroundColor: [
           'rgba(255, 26, 104, 0.2)',
           'rgba(54, 162, 235, 0.2)',
