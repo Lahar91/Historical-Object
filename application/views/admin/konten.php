@@ -60,7 +60,6 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th class="w-25">Gambar</th>
                         <th>Judul</th>
                         <th>Kategori</th>
 
@@ -76,7 +75,6 @@
 
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><img src="<?= base_url('assets/image/konten_img/') . $key->img_artikel ?>" width="100px"></td>
                             <td><?= $key->nama_artikel ?></td>
                             <td><?= convidtostring($key->id_kategori) ?></td>
                         </tr>

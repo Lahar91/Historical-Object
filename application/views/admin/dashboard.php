@@ -79,7 +79,7 @@ $break = explode("-", $today);
 
 $yearpengunjung = isset($_GET['pengunjungyear']) && $_GET['pengunjungyear']  ? $_GET['pengunjungyear'] : $break[2];
 
-$pengunjung_query = $this->db->query("SELECT YEAR(tanggal) as tahun, DATE_FORMAT(tanggal, '%M') as month, Count(*) as total FROM counterviewer WHERE YEAR(tanggal) = $yearpengunjung GROUP BY DATE_FORMAT(tanggal, '%m')
+$pengunjung_query = $this->db->query("SELECT YEAR(tanggal) as tahun, DATE_FORMAT(tanggal, '%M') as month, Count(*) as total, tanggal FROM counterviewer WHERE YEAR(tanggal) = $yearpengunjung GROUP BY DATE_FORMAT(tanggal, '%m')
 ")->result_array();
 
 
@@ -225,9 +225,19 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
             labels: ["Januari", "Febuari", "Maret", "April", "May", "Juni", "July", "Agustus", "September", "Oktober", "November ", "Desember"],
       datasets: [{
         label: 'Pengunjung <?= $yearpengunjung ?>',
-                data: [<?php foreach ($pengunjung_query as $key => $value) {
+                data: [<?php $no= 1; 
+                        foreach ($pengunjung_query as $key => $value) {
+                            $PecahStr = explode("-", $value['tanggal']);
+                            $awal = $PecahStr[1];
+                            if($awal !== $no){
+                                echo "0";
+                                $no++;
+                            }else {
                             echo '"' . $value['total'] . '",';
-                        } ?>],        backgroundColor: [
+                            $no++;
+                            }
+                        } ?>],        
+        backgroundColor: [
           'rgba(255, 26, 104, 0.2)',
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 206, 86, 0.2)',
