@@ -41,7 +41,7 @@
 
     <?php
 
-    $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 5 ");
+    $query = $this->db->query("SELECT * FROM kuis  ORDER BY RAND() LIMIT 6 ");
     $no = 1;
     while ($row = $query->unbuffered_row('array')) :
 
@@ -128,7 +128,6 @@
                             $('#nilai').text(myarr[1]);
                             $('#form_jawab_<?= $no; ?>').hide();
                             $('#form_jawab_' + next).show();
-                            $('#form_jawab_6').hide();
 
 
 
@@ -146,7 +145,7 @@
 
         </div>
         <script>
-            $("#form_jawab_5").submit(function(e) {
+            $("#form_jawab_6").submit(function(e) {
                 $("#form_jawab_5").hide();
                 $("#cardbox_5").show();
                 $("#cardbox_5").load('<?= base_url('user/kuis/hasil_kuis') ?>');
