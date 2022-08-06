@@ -230,7 +230,7 @@ $artikel_top = $this->db->query("SELECT YEAR(tanggal) as tahun, rekomendasi_arti
                             $PecahStr = explode("-", $value['tanggal']);
                             $awal = $PecahStr[1];
                             if($awal !== $no){
-                                echo "0";
+                                echo '" 0 ",';
                                 $no++;
                             }else {
                             echo '"' . $value['total'] . '",';
