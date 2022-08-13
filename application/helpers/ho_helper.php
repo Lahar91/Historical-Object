@@ -139,7 +139,7 @@ function generatevieweruser()
         return $finalid;
     } else {
         $kodeid = $no[0]['id_viewer'];
-        $urutan = (int) substr($kodeid, 8, 8);
+        $urutan = (int) substr($kodeid, 7, 7);
         $urutan++;
         $firstcode = "VU-";
         $month = date('m');

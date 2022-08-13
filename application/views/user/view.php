@@ -34,35 +34,6 @@
                     <h4 class="tittle-c mt-2"><?= $db_konten->nama_artikel ?></h4>
                     <textarea name="" id="editor1" style="border:none;"> <?= $db_konten->deskripsi ?></textarea>
 
-                        <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-                        <script type="text/javascript">
-                        function play (){
-                        responsiveVoice.speak(
-                            " <?= $db_konten->deskripsi ?>",
-                            {
-                            pitch: 1, 
-                            rate: 1, 
-                            volume: 1
-                            }
-                        );
-                        }
-
-                        function stop (){
-                        responsiveVoice.cancel();
-                        }
-
-                        function pause (){
-                        responsiveVoice.pause();
-                        }
-
-                        function resume (){
-                        responsiveVoice.resume();
-                        }
-                        </script>
-                        <button onclick="play();">Play</button>
-                        <button onclick="stop();">Stop</button>
-                        <button onclick="pause();">Pause</button>
-                        <button onclick="resume();">Resume</button>
                 </div>
                 <div class="card-body">
 
