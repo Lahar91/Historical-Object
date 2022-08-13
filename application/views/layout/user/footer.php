@@ -58,23 +58,30 @@
 
     <!-- Main Footer -->
     <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-            Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+        Anything you want
+    </div>
+    <!-- Default to the left -->
+    <?php
+    $ctahun = explode("-", date("d-m-Y"));
+
+    ?>
+    <strong>Copyright &copy; 2021 - <?= $ctahun[2]; ?> <a href="<?= base_url() ?>">Historical Object</a>.</strong> All rights reserved.
+</footer>
 <?php } else { ?>
-    <!-- Main Footer -->
     <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-            Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+        Anything you want
+    </div>
+    <!-- Default to the left -->
+    <?php
+    $ctahun = explode("-", date("d-m-Y"));
+
+    ?>
+    <strong>Copyright &copy; 2021 - <?= $ctahun[2]; ?> <a href="<?= base_url() ?>">Historical Object</a>.</strong> All rights reserved.
+</footer>
 <?php } ?>
 </div>
 <!-- ./wrapper -->
