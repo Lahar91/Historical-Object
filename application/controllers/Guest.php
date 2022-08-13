@@ -123,20 +123,21 @@ class Guest extends CI_Controller
         $chrome = '/Chrome/';
         $firefox = '/Firefox/';
         $ie = '/IE/';
-        if (preg_match($chrome, $browser))
-            $isi = "Chrome/Opera";
-
-        if (preg_match($firefox, $browser))
-            $isi = "Firefox";
-
-        if (preg_match($ie, $browser))
-            $isi = "IE";
-
+        if (preg_match($chrome, $browser)){
+            $isi = "Chrome/Opera";}
+            if (preg_match($firefox, $browser)){
+            $isi = "Firefox";}
+            if (preg_match($ie, $browser)){
+            $isi = "IE";}else{
+            $isi = "unknown";    
+            }
+        
         $ipaddress = $_SERVER['REMOTE_ADDR'] . "";
         $browser = $isi;
         $tanggal = date('Y-m-d');
         $kunjungan = 1;
 
+        
         $counter['id_viewer'] = generatevieweruser();
         $counter['tanggal'] = $tanggal;
         $counter['ip_address'] = $ipaddress;
@@ -154,6 +155,7 @@ class Guest extends CI_Controller
         );
 
         $this->input->set_cookie($cookie);
+
     }
 
     public function view()
