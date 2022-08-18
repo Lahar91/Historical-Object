@@ -90,6 +90,7 @@ class Kuis extends CI_Controller
                 // );
                 $data['id_kj'] = generatkj();
                 $data['id_user'] = $this->session->userdata('id_user');
+                $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
                 $data['nilai'] = 20;
                 $data['token'] = $this->session->userdata('token');
@@ -101,10 +102,9 @@ class Kuis extends CI_Controller
                 //update nilai ke tmp_nilai
                 $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
-                $soal = $cari['soal'] + 1;
-                $upnilai = $cari['nilai'] + $nilai;
                 $data['id_kj'] = generatkj();
                 $data['id_user'] = $this->session->userdata('id_user');
+                $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
                 $data['nilai'] = 20;
                 $data['token'] = $this->session->userdata('token');
@@ -120,10 +120,10 @@ class Kuis extends CI_Controller
             $notif = 'jawaban anda Salah, ';
             if ($cari != null) {
                 //update nilai ke tmp_nilai
-                $soal = $cari['soal'] + 1;
 
                 $data['id_kj'] = generatkj();
                 $data['id_user'] = $this->session->userdata('id_user');
+                $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
                 $data['nilai'] = 0;
                 $data['token'] = $this->session->userdata('token');
@@ -138,6 +138,7 @@ class Kuis extends CI_Controller
                 //insert nilai ke tmp_nilai
                 $data['id_kj'] = generatkj();
                 $data['id_user'] = $this->session->userdata('id_user');
+                $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
                 $data['nilai'] = 0;
                 $data['token'] = $this->session->userdata('token');
