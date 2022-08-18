@@ -210,7 +210,7 @@ function generattoken()
     $ci = &get_instance();
 
     $auto = $ci->db->select('*')
-        ->order_by('id_kategori', 'desc')
+        ->order_by('token', 'desc')
         ->limit(1)
         ->get('kuis_jawab');
     $no     = $auto->result_array();
@@ -238,7 +238,7 @@ function generatkj()
     $ci = &get_instance();
 
     $auto = $ci->db->select('*')
-        ->order_by('id_kategori', 'desc')
+        ->order_by('id_kj', 'desc')
         ->limit(1)
         ->get('kuis_jawab');
     $no     = $auto->result_array();
