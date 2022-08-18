@@ -88,7 +88,7 @@ class Kuis extends CI_Controller
                 //     'nilai' => $nilai,
                 //     'soal' => 1,
                 // );
-                $data['id_kj'] = generatkj();
+                $data['id_kj'] = $this->session->userdata('token');
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
@@ -102,7 +102,7 @@ class Kuis extends CI_Controller
                 //update nilai ke tmp_nilai
                 $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
-                $data['id_kj'] = generatkj();
+                $data['id_kj'] = $this->session->userdata('token');
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
@@ -121,7 +121,7 @@ class Kuis extends CI_Controller
             if ($cari != null) {
                 //update nilai ke tmp_nilai
 
-                $data['id_kj'] = generatkj();
+                $data['id_kj'] = $this->session->userdata('token');
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
@@ -139,8 +139,8 @@ class Kuis extends CI_Controller
                 $token['token'] = generattoken();
                 $this->session->set_userdata( $token );
                 
-                
-                $data['id_kj'] = generatkj();
+
+                $data['id_kj'] = $this->session->userdata('token');
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
