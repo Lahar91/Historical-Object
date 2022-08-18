@@ -72,15 +72,14 @@ class Kuis extends CI_Controller
         $hasil =  $this->db->get_where('kuis', ['id_kuis' => $this->input->post('id_kuis')])->row_array();
         $jawab = $this->input->post('jawab');
         $jawabbener = $hasil['jawaban_benar'];
-        if($hasil['token'] == null || $hasil['token'] == ""){
-        $token['token'] = generattoken();
-        $this->session->set_userdata( $token );
         
-        }else if ($jawab ==  $jawabbener) {
+        if ($jawab ==  $jawabbener) {
             $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
             $notif = 'jawaban anda benar, anda dapat 20 point';
             $nilai = 20;
+            $token['token'] = generattoken();
+            $this->session->set_userdata( $token );
             if ($cari == null) {
                 //insert nilai ke tmp_nilai
                 // $data = array(
