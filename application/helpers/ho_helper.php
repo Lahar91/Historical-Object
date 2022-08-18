@@ -205,6 +205,62 @@ function generatkategoriid()
     }
 }
 
+function generattoken()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_kategori', 'desc')
+        ->limit(1)
+        ->get('kuis_jawab');
+    $no     = $auto->result_array();
+
+    if (empty($no[0]['token'])) {
+        $firstcode = "IK-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['token'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "IK-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}
+
+function generatkj()
+{
+    $ci = &get_instance();
+
+    $auto = $ci->db->select('*')
+        ->order_by('id_kategori', 'desc')
+        ->limit(1)
+        ->get('kuis_jawab');
+    $no     = $auto->result_array();
+
+    if (empty($no[0]['id_kj'])) {
+        $firstcode = "IJ-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", 1);
+        return $finalid;
+    } else {
+        $kodeid = $no[0]['id_kj'];
+        $urutan = (int) substr($kodeid, 7, 7);
+        $urutan++;
+        $firstcode = "IJ-";
+        $month = date('m');
+        $year = date('y');
+        $finalid = $firstcode . $year . $month . sprintf("%03s", $urutan);
+        return $finalid;
+    }
+}
+
 function generatlaporanid()
 {
     $ci = &get_instance();

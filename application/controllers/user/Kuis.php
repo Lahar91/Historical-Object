@@ -10,6 +10,7 @@ class Kuis extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user');
+        $this->load->model('M_kuis', 'kuis');
         $this->load->helper('ho_helper');
 
         if ($this->session->userdata('level_user') != "2") {
@@ -67,24 +68,34 @@ class Kuis extends CI_Controller
 
     public function hasil()
     {
+
         $hasil =  $this->db->get_where('kuis', ['id_kuis' => $this->input->post('id_kuis')])->row_array();
         $jawab = $this->input->post('jawab');
         $jawabbener = $hasil['jawaban_benar'];
-
-        if ($jawab ==  $jawabbener) {
+        if($hasil['token'] == null || $hasil['token'] == ""){
+        $token['token'] = generattoken();
+        $this->session->set_userdata( $token );
+        
+        }else if ($jawab ==  $jawabbener) {
             $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
             $notif = 'jawaban anda benar, anda dapat 20 point';
             $nilai = 20;
             if ($cari == null) {
                 //insert nilai ke tmp_nilai
-                $data = array(
-                    'id_tn' => generattmpid(),
-                    'id_user' => $this->session->userdata('id_user'),
-                    'nilai' => $nilai,
-                    'soal' => 1,
-                );
-                $this->M_user->insttmp_nilai($data);
+                // $data = array(
+                //     'id_tn' => generattmpid(),
+                //     'id_user' => $this->session->userdata('id_user'),
+                //     'nilai' => $nilai,
+                //     'soal' => 1,
+                // );
+                $data['id_kj'] = generatkj();
+                $data['id_user'] = $this->session->userdata('id_user');
+                $data['jawaban'] = $jawab;
+                $data['nilai'] = 20;
+                $data['token'] = $this->session->userdata('token');
+                $this->kuis->kuis_jawab($data);
+                // $this->M_user->insttmp_nilai($data);
             } else {
 
 
@@ -93,14 +104,15 @@ class Kuis extends CI_Controller
 
                 $soal = $cari['soal'] + 1;
                 $upnilai = $cari['nilai'] + $nilai;
-                $data = array(
-                    'id_user' => $this->session->userdata('id_user'),
-                    'nilai' => $upnilai,
-                    'soal' => $soal
-                );
-                $this->M_user->uptmp_nilai($data);
+                $data['id_kj'] = generatkj();
+                $data['id_user'] = $this->session->userdata('id_user');
+                $data['jawaban'] = $jawab;
+                $data['nilai'] = 20;
+                $data['token'] = $this->session->userdata('token');
+                $this->kuis->kuis_jawab($data);
+                // $this->M_user->uptmp_nilai($data);
                 if ($this->input->post('form_jawab') == "form_jawab_5") {
-                    $this->finsih();
+                    $this->hasil_kuis();
                 }
             }
         } else {
@@ -111,99 +123,115 @@ class Kuis extends CI_Controller
                 //update nilai ke tmp_nilai
                 $soal = $cari['soal'] + 1;
 
-                $data = array(
-                    'id_user' => $this->session->userdata('id_user'),
-                    'soal' => $soal
-                );
+                $data['id_kj'] = generatkj();
+                $data['id_user'] = $this->session->userdata('id_user');
+                $data['jawaban'] = $jawab;
+                $data['nilai'] = 0;
+                $data['token'] = $this->session->userdata('token');
+                $this->kuis->kuis_jawab($data);
+
                 $this->M_user->uptmp_nilai($data);
                 if ($this->input->post('form_jawab') == "form_jawab_5") {
 
-                    $this->finsih();
+                    $this->hasil_kuis();
                 }
             } else {
                 //insert nilai ke tmp_nilai
-                $data = array(
-                    'id_tn' => generattmpid(),
-                    'id_user' => $this->session->userdata('id_user'),
-                    'nilai' => "0",
-                    'soal' => 1
-                );
-                $this->M_user->insttmp_nilai($data);
+                $data['id_kj'] = generatkj();
+                $data['id_user'] = $this->session->userdata('id_user');
+                $data['jawaban'] = $jawab;
+                $data['nilai'] = 0;
+                $data['token'] = $this->session->userdata('token');
+                $this->kuis->kuis_jawab($data);
+
+                // $this->M_user->insttmp_nilai($data);
             }
         }
         echo $notif . '/' . 'selamat';
+    
     }
 
 
-    public function finsih()
-    {
-        //buat session untuk tampil nilai
-        $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-        $snilai['snilai']      = $shownilai['nilai'];
-        $this->session->set_userdata($snilai);
+    // public function finsih()
+    // {
+    //     //buat session untuk tampil nilai
+    //     $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+    //     $snilai['snilai']      = $shownilai['nilai'];
+    //     $this->session->set_userdata($snilai);
 
 
 
-        $finalnilai = $this->db->get_where('hasil_kuis', ['id_user' => $this->session->userdata('id_user')])->row_array();
-        if ($finalnilai == null) {
+    //     $finalnilai = $this->db->get_where('hasil_kuis', ['id_user' => $this->session->userdata('id_user')])->row_array();
+    //     if ($finalnilai == null) {
 
-            //insert hasil_nilai
-            $data = array(
-                'id_hasil' => generathasilnilaiid(),
-                'id_user' => $this->session->userdata('id_user'),
-                'nilai' => $this->session->userdata('snilai')
-            );
-            $this->M_user->insertnilai($data);
+    //         //insert hasil_nilai
+    //         $data = array(
+    //             'id_hasil' => generathasilnilaiid(),
+    //             'id_user' => $this->session->userdata('id_user'),
+    //             'nilai' => $this->session->userdata('snilai')
+    //         );
+    //         $this->M_user->insertnilai($data);
 
-            //delete data di tmp_nilai
-            $data_delete = array('id_tn' =>  $shownilai['id_tn']);
-            $this->M_user->deltmp_nilai($data_delete);
-            $this->hasil_kuis();
-        } else {
-            $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
+    //         //delete data di tmp_nilai
+    //         $data_delete = array('id_tn' =>  $shownilai['id_tn']);
+    //         $this->M_user->deltmp_nilai($data_delete);
+    //         $this->hasil_kuis();
+    //     } else {
+    //         $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
 
-            //update hasil_nilai
-            $data = array(
-                'id_user' => $this->session->userdata('id_user'),
-                'nilai' => $mxnilai
-            );
-            $this->M_user->upfinalnilai($data);
+    //         //update hasil_nilai
+    //         $data = array(
+    //             'id_user' => $this->session->userdata('id_user'),
+    //             'nilai' => $mxnilai
+    //         );
+    //         $this->M_user->upfinalnilai($data);
 
-            //delete data di tmp_nilai
-            $data_delete = array('id_tn' =>  $shownilai['id_tn']);
-            $this->M_user->deltmp_nilai($data_delete);
-            $this->hasil_kuis();
-        }
-    }
+    //         //delete data di tmp_nilai
+    //         $data_delete = array('id_tn' =>  $shownilai['id_tn']);
+    //         $this->M_user->deltmp_nilai($data_delete);
+    //         $this->hasil_kuis();
+    //     }
+    // }
 
     public function hasil_kuis()
     {
         if ($this->session->userdata('android') == "true") {
 
-            $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-            if(!empty($dlt_tmp['soal'])){
-                $this->finsih();
-            }else{
-                $data = array(
-                    'tittle' => 'kuis',
-                    'db_kategori' => $this->M_user->kategori(),
+            // $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+            // if(!empty($dlt_tmp['soal'])){
+            //     // $this->finsih();
+            // }else{
+            //     $data = array(
+            //         'tittle' => 'kuis',
+            //         'db_kategori' => $this->M_user->kategori(),
+            //     );
+            //     $this->load->view('android_user/hasil_kuis', $data, FALSE);
+            // }
+
+              $data = array(
+                     'tittle' => 'kuis',
+                     'db_kategori' => $this->M_user->kategori(),
                 );
-                $this->load->view('android_user/hasil_kuis', $data, FALSE);
-            }
+                 $this->load->view('android_user/hasil_kuis', $data, FALSE);
         } 
         else 
         {
-            $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-            if(!empty($dlt_tmp['soal'])){
-                $this->finsih();
-            }else{
-                $data = array(
-                    'tittle' => 'kuis',
-                    'db_kategori' => $this->M_user->kategori(),
-                );
-                $this->load->view('user/hasil_kuis', $data, FALSE);
-            }
+            // $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+            // if(!empty($dlt_tmp['soal'])){
+            //     // $this->finsih();
+            // }else{
+            //     $data = array(
+            //         'tittle' => 'kuis',
+            //         'db_kategori' => $this->M_user->kategori(),
+            //     );
+            //     $this->load->view('user/hasil_kuis', $data, FALSE);
+            // }
 
+                $data = array(
+                     'tittle' => 'kuis',
+                     'db_kategori' => $this->M_user->kategori(),
+                    );
+                    $this->load->view('user/hasil_kuis', $data, FALSE);
         }
             
 

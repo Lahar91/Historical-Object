@@ -43,6 +43,12 @@ class M_kuis extends CI_Model
     {
         $this->db->delete('kuis', $data);
     }
+
+
+    public function kuis_jawab($data)
+    {
+        $this->db->insert('kuis_jawab', $data);
+    }
 }
 
 /* End of file M_laporan.php */
