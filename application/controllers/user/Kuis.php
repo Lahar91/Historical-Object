@@ -120,8 +120,7 @@ class Kuis extends CI_Controller
             $notif = 'jawaban anda Salah, ';
             if ($cari != null) {
                 //update nilai ke tmp_nilai
-                $token['token'] = generattoken();
-                $this->session->set_userdata( $token );
+
                 $data['id_kj'] = generatkj();
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
@@ -137,6 +136,10 @@ class Kuis extends CI_Controller
                 }
             } else {
                 //insert nilai ke tmp_nilai
+                $token['token'] = generattoken();
+                $this->session->set_userdata( $token );
+                
+                
                 $data['id_kj'] = generatkj();
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
