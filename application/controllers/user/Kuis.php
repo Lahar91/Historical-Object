@@ -178,70 +178,38 @@ class Kuis extends CI_Controller
     }
 
 
-    // public function finsih()
-    // {
-    //     //buat session untuk tampil nilai
-    //     $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-    //     $snilai['snilai']      = $shownilai['nilai'];
-    //     $this->session->set_userdata($snilai);
+    public function finsih()
+    {
+        //buat session untuk tampil nilai
+        $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        $snilai['snilai']      = $shownilai['nilai'];
+        $this->session->set_userdata($snilai);
 
-
-
-    //     $finalnilai = $this->db->get_where('hasil_kuis', ['id_user' => $this->session->userdata('id_user')])->row_array();
-    //     if ($finalnilai == null) {
-
-    //         //insert hasil_nilai
-    //         $data = array(
-    //             'id_hasil' => generathasilnilaiid(),
-    //             'id_user' => $this->session->userdata('id_user'),
-    //             'nilai' => $this->session->userdata('snilai')
-    //         );
-    //         $this->M_user->insertnilai($data);
-
-    //         //delete data di tmp_nilai
-    //         $data_delete = array('id_tn' =>  $shownilai['id_tn']);
-    //         $this->M_user->deltmp_nilai($data_delete);
-    //         $this->hasil_kuis();
-    //     } else {
-    //         $mxnilai = $finalnilai['nilai'] + $this->session->userdata('snilai');
-
-    //         //update hasil_nilai
-    //         $data = array(
-    //             'id_user' => $this->session->userdata('id_user'),
-    //             'nilai' => $mxnilai
-    //         );
-    //         $this->M_user->upfinalnilai($data);
-
-    //         //delete data di tmp_nilai
-    //         $data_delete = array('id_tn' =>  $shownilai['id_tn']);
-    //         $this->M_user->deltmp_nilai($data_delete);
-    //         $this->hasil_kuis();
-    //     }
-    // }
+            $this->hasil_kuis();
+        
+    }
 
     public function hasil_kuis()
     {
         if ($this->session->userdata('android') == "true") {
 
-            // $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-            // if(!empty($dlt_tmp['soal'])){
-            //     // $this->finsih();
-            // }else{
-            //     $data = array(
-            //         'tittle' => 'kuis',
-            //         'db_kategori' => $this->M_user->kategori(),
-            //     );
-            //     $this->load->view('android_user/hasil_kuis', $data, FALSE);
-            // }
-
-                    //buat session untuk tampil nilai
+            $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+            if(!empty($dlt_tmp['id_tn'])){
+                $this->finsih();
+            }else{
                 $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
                  
-                $this->session->set_userdata($shownilai['nilai']);
-
                     //         //delete data di tmp_nilai
                     $data_delete['id_tn'] = $shownilai['id_tn'];
                 $this->M_user->deltmp_nilai($data_delete);
+                $data = array(
+                    'tittle' => 'kuis',
+                    'db_kategori' => $this->M_user->kategori(),
+                );
+                $this->load->view('android_user/hasil_kuis', $data, FALSE);
+            }
+
+
               $data = array(
                      'tittle' => 'kuis',
                      'db_kategori' => $this->M_user->kategori(),
@@ -250,30 +218,22 @@ class Kuis extends CI_Controller
         } 
         else 
         {
-            // $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-            // if(!empty($dlt_tmp['soal'])){
-            //     // $this->finsih();
-            // }else{
-            //     $data = array(
-            //         'tittle' => 'kuis',
-            //         'db_kategori' => $this->M_user->kategori(),
-            //     );
-            //     $this->load->view('user/hasil_kuis', $data, FALSE);
-            // }
+            $dlt_tmp = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+            if(!empty($dlt_tmp['id_tn'])){
+                $this->finsih();
+            }else{
+                $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
-                    //buat session untuk tampil nilai
-                    $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-                    $this->session->set_userdata($shownilai['nilai']);
-    
-                        //         //delete data di tmp_nilai
-                    $data_delete['id_tn'] = $shownilai['id_tn'];
-                    $this->M_user->deltmp_nilai($data_delete);
+                //delete data di tmp_nilai
+                $data_delete['id_tn'] = $shownilai['id_tn'];
+                $this->M_user->deltmp_nilai($data_delete);
 
                 $data = array(
-                     'tittle' => 'kuis',
-                     'db_kategori' => $this->M_user->kategori(),
-                    );
-                    $this->load->view('user/hasil_kuis', $data, FALSE);
+                    'tittle' => 'kuis',
+                    'db_kategori' => $this->M_user->kategori(),
+                );
+                $this->load->view('user/hasil_kuis', $data, FALSE);
+            }
         }
             
 
