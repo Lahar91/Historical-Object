@@ -74,12 +74,13 @@ class Kuis extends CI_Controller
         $jawabbener = $hasil['jawaban_benar'];
         
         if ($jawab ==  $jawabbener) {
+            // jawaban benar
             $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
             $notif = 'jawaban anda benar, anda dapat 20 point';
             $nilai = 20;
-
-            if ($cari == null) {
+            
+            if ($cari['token'] == null || $cari['token'] == "") {
 
                 $token['token'] = generattoken();
                 $this->session->set_userdata( $token );
@@ -97,7 +98,12 @@ class Kuis extends CI_Controller
                 $data['nilai'] = 20;
                 $data['token'] = $this->session->userdata('token');
                 $this->kuis->kuis_jawab($data);
-                // $this->M_user->insttmp_nilai($data);
+
+                $tmpdata['id_tn'] = generattmpid();
+                $tmpdata['id_user'] = $this->session->userdata('id_user');
+                $tmpdata['nilai'] = 20;
+                $tmpdata['token'] = $this->session->userdata('token');
+                $this->M_user->insttmp_nilai($tmpdata);
             } else {
 
 
@@ -108,19 +114,25 @@ class Kuis extends CI_Controller
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
-                $data['nilai'] = 20;
+                $data['nilai'] = $cari['nilai'];
                 $data['token'] = $this->session->userdata('token');
                 $this->kuis->kuis_jawab($data);
-                // $this->M_user->uptmp_nilai($data);
+
+                $tmpdata['id_tn'] = generattmpid();
+                $tmpdata['id_user'] = $this->session->userdata('id_user');
+                $tmpdata['nilai'] = $cari['nilai'] + 20;
+                $tmpdata['token'] = $this->session->userdata('token');
+                $this->M_user->uptmp_nilai($tmpdata);
                 if ($this->input->post('form_jawab') == "form_jawab_5") {
                     $this->hasil_kuis();
                 }
             }
         } else {
+            // jawaban salah
             $cari = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
 
             $notif = 'jawaban anda Salah, ';
-            if ($cari != null) {
+            if ($cari['token'] != null || $cari['token'] == "") {
                 //update nilai ke tmp_nilai
 
                 $data['id_kj'] = generatkj();
@@ -131,7 +143,11 @@ class Kuis extends CI_Controller
                 $data['token'] = $this->session->userdata('token');
                 $this->kuis->kuis_jawab($data);
 
-                $this->M_user->uptmp_nilai($data);
+                $tmpdata['id_tn'] = generattmpid();
+                $tmpdata['id_user'] = $this->session->userdata('id_user');
+                $tmpdata['nilai'] = 0;
+                $tmpdata['token'] = $this->session->userdata('token');
+                $this->M_user->uptmp_nilai($tmpdata);
                 if ($this->input->post('form_jawab') == "form_jawab_5") {
 
                     $this->hasil_kuis();
@@ -150,7 +166,11 @@ class Kuis extends CI_Controller
                 $data['token'] = $this->session->userdata('token');
                 $this->kuis->kuis_jawab($data);
 
-                // $this->M_user->insttmp_nilai($data);
+                $tmpdata['id_tn'] = generattmpid();
+                $tmpdata['id_user'] = $this->session->userdata('id_user');
+                $tmpdata['nilai'] = 0;
+                $tmpdata['token'] = $this->session->userdata('token');
+                $this->M_user->insttmp_nilai($tmpdata);
             }
         }
         echo $notif . '/' . 'selamat';
