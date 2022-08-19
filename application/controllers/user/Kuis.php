@@ -234,6 +234,14 @@ class Kuis extends CI_Controller
             //     $this->load->view('android_user/hasil_kuis', $data, FALSE);
             // }
 
+                    //buat session untuk tampil nilai
+                $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+                $snilai['snilai']      = $shownilai['nilai'];
+                $this->session->set_userdata($snilai);
+
+                    //         //delete data di tmp_nilai
+                $data_delete = array('id_tn' =>  $shownilai['id_tn']);
+                $this->M_user->deltmp_nilai($data_delete);
               $data = array(
                      'tittle' => 'kuis',
                      'db_kategori' => $this->M_user->kategori(),
@@ -253,6 +261,15 @@ class Kuis extends CI_Controller
             //     $this->load->view('user/hasil_kuis', $data, FALSE);
             // }
 
+                    //buat session untuk tampil nilai
+                    $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
+                    $snilai['snilai']      = $shownilai['nilai'];
+                    $this->session->set_userdata($snilai);
+    
+                        //         //delete data di tmp_nilai
+                    $data_delete = array('id_tn' =>  $shownilai['id_tn']);
+                    $this->M_user->deltmp_nilai($data_delete);
+                    
                 $data = array(
                      'tittle' => 'kuis',
                      'db_kategori' => $this->M_user->kategori(),
