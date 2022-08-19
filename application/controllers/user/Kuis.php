@@ -114,7 +114,7 @@ class Kuis extends CI_Controller
                 $data['id_user'] = $this->session->userdata('id_user');
                 $data['id_kuis'] = $this->input->post('id_kuis');
                 $data['jawaban'] = $jawab;
-                $data['nilai'] = $cari['nilai'];
+                $data['nilai'] = 20;
                 $data['token'] = $this->session->userdata('token');
                 $this->kuis->kuis_jawab($data);
 
@@ -145,7 +145,7 @@ class Kuis extends CI_Controller
 
                 $tmpdata['id_tn'] = generattmpid();
                 $tmpdata['id_user'] = $this->session->userdata('id_user');
-                $tmpdata['nilai'] = 0;
+                $tmpdata['nilai'] = $cari['nilai'] + 0;
                 $tmpdata['token'] = $this->session->userdata('token');
                 $this->M_user->uptmp_nilai($tmpdata);
                 if ($this->input->post('form_jawab') == "form_jawab_5") {
@@ -269,7 +269,7 @@ class Kuis extends CI_Controller
                         //         //delete data di tmp_nilai
                     $data_delete = array('id_tn' =>  $shownilai['id_tn']);
                     $this->M_user->deltmp_nilai($data_delete);
-                    
+
                 $data = array(
                      'tittle' => 'kuis',
                      'db_kategori' => $this->M_user->kategori(),
