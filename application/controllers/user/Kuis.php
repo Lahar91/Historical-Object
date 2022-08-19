@@ -182,11 +182,17 @@ class Kuis extends CI_Controller
     {
         //buat session untuk tampil nilai
         $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-        $snilai['snilai']      = $shownilai['nilai'];
-        $this->session->set_userdata($snilai);
+        $data['nilai']      = $shownilai['nilai'];
+        $this->session->set_userdata($data);
 
-            $this->hasil_kuis();
+
+        //delete data di tmp_nilai
+        $id['id_tn'] = $shownilai['id_tn'];
+        $this->M_user->deltmp_nilai($id);
+
+        $this->hasil_kuis();
         
+
     }
 
     public function hasil_kuis()
@@ -197,24 +203,14 @@ class Kuis extends CI_Controller
             if(!empty($dlt_tmp['id_tn'])){
                 $this->finsih();
             }else{
-                $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
                  
-                    //         //delete data di tmp_nilai
-                    $data_delete['id_tn'] = $shownilai['id_tn'];
-                $this->M_user->deltmp_nilai($data_delete);
+
                 $data = array(
                     'tittle' => 'kuis',
                     'db_kategori' => $this->M_user->kategori(),
                 );
                 $this->load->view('android_user/hasil_kuis', $data, FALSE);
             }
-
-
-              $data = array(
-                     'tittle' => 'kuis',
-                     'db_kategori' => $this->M_user->kategori(),
-                );
-                 $this->load->view('android_user/hasil_kuis', $data, FALSE);
         } 
         else 
         {
@@ -222,11 +218,6 @@ class Kuis extends CI_Controller
             if(!empty($dlt_tmp['id_tn'])){
                 $this->finsih();
             }else{
-                $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-
-                //delete data di tmp_nilai
-                $data_delete['id_tn'] = $shownilai['id_tn'];
-                $this->M_user->deltmp_nilai($data_delete);
 
                 $data = array(
                     'tittle' => 'kuis',
