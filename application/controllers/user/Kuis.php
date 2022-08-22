@@ -28,7 +28,7 @@ class Kuis extends CI_Controller
                 'tittle' => 'kuis',
                 'db_kategori' => $this->M_user->kategori(),
                 'showrank' => $this->M_user->shownilairank(),
-                'shownilai' => $this->M_user->shownilai($this->session->userdata('id_user')),
+                'shownilai' => $this->M_user->viewhasil($this->session->userdata('id_user')),
                 'isi' => 'android_user/kuis'
             );
             $this->load->view('layout/android_user/wrapper', $data, FALSE);

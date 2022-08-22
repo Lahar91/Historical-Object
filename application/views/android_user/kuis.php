@@ -18,21 +18,22 @@
                             </tr>
                         </thead>
                         <?php $no = 1;
+                            $hasilnilai = $this->db->query("SELECT id_kj, kuis_jawab.id_user AS iduser, SUM(nilai) AS hasil, token, img, username FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user GROUP BY iduser ORDER BY hasil DESC LIMIT 3")->result_array();
 
-                        foreach ($showrank as $key => $value) : ?>
+                        foreach ($hasilnilai as $key => $value) : ?>
                             <tbody>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img src="<?= base_url('assets/image/user/' . $value->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
                                             <div class="user-info__basic">
-                                                <h6 class="mb-0"><?= $value->username ?></h6>
+                                                <h6 class="mb-0"><?= $value['username'] ?></h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-baseline">
-                                            <h4 class="mr-1"><?= $value->nilai ?></h4>
+                                            <h4 class="mr-1"><?= $value['nilai'] ?></h4>
                                     </td>
 
                                     <td>

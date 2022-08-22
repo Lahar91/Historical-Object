@@ -72,19 +72,19 @@
 
                             <?php 
 
-                            if ($viewhasil != null) { ?>
+                            if ($shownilai != null) { ?>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="<?= base_url('assets/image/user/' . $viewhasil->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
+                                            <img src="<?= base_url('assets/image/user/' . $shownilai->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
                                             <div class="user-info__basic">
-                                                <h6 class="mb-0"><?= $viewhasil->username; ?></h6>
+                                                <h6 class="mb-0"><?= $shownilai->username; ?></h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class=" align-items-baseline">
-                                            <h4 class="fload-right"><?= $viewhasil->hasil; ?></h4><small class="text-success"></small>
+                                            <h4 class="fload-right"><?= $shownilai->hasil; ?></h4><small class="text-success"></small>
                                         </div>
                                     </td>
                                 </tr> <?php } else { ?>
