@@ -150,7 +150,7 @@ class M_user extends CI_Model
         $this->db->join('user', 'kuis_jawab.id_user = user.id_user', 'INNER');
         $this->db->where('kuis_jawab.id_user', $data);
         $this->db->group_by('iduser');
-        return $this->db->get()->result();
+        return $this->db->get()->row();
 
         
     }
