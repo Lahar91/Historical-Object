@@ -182,7 +182,7 @@ class Kuis extends CI_Controller
     {
         //buat session untuk tampil nilai
         $shownilai = $this->db->get_where('tmp_nilai', ['id_user' => $this->session->userdata('id_user')])->row_array();
-        $data['nilai']      = $shownilai['nilai'];
+        $data['snilai']      = $shownilai['nilai'];
         $this->session->set_userdata($data);
 
 
