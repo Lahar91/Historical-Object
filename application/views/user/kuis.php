@@ -71,20 +71,21 @@
 
 
                             <?php 
-                            
-                            if ($hasilnilai != null) { ?>
+                            $sql = $this->db->query("SELECT id_kj, kuis_jawab.id_user AS iduser, SUM(nilai) AS hasil, token, img, username FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user WHERE iduser = ? GROUP BY iduser ORDER BY hasil")->result_array();
+                            $sqlid = $this->db->compile_bind($sql, array($this->session->userdata('id_user')));
+                            if ($sqlid != null) { ?>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img src="<?= base_url('assets/image/user/' . $hasilnilai['img']) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
                                             <div class="user-info__basic">
-                                                <h6 class="mb-0"><?= $hasilnilai['username']; ?></h6>
+                                                <h6 class="mb-0"><?= $sqlid['username']; ?></h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class=" align-items-baseline">
-                                            <h4 class="fload-right"><?= $hasilnilai['hasil']; ?></h4><small class="text-success"></small>
+                                            <h4 class="fload-right"><?= $sqlid['hasil']; ?></h4><small class="text-success"></small>
                                         </div>
                                     </td>
                                 </tr> <?php } else { ?>
