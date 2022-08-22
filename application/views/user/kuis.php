@@ -71,8 +71,8 @@
 
 
                             <?php 
-                            $sql = $this->db->query("SELECT id_kj, kuis_jawab.id_user AS iduser, SUM(nilai) AS hasil, token, img, username FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user WHERE iduser = ? GROUP BY iduser ORDER BY hasil")->result_array();
-                            $sqlid = $this->db->compile_bind($sql, array($this->session->userdata('id_user')));
+                            $sql = "SELECT id_kj, kuis_jawab.id_user AS iduser, SUM(nilai) AS hasil, token, img, username FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user WHERE iduser = ? GROUP BY iduser ORDER BY hasil";
+                            $sqlid = $this->db->compile_bind($sql, array($this->session->userdata('id_user')))->result_array();
                             if ($sqlid != null) { ?>
                                 <tr>
                                     <td>
