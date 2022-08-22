@@ -67,19 +67,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($shownilai != null) { ?>
+
+
+                            <?php 
+                            $hasilnilai = $this->db->query("SELECT id_kj, id_user, SUM(nilai) AS hasil, token, img FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user GROUP BY username GROUP BY kuis_jawab.id_user ORDER BY `hasil` DESC LIMIT 3")->result_array();
+                            
+                            if ($hasilnilai != null) { ?>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="<?= base_url('assets/image/user/' . $shownilai->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
+                                            <img src="<?= base_url('assets/image/user/' . $hasilnilai->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
                                             <div class="user-info__basic">
-                                                <h6 class="mb-0"><?= $shownilai->username; ?></h6>
+                                                <h6 class="mb-0"><?= $hasilnilai->username; ?></h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class=" align-items-baseline">
-                                            <h4 class="fload-right"><?= $shownilai->nilai; ?></h4><small class="text-success"></small>
+                                            <h4 class="fload-right"><?= $hasilnilai->hasil; ?></h4><small class="text-success"></small>
                                         </div>
                                     </td>
                                 </tr> <?php } else { ?>
