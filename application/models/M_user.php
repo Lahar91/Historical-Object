@@ -148,7 +148,7 @@ class M_user extends CI_Model
         $this->db->select('kuis_jawab.id_user as iduser, img, sum(nilai) as hasil, img, username');
         $this->db->from('kuis_jawab');
         $this->db->join('user', 'kuis_jawab.id_user = user.id_user', 'INNER');
-        $this->db->where('iduser', $data);
+        $this->db->where('id_user', $data);
         $this->db->group_by('iduser');
         return $this->db->get()->result();
 
