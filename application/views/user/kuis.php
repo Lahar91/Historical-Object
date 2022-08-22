@@ -18,8 +18,9 @@
                             </tr>
                         </thead>
                         <?php $no = 1;
+                            $hasilnilai = $this->db->query("SELECT id_kj, id_user, SUM(nilai) AS hasil, token, img FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user GROUP BY username GROUP BY kuis_jawab.id_user ORDER BY hasil DESC LIMIT 3")->result_array();
 
-                        foreach ($showrank as $key => $value) : ?>
+                        foreach ($hasilnilai as $key => $value) : ?>
                             <tbody>
                                 <tr>
                                     <td>
@@ -70,7 +71,6 @@
 
 
                             <?php 
-                            $hasilnilai = $this->db->query("SELECT id_kj, id_user, SUM(nilai) AS hasil, token, img FROM kuis_jawab INNER JOIN user ON kuis_jawab.id_user = user.id_user GROUP BY username GROUP BY kuis_jawab.id_user ORDER BY `hasil` DESC LIMIT 3")->result_array();
                             
                             if ($hasilnilai != null) { ?>
                                 <tr>
