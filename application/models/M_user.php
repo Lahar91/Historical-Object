@@ -62,7 +62,7 @@ class M_user extends CI_Model
         $this->db->from('artikel');
         if (!empty($keyword)) {
             $this->db->like('nama_artikel', $keyword);
-            $this->db->like('kondisi', $keyword);
+            $this->db->or_like('kondisi', $keyword);
 
         }
         return $this->db->get()->result();
