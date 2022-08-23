@@ -137,7 +137,6 @@ class Auth extends CI_Controller
             'name'   => 'viewer',
             'value'  => $counter['id_viewer'],
             'expire' => '7200',
-            'secure' => TRUE
 
         );
 
