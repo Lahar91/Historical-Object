@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="<?= base_url('assets/image/user/' . $value->img) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
+                                            <img src="<?= base_url('assets/image/user/' . $value['img']) ?>" class="circle-img circle-img--small mr-2" alt="User Img">
                                             <div class="user-info__basic">
                                                 <h6 class="mb-0"><?= $value['username'] ?></h6>
                                             </div>
@@ -33,7 +33,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-baseline">
-                                            <h4 class="mr-1"><?= $value['nilai'] ?></h4>
+                                            <h4 class="mr-1"><?= $value['hasil'] ?></h4>
                                     </td>
 
                                     <td>
@@ -68,7 +68,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($shownilai != null) { ?>
+
+
+                            <?php 
+
+                            if ($shownilai != null) { ?>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -80,7 +84,7 @@
                                     </td>
                                     <td>
                                         <div class=" align-items-baseline">
-                                            <h4 class="fload-right"><?= $shownilai->nilai; ?></h4><small class="text-success"></small>
+                                            <h4 class="fload-right"><?= $shownilai->hasil; ?></h4><small class="text-success"></small>
                                         </div>
                                     </td>
                                 </tr> <?php } else { ?>
